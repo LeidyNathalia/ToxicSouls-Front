@@ -1,0 +1,8 @@
+@import 'src/styles.scss';
+
+.wrap_carousel {
+  margin:auto;
+  // image aspect ratio is 3 : 2
+  width:80%;
+  height: calc((50vw - 40px) * 0.8 / 3 * 2);
+} 
