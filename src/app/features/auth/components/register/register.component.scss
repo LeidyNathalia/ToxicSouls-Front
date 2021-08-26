@@ -1,0 +1,44 @@
+@import 'src/styles.scss';
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.col-12 input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.col-12 input[type="text"],
+.col-12 input[type="password"] {
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.boton-guardar {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #2aa869;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.boton-guardar:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}
+
