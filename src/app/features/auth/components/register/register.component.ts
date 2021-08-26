@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     ccFormControl : new FormControl('', [
       Validators.required,
-      Validators.
+      Validators.maxLength(10)
     ]),
 
     nameFormControl : new FormControl('', [
@@ -40,5 +40,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  submit(): void {
+    console.log(this.registerForm.value);
+  }
 }
