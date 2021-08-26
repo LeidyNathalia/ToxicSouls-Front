@@ -9,7 +9,7 @@ const routes: Routes = [
     path: "", component: PrincipalComponent,
     children: [
       { path: "", component: SignInComponent },
-      { path: "register", component: RegisterComponent }
+      { path: "register", component: RegisterComponent },
     ]
   }
 ];

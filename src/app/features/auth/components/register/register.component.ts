@@ -11,8 +11,13 @@ export class RegisterComponent implements OnInit{
 
   registerForm = new FormGroup({
     ccFormControl : new FormControl('', [
+<<<<<<< HEAD
       Validators.required
 
+=======
+      Validators.required,
+      Validators.maxLength(10)
+>>>>>>> origin/other-b
     ]),
 
     nameFormControl : new FormControl('', [
@@ -38,6 +43,12 @@ export class RegisterComponent implements OnInit{
   ngOnInit(): void {
   }
 
+<<<<<<< HEAD
   matcher = new ErrorStateMatcher();
 
+=======
+  submit(): void {
+    console.log(this.registerForm.value);
+  }
+>>>>>>> origin/other-b
 }
