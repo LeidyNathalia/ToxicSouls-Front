@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-
-
+import {FormControl, FormGroup, NgForm,  Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
-
+export class RegisterComponent implements OnInit{
 
   registerForm = new FormGroup({
     ccFormControl : new FormControl('', [
-      Validators.required,
-      Validators.
+      Validators.required
+
     ]),
 
     nameFormControl : new FormControl('', [
@@ -40,5 +38,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  matcher = new ErrorStateMatcher();
 
 }
