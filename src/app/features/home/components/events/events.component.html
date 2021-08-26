@@ -1,6 +1,50 @@
-<div class="full-width" style="background-color: aqua;">
+<div class="full-width">
   <div class="wrap_carousel">
     <ng-simple-carousel-with-dots [images]="images" [controller]="controllerButton" (imgChange)="onImgChange($event)">
     </ng-simple-carousel-with-dots>
   </div>
 </div>
+
+<div class="new-cards">
+  <div>
+    <img src="./assets/img/artista1.jpg" alt="News 1" />
+    <h3>Artista 1</h3>
+    <p>Info</p>
+  </div>
+
+  <div>
+    <img src="./assets/img/artista2.jpg" alt="News 2" />
+    <h3>Artista 2</h3>
+    <p>Info</p>
+    <!-- <a href="">Learn more <i class="fas fa-angle-double-right"></i></a> -->
+  </div>
+
+  <div>
+    <img src="./assets/img/artista3.jpg" alt="News 3" />
+    <h3>Artista 3</h3>
+    <p>Info</p>
+    <!-- <a href="">Learn more <i class="fas fa-angle-double-right"></i></a> -->
+  </div>
+
+  <div>
+    <img src="./assets/img/artista4.jpg" alt="News 4" />
+    <h3>Artista 4</h3>
+    <p>Info</p>
+    <!-- <a href="">Learn more <i class="fas fa-angle-double-right"></i></a> -->
+  </div>
+</div>
+
+<section class="cards-banner-one">
+  <div class="content">
+    <h2>5 festivales de musica electronica que debes conocer</h2>
+    <p>
+      Si eres amante de la musica electronica seguramente has escuchado
+      algunos de estos festivales
+    </p>
+    <a href="https://www.dondeir.com/musica/5-festivales-de-musica-electronica/2017/11/" class="btn">Read more <i
+        class="fas fa-angle-double-right"></i></a>
+  </div>
+</section>
+
+<audio src="../../assets/music/track1.mp3" controls="controls" type="audio/mpeg" preload="preload"
+  class="playlist"></audio>

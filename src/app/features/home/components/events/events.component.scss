@@ -1,8 +1,60 @@
 @import 'src/styles.scss';
 
-.wrap_carousel {
-  margin:auto;
-  // image aspect ratio is 3 : 2
-  width:80%;
-  height: calc((50vw - 40px) * 0.8 / 3 * 2);
-} 
+.full-width {
+  width: 90%;
+  height: 450px;
+  overflow-y: hidden;
+  margin: auto;
+  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 10px;
+}
+
+/* NEWS CARDS */
+
+.new-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 25px;
+  margin: 65px;
+  margin-bottom: 30px;
+}
+
+.new-cards img {
+  width: 100%;
+  height: 180px;
+}
+
+.new-cards h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.new-cards a {
+  padding: 10px 0;
+  color: #f2f2f2;
+  text-transform: uppercase;
+  display: inline-block;
+  font-weight: bold;
+}
+
+// Card Banner
+
+.cards-banner-one {
+  width: 88%;
+  height: 350px;
+  background: url('../../../../../assets/img/banner_3.jpg') no-repeat center center/cover;
+  margin: auto;
+  margin-bottom: 58px;
+}
+
+.cards-banner-one .content {
+  width: 40%;
+  padding: 90px 0 0 30px;
+  color: #ffffff;
+}
+
+.playlist{
+  align-items: center;
+  margin-left: 410px;
+}
