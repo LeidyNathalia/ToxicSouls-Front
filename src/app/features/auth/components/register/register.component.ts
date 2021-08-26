@@ -1,15 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, NgForm,  Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit{
 
-  constructor() { }
+  registerForm = new FormGroup({
+    ccFormControl : new FormControl('', [
+      Validators.required
+
+    ]),
+
+    nameFormControl : new FormControl('', [
+      Validators.required
+      // Validators.email,
+    ]),
+
+    emailFormControl : new FormControl('', [
+      Validators.required
+      // Validators.email,
+    ]),
+
+    passFormControl : new FormControl('', [
+      Validators.required
+      // Validators.email,
+    ]),
+
+  })
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
+
+  matcher = new ErrorStateMatcher();
 
 }

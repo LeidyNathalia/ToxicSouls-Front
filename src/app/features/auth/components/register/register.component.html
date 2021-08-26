@@ -1,1 +1,45 @@
-<p>register works!</p>
+<!-- <form class="example-form" [formGroup] = "registerForm">
+  <mat-form-field class="example-full-width" appearance="fill">
+
+    <mat-label>Document</mat-label>
+    <input type="email" matInput formControlName="ccFormControl" placeholder="Ex. pat@example.com">
+    <mat-error *ngIf="ccFormControl.hasError('number') && !ccFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+ -->
+
+ <mat-card style="width: 300px">
+  <div class="row justify-content-center">
+    <div class="col-12 center-horizontal">
+      <img src="./assets/img/logoTS.png" class="img-logo-banner" alt="Logo app">
+    </div>
+    <div class="col-12 center-horizontal">
+      <h1 for="register">Register</h1>
+    </div>
+    <div class="col-12">
+      <label for="document">Document</label>
+      <input type="text" class="full-width" placeholder="Enter Document" />
+    </div>
+    <div class="col-12">
+      <label for="username">Username</label>
+      <input type="text" class="full-width" placeholder="Enter Username"/>
+    </div>
+    <div class="col-12">
+      <label for="email">Email</label>
+      <input type="text" class="full-width"  placeholder="Enter Email"/>
+    </div>
+    <div class="col-12">
+      <label for="password">Password</label>
+      <input type="text" class="full-width" placeholder="Enter Password"/>
+    </div>
+    <div class="center-horizontal ">
+      <button class = "boton-guardar" [routerLink]="'/admin'">Create account</button>
+    </div>
+  </div>
+</mat-card>
+
