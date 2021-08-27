@@ -3,15 +3,15 @@
   <div class="login-box">
     <img src="../../../../../assets/img/logoTS.png" class="avatar" alt="Avatar Image">
     <h1>Login</h1>
-    <form action="" method="POST">
+    <form [formGroup]="userLogin" (submit)="submit()">
       <!-- USERNAME INPUT -->
       <label for="username">Username</label>
-      <input id="user" name="user" type="text" placeholder="Enter Username">
+      <input id="user" name="user" type="text" placeholder="Enter Username" formControlName="email">
       <!-- PASSWORD INPUT -->
       <label for="password">Password</label>
-      <input id="pass" name="pass" type="password" placeholder="Enter Password">
+      <input id="pass" name="pass" type="password" formControlName="password" placeholder="Enter Password">
       <!-- <input type="submit" value="Log In" onclick="location.href='/menu.html'"> -->
-      <input id="boton-guardar" [routerLink]="'/admin'" type="submit" value="Log In">
+      <input id="boton-guardar" type="submit" value="Log In">
       <a href="#">Lost your Password?</a><br>
       <a href="#">Don't have An account?</a>
     </form>
