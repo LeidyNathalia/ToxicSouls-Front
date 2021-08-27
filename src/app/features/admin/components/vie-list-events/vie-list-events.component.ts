@@ -43,8 +43,8 @@ export class VieListEventsComponent implements AfterViewInit {
 
     try {
       const result = await this.eventService.getEvents();
-      this.eventsList = await result.users;
-      console.log(result.users);
+      this.eventsList = await result.events;
+      console.log(result.events);
       console.log(this.eventsList);
     } catch (error) {
       console.log(error);
