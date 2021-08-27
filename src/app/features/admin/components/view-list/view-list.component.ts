@@ -2,6 +2,8 @@ import { AfterViewInit, Component,  Input,  ViewChild } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { UserService } from '../../../../services/user-service/user.service';
+import { HeaderService } from '../../../../services/header-service/header.service';
 
 export interface UserData {
   cc: number;
@@ -17,19 +19,32 @@ export interface UserData {
 })
 export class ViewListComponent implements AfterViewInit {
 
-  @Input('users') users: UserData [];
+  usersList: UserData [];
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
+  displayedColumns: string[] = ['cc', 'name', 'email', 'options'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(this.users);
+  constructor(private userService: UserService,
+    private headerService: HeaderService
+    ) {
+
    }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit(): Promise<any> {
+
+    try {
+      const headers = this.headerService.createHeader(localStorage.getItem('token'));
+      const result = await this.userService.getUsers(headers);
+      this.usersList = await result.users;
+      console.log(result.users);
+      console.log(this.usersList);
+    } catch (error) {
+      console.log(error);
+    }
+    this.dataSource = new MatTableDataSource(this.usersList);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

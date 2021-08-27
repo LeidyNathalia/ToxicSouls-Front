@@ -18,4 +18,8 @@ export class UserService {
   registerUser(header: any, data: any): Promise<any> {
     return this.http.post<any>(this.path + '/add-user', data, {headers: header}).toPromise();
   }
+
+  getUsers(headers): Promise<any> {
+    return this.http.get<any>(this.path, {headers: headers}).toPromise();
+  }
 }
