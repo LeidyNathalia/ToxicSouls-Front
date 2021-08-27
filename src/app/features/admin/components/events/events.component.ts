@@ -13,11 +13,12 @@ import { UploadService } from './upload.service';
 export class EventsComponent implements OnInit {
   form: FormGroup;
   SERVER_URL = "http://localhost:3000/eventss";
-
+  url_cloudinary_img_current;
   constructor(
     public fb: FormBuilder,
     private http: HttpClient,
     private _uploadService: UploadService
+  
   ) {
     this.form = this.fb.group({
       date_event: [''],
@@ -62,6 +63,8 @@ export class EventsComponent implements OnInit {
     this._uploadService.uploadImage(data).subscribe((response) => {
       if (response) {
         console.log(response);
+        console.log("url de img", response.url)
+        this.url_cloudinary_img_current = response.url;
       }
     });
   }
@@ -98,8 +101,8 @@ export class EventsComponent implements OnInit {
     let options = { headers: headers };
     const body = { date_event: this.form.get('date_event').value, city_event: this.form.get('city_event').value,
     direction_event: this.form.get('direction_event').value, description_event: this.form.get('description_event').value,
-    presale: this.form.get('presale').value, artists: this.form.get('artists').value};
-    this.http.post<any>('http://localhost:3000/eventss',body,options).subscribe(
+    presale: this.form.get('presale').value, artists: this.form.get('artists').value, flyer: this.url_cloudinary_img_current};
+    this.http.post<any>('http://localhost:3000/api/events/add-event',body,options).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     )
