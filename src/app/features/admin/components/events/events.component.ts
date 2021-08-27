@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -29,7 +29,8 @@ export class EventsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
@@ -38,25 +39,48 @@ export class EventsComponent implements OnInit {
 
   submitForm() {
     let headers = new HttpHeaders();
-  //this is the important step. You need to set content type as null
-    headers.set('Content-Type', null);
-    headers.set('Accept', "multipart/form-data");
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('hola', 'mundo');
+
+    //headers.set('Content-Type', 'application/json; charset=utf-8');
+    //headers.set('Hola', 'mundo');
+    //headers = headers.append('enctype', 'multipart/form-data');
+    //headers.set('Accept', "multipart/form-data");
     let params = new HttpParams();
 
-    var formData: FormData = new FormData();
+    const formData: FormData = new FormData();
+    
     formData.append('date_event', this.form.get('date_event').value);
     formData.append('city_event', this.form.get('city_event').value);
     formData.append('direction_event', this.form.get('direction_event').value);
     formData.append('description_event',this.form.get('description_event').value);
     formData.append('presale', this.form.get('presale').value);
     formData.append('artists', this.form.get('artists').value);
-    formData.append('profile', this.form.get('profile').value);
+    
+    //formData.append('profile', this.form.get('profile').value);
 
     console.log(this.form.get('profile').value);
-
-    this.http.post('http://localhost:3000/eventss',formData,{params,headers}).subscribe(
+    //var aa = JSON.stringify(this.form.get('profile').value)
+    let options = { headers: headers };
+    const body = { date_event: this.form.get('date_event').value, city_event: this.form.get('city_event').value,
+    direction_event: this.form.get('direction_event').value, description_event: this.form.get('description_event').value,
+    presale: this.form.get('presale').value, artists: this.form.get('artists').value};
+    this.http.post<any>('http://localhost:3000/eventss',body,options).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     )
+    
+   /*
+    fetch('http://localhost:3000/eventss', {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/text',
+        'hola': 'mundi'
+      },
+      body: 'aaaaa'
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
+  */
   }
 }
