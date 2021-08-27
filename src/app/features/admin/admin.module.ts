@@ -7,7 +7,10 @@ import { EventsComponent } from './components/events/events.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
+//Ngx lib dropzone
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    HttpClientModule, NgxDropzoneModule
   ]
 })
 export class AdminModule { }

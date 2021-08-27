@@ -1,22 +1,23 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { UploadService } from './upload.service';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
 })
+
 export class EventsComponent implements OnInit {
   form: FormGroup;
   SERVER_URL = "http://localhost:3000/eventss";
 
   constructor(
     public fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private _uploadService: UploadService
   ) {
     this.form = this.fb.group({
       date_event: [''],
@@ -30,6 +31,39 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  
+  files: File[] = [];
+
+  onSelect(event) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemove(event) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  onUpload() {
+    //Scape empty array
+    if (!this.files[0]) {
+      alert('Primero sube una imagen, por favor');
+    }
+
+    //Upload my image to cloudinary
+    const file_data = this.files[0];
+    const data = new FormData();
+    data.append('file', file_data);
+    data.append('upload_preset', 'angular_cloudinary');
+    data.append('cloud_name', 'toxic-souls');
+
+    this._uploadService.uploadImage(data).subscribe((response) => {
+      if (response) {
+        console.log(response);
+      }
+    });
   }
 
   uploadFile(event) {
