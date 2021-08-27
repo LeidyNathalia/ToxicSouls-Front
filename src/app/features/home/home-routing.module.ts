@@ -8,7 +8,8 @@ const routes: Routes = [
   {
     path: "", component: PrincipalComponent,
     children: [
-      { path: "events", component: EventsComponent },
+      // { path: "", component: EventsComponent },
+      { path: "", component: EventsComponent },
       // { path: "play-list", component: PlayListComponent}
       { path: "news", component: NewsComponent }
     ]

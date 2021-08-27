@@ -1,16 +1,38 @@
-<div style="height: 100%; background-color: aqua; width: 250px; padding-right: 20px;">
-  <ul>
-    <li>
-      <a [routerLink]="'events'">Eventos</a>
-    </li>
-    <li>
-      <a [routerLink]="'/admin/artists'">Artistas</a>
-    </li>
-    <li>
-      <a [routerLink]="'/auth/register'">Registrar administrador</a>
-    </li>
-    <li>
-      <a [routerLink]="'/'">Volver al Home</a>
-    </li>
-  </ul>
+<div class="container-sidebar">
+  <div class="row">
+    <div class="col-12 center-horizontal">
+      <img src="./assets/img/logo_header.png" class="img-logo-banner" alt="Logo app">
+    </div>
+    <div class="col-12">
+      <ul>
+        <li>
+          <a [routerLink]="'news'">Eventos</a>
+        </li>
+        <li>
+          <a [routerLink]="'register-event'">Registrar evento</a>
+        </li>
+        <li>
+          <a [routerLink]="'/admin/artists'">Artistas</a>
+        </li>
+        <li>
+          <a [routerLink]="'/auth/register'">Registrar admin</a>
+        </li>
+        <li>
+          <a [routerLink]="'/admin/view-list'">Ver lista</a>
+        </li>
+        <div class="menu-inferior">
+          <li>
+            <a [routerLink]="'news'">Acerca De </a>
+          </li>
+          <li>
+            <a [routerLink]="'news'">Ayuda</a>
+          </li>
+          <li>
+            <a [routerLink]="'/'">Volver al Home</a>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
 </div>
+

@@ -8,6 +8,7 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
 import { ArtistComponent } from './components/artist/artist.component';
 import { SharedModule } from '../shared/shared.module';
 import { ViewListComponent } from './components/view-list/view-list.component';
+import { RegisterEventComponent } from './components/register-event/register-event.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ViewListComponent } from './components/view-list/view-list.component';
     EventsComponent,
     SidebarAdminComponent,
     ArtistComponent,
-    ViewListComponent
+    ViewListComponent,
+    RegisterEventComponent
   ],
   imports: [
     CommonModule,

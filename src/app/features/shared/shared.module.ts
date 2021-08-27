@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-
+// import { SidebarHomeComponent } from '../home/components/sidebar-home/sidebar-home.component';
 
 
 @NgModule({
