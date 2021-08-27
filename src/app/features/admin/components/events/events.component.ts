@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadService } from './upload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -17,8 +18,8 @@ export class EventsComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private http: HttpClient,
-    private _uploadService: UploadService
-  
+    private _uploadService: UploadService,
+    private routes : Router
   ) {
     this.form = this.fb.group({
       date_event: [''],
@@ -75,6 +76,7 @@ export class EventsComponent implements OnInit {
   }
 
   submitForm() {
+    this.routes.navigate(['/admin/list-event']);
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('hola', 'mundo');
