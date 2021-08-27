@@ -8,6 +8,8 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
 import { ArtistComponent } from './components/artist/artist.component';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewListComponent } from './components/view-list/view-list.component';
+import { RegisterEventComponent } from './components/register-event/register-event.component';
 
 //Ngx lib dropzone
 import { NgxDropzoneModule } from 'ngx-dropzone';
@@ -17,7 +19,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     PrincipalComponent,
     EventsComponent,
     SidebarAdminComponent,
-    ArtistComponent
+    ArtistComponent,
+    ViewListComponent,
+    RegisterEventComponent
   ],
   imports: [
     CommonModule,

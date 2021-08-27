@@ -1,1 +1,18 @@
 @import 'src/styles.scss';
+
+.container-sidebar {
+  a:link {color:#79CBBD;}
+  a:visited {color:#79CBBD;}
+  a:active {color:#ffffff;}
+  // a:hover {color:#ffffff;}
+  font-size: 19px;
+  line-height:50px;
+  color: #79CBBD;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.menu-inferior{
+  margin-top: 55px ;
+}
+

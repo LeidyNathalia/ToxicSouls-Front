@@ -10,6 +10,7 @@ export class EventsComponent implements OnInit {
 
 
   public controllerButton = new CarouselController();
+
   constructor() { }
 
   ngOnInit(): void {

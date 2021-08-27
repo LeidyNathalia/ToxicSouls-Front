@@ -18,6 +18,8 @@
   gap: 25px;
   margin: 65px;
   margin-bottom: 30px;
+  color: black;
+
 }
 
 .new-cards img {
@@ -30,9 +32,8 @@
   margin: 10px 0;
 }
 
-.new-cards a {
+.new-cards a  {
   padding: 10px 0;
-  color: #f2f2f2;
   text-transform: uppercase;
   display: inline-block;
   font-weight: bold;
@@ -57,4 +58,11 @@
 .playlist{
   align-items: center;
   margin-left: 410px;
+}
+
+.wrap_carousel {
+  // margin:auto;
+  // image aspect ratio is 3 : 2
+  width: 100%;
+  height: calc((200vw - 800px) * 0.8 / 3 * 2);
 }

@@ -1,21 +1,21 @@
 <div class="container-sidebar">
   <div class="row">
     <div class="col-12 center-horizontal">
-      <img src="./assets/img/LogoTSWh.png" class="img-logo-banner" alt="Logo app">
+      <img src="./assets/img/logo_header.png" class="img-logo-banner" alt="Logo app">
     </div>
     <div class="col-12">
       <ul>
         <li>
-          <a [routerLink]="'news'">Eventos</a>
+          <a [routerLink]="'/'" >Home</a>
         </li>
         <li>
-          <a [routerLink]="'register-event'">Registrar evento</a>
+          <a [routerLink]="'/home/events'">Eventos</a>
         </li>
         <li>
-          <a [routerLink]="'/admin/artists'">Artistas</a>
+          <a [routerLink]="'play-list'">PlayList</a>
         </li>
         <li>
-          <a [routerLink]="'/auth/register'">Registrar admin</a>
+          <a [routerLink]="'news'">Noticias</a>
         </li>
         <div class="menu-inferior">
           <li>
@@ -25,11 +25,10 @@
             <a [routerLink]="'news'">Ayuda</a>
           </li>
           <li>
-            <a [routerLink]="'/'">Volver al Home</a>
+            <a [routerLink]="'/auth'">Administrador</a>
           </li>
         </div>
       </ul>
     </div>
   </div>
 </div>
-

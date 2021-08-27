@@ -8,14 +8,15 @@ import { SidebarHomeComponent } from './components/sidebar-home/sidebar-home.com
 import { EventsComponent } from './components/events/events.component';
 import { NewsComponent } from './components/news/news.component';
 import { NgSimpleCarouselModule } from 'ng-simple-carousel';
-
+import { PlayListComponent } from './components/play-list/play-list.component';
 
 @NgModule({
   declarations: [
     PrincipalComponent,
     SidebarHomeComponent,
     EventsComponent,
-    NewsComponent
+    NewsComponent,
+    PlayListComponent
   ],
   imports: [
     CommonModule,

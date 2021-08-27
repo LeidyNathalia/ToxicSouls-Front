@@ -6,22 +6,30 @@
     <div class="col-12">
       <ul>
         <li>
-          <a [routerLink]="'events'">Home</a>
+          <a [routerLink]="'events'" > Home</a>
         </li>
         <li>
-          <a [routerLink]="'events'">Eventos</a>
+          <a [routerLink]="'/events'">Eventos</a>
         </li>
         <li>
           <a [routerLink]="'play-list'">PlayList</a>
         </li>
+
         <li>
           <a [routerLink]="'news'">Noticias</a>
         </li>
-        <li>
-          <a [routerLink]="'/auth'">Administrador</a>
-        </li>
+        <div class="menu-inferior">
+          <li>
+            <a [routerLink]="'news'">Acerca De </a>
+          </li>
+          <li>
+            <a [routerLink]="'news'">Ayuda</a>
+          </li>
+          <li>
+            <a [routerLink]="'/auth'">Administrador</a>
+          </li>
+        </div>
       </ul>
     </div>
   </div>
-
 </div>
