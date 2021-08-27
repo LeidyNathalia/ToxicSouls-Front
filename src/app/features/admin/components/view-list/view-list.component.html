@@ -27,10 +27,10 @@
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> OPTIONS </th>
       <td mat-cell *matCellDef="let row">
-        <button mat-icon-button aria-label = "Editar" >
+        <button mat-icon-button aria-label = "Editar" (click)="edit(row)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button aria-label = "Eliminar">
+        <button mat-icon-button aria-label = "Eliminar" (click)="delete(row)">
           <mat-icon>delete</mat-icon>
         </button></td>
     </ng-container>
