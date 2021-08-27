@@ -6,11 +6,11 @@
       <input
         type="number"
         matInput
-        formControlName="ccFormControl"
+        formControlName="cc"
         placeholder="11112323 - example"
       />
       <mat-error
-        *ngIf="registerForm.controls.ccFormControl.hasError('maxLength')"
+        *ngIf="registerForm.controls.cc.hasError('maxLength')"
       >
         Please enter a valid CC
       </mat-error>
@@ -21,19 +21,19 @@
       <input
         type="text"
         matInput
-        formControlName="nameFormControl"
+        formControlName="name"
         placeholder="Jhon Villalba"
       />
       <mat-error
         *ngIf="
-          registerForm.controls.nameFormControl.hasError('email') &&
-          !registerForm.controls.nameFormControl.hasError('required')
+          registerForm.controls.name.hasError('email') &&
+          !registerForm.controls.name.hasError('required')
         "
       >
         Please enter a valid name
       </mat-error>
       <mat-error
-        *ngIf="registerForm.controls.nameFormControl.hasError('required')"
+        *ngIf="registerForm.controls.name.hasError('required')"
       >
         Name is <strong>required</strong>
       </mat-error>
@@ -45,19 +45,19 @@
       <input
         type="email"
         matInput
-        formControlName="emailFormControl"
+        formControlName="email"
         placeholder="E-mail"
       />
       <mat-error
         *ngIf="
-          registerForm.controls.emailFormControl.hasError('email') &&
-          !registerForm.controls.emailFormControl.hasError('required')
+          registerForm.controls.email.hasError('email') &&
+          !registerForm.controls.email.hasError('required')
         "
       >
         Please enter a valid email
       </mat-error>
       <mat-error
-        *ngIf="registerForm.controls.emailFormControl.hasError('required')"
+        *ngIf="registerForm.controls.email.hasError('required')"
       >
         Email is <strong>required</strong>
       </mat-error>
@@ -69,20 +69,19 @@
       <input
         type="password"
         matInput
-        formControlName="passFormControl"
+        formControlName="password"
         placeholder="Password"
       />
       <mat-error
         *ngIf="
-          registerForm.controls.passFormControl.hasError('email') &&
-          !registerForm.controls.passFormControl.hasError('required')
+          registerForm.controls.password.hasError('email') &&
+          !registerForm.controls.password.hasError('required')
         "
       >
         Please enter a valid password
       </mat-error>
       <mat-error
-        *ngIf="registerForm.controls.passFormControl.hasError('required')"
-      >
+        *ngIf="registerForm.controls.password.hasError('required')">
         Password is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -92,8 +91,7 @@
         class="boton-guardar"
         mat-raised-button
         color="primary"
-        type="submit"
-      >
+        type="submit">
         Register
       </button>
     </div>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, NgForm,  Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { Router } from '@angular/router';
+import { UserService } from '../../../../services/user-service/user.service';
+import { HeaderService } from '../../../../services/header-service/header.service';
 
 @Component({
   selector: 'app-register',
@@ -10,35 +13,46 @@ import {ErrorStateMatcher} from '@angular/material/core';
 export class RegisterComponent implements OnInit{
 
   registerForm = new FormGroup({
-    ccFormControl : new FormControl('', [
+    cc : new FormControl('', [
       Validators.required,
       Validators.maxLength(10)
     ]),
 
-    nameFormControl : new FormControl('', [
+    name : new FormControl('', [
       Validators.required
       // Validators.email,
     ]),
 
-    emailFormControl : new FormControl('', [
+    email : new FormControl('', [
       Validators.required
       // Validators.email,
     ]),
 
-    passFormControl : new FormControl('', [
+    password : new FormControl('', [
       Validators.required
       // Validators.email,
     ]),
 
   })
 
-  constructor() {
+  constructor(private routes : Router, private userService: UserService,
+    private headerService: HeaderService
+    ) {
   }
 
   ngOnInit(): void {
   }
 
-  submit(): void {
-    console.log(this.registerForm.value);
+  async submit(): Promise<any>{
+    try {
+      const header = this.headerService.createHeader(localStorage.getItem('token'));
+      const token = header.get('access-token');
+      console.log(token);
+      const result = await this.userService.registerUser(header, this.registerForm.value);
+      this.routes.navigate(['/admin/list']);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
