@@ -81,4 +81,3 @@ export class ViewListComponent implements AfterViewInit {
   }
 
 }
-
