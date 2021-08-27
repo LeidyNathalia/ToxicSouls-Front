@@ -6,6 +6,7 @@ import { PrincipalComponent } from './components/principal/principal.component';
 import { ViewListComponent } from './components/view-list/view-list.component';
 import { RegisterEventComponent } from './components/register-event/register-event.component';
 import { VieListEventsComponent } from './components/vie-list-events/vie-list-events.component';
+import { ModifyEventComponent } from './components/modify-event/modify-event.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: "artists", component: ArtistComponent },
       { path: "list", component: ViewListComponent},
       { path: "register-event", component: RegisterEventComponent},
-      { path: "list-event", component: VieListEventsComponent }
+      { path: "list-event", component: VieListEventsComponent },
+      { path: "modify-event", component: ModifyEventComponent }
     ]
   }
 ];

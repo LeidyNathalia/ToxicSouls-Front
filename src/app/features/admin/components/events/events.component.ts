@@ -77,6 +77,8 @@ export class EventsComponent implements OnInit {
 
   submitForm() {
     this.routes.navigate(['/admin/list-event']);
+
+    
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('hola', 'mundo');

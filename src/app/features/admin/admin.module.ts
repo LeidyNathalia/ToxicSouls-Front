@@ -14,6 +14,7 @@ import { RegisterEventComponent } from './components/register-event/register-eve
 //Ngx lib dropzone
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { VieListEventsComponent } from './components/vie-list-events/vie-list-events.component';
+import { ModifyEventComponent } from './components/modify-event/modify-event.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { VieListEventsComponent } from './components/vie-list-events/vie-list-ev
     ArtistComponent,
     ViewListComponent,
     RegisterEventComponent,
-    VieListEventsComponent
+    VieListEventsComponent,
+    ModifyEventComponent
   ],
   imports: [
     CommonModule,

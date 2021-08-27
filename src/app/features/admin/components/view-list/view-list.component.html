@@ -8,29 +8,45 @@
 
     <!-- ID Column -->
     <ng-container matColumnDef="cc">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> CC </th>
-      <td mat-cell *matCellDef="let row"> {{row.cc}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de evento </th>
+      <td mat-cell *matCellDef="let row"> {{row.date_event}} </td>
     </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-      <td mat-cell *matCellDef="let row"> {{row.name}}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciudad de evento </th>
+      <td mat-cell *matCellDef="let row"> {{row.city_event}}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> E-MAIL </th>
-      <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Direccion de evento </th>
+      <td mat-cell *matCellDef="let row"> {{row.direction_event}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion de evento </th>
+      <td mat-cell *matCellDef="let row"> {{row.description_event}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+      <td mat-cell *matCellDef="let row"> {{row.presale}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Artistas </th>
+      <td mat-cell *matCellDef="let row"> {{row.artists}} </td>
+    </ng-container>
+
 
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> OPTIONS </th>
       <td mat-cell *matCellDef="let row">
-        <button mat-icon-button aria-label = "Editar" >
+        <button mat-icon-button aria-label="Editar">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button aria-label = "Eliminar">
+        <button mat-icon-button aria-label="Eliminar">
           <mat-icon>delete</mat-icon>
         </button></td>
     </ng-container>
