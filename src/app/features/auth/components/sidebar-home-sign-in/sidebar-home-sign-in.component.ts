@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './sidebar-home-sign-in.component.html',
   styleUrls: ['./sidebar-home-sign-in.component.scss']
 })
+
 export class SidebarHomeSignInComponent implements OnInit {
 
   constructor() { }

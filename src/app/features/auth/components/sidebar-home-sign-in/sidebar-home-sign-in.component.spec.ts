@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarHomeSignInComponent } from './sidebar-home-sign-in.component';
 
-describe('SidebarHomeComponent', () => {
+describe('SidebarHomeSignInComponent', () => {
   let component: SidebarHomeSignInComponent;
   let fixture: ComponentFixture<SidebarHomeSignInComponent>;
 

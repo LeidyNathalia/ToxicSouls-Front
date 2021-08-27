@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EventsComponent } from './components/events/events.component';
 import { NewsComponent } from './components/news/news.component';
 import { PrincipalComponent } from './components/principal/principal.component';
+import { PlayListComponent } from './components/play-list/play-list.component';
+
 
 const routes: Routes = [
   {
@@ -10,7 +12,7 @@ const routes: Routes = [
     children: [
       // { path: "", component: EventsComponent },
       { path: "", component: EventsComponent },
-      // { path: "play-list", component: PlayListComponent}
+      { path: "play-list", component: PlayListComponent},
       { path: "news", component: NewsComponent }
     ]
   }

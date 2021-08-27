@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule} from '@angular/material/sort';
+import { MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
@@ -21,7 +22,8 @@ import { MatSortModule} from '@angular/material/sort';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatIconModule
   ],
   exports: [
     //FormControl,
@@ -32,7 +34,8 @@ import { MatSortModule} from '@angular/material/sort';
     MatSidenavModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatIconModule
   ]
 })
 
