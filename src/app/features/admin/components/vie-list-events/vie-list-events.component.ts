@@ -28,7 +28,7 @@ export class VieListEventsComponent implements AfterViewInit {
     'description_event',
     'presale',
     'artists',
-  ];
+    'options'];
   dataSource: MatTableDataSource<eventData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
