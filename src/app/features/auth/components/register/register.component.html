@@ -8,14 +8,14 @@
     </mat-card>
   </div>
   <div class = "register ">
-    <h1> Register </h1>
+    <h1> Registrar </h1>
   </div>
 
   <!-- Formulario -->
   <form class="example-form" [formGroup]="registerForm" (submit)="submit()">
     <!-- Document  -->
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Document</mat-label>
+      <mat-label>Documento</mat-label>
       <input
         type="number"
         matInput
@@ -25,17 +25,17 @@
       <mat-error
         *ngIf="registerForm.controls.cc.hasError('maxLength')"
       >
-        Please enter a valid CC
+        Por favor, ingrese la CC
       </mat-error>
     </mat-form-field>
     <!-- Name  -->
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Name</mat-label>
+      <mat-label>Nombre</mat-label>
       <input
         type="text"
         matInput
         formControlName="name"
-        placeholder="Jhon Villalba"
+        placeholder="Pedro Cifuentes"
       />
       <mat-error
         *ngIf="
@@ -43,12 +43,12 @@
           !registerForm.controls.name.hasError('required')
         "
       >
-        Please enter a valid name
+        Por favor ingrese un nombre válido
       </mat-error>
       <mat-error
         *ngIf="registerForm.controls.name.hasError('required')"
       >
-        Name is <strong>required</strong>
+        Nombre es <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
@@ -67,7 +67,7 @@
           !registerForm.controls.email.hasError('required')
         "
       >
-        Please enter a valid email
+      Por favor ingrese un correo válido
       </mat-error>
       <mat-error
         *ngIf="registerForm.controls.email.hasError('required')"
@@ -78,7 +78,7 @@
 
     <!-- E-mail -->
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Password</mat-label>
+      <mat-label>Contraseña</mat-label>
       <input
         type="password"
         matInput
@@ -91,7 +91,7 @@
           !registerForm.controls.password.hasError('required')
         "
       >
-        Please enter a valid password
+       Por favor ingrese una contraseña válido
       </mat-error>
       <mat-error
         *ngIf="registerForm.controls.password.hasError('required')">
@@ -105,7 +105,7 @@
         mat-raised-button
         color="primary"
         type="submit">
-        Register
+        Registrar
       </button>
     </div>
   </form>
