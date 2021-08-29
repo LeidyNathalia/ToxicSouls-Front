@@ -28,7 +28,7 @@ export class VieListEventsComponent implements AfterViewInit {
     'description_event',
     'presale',
     'artists',
-  ];
+    'options'];
   dataSource: MatTableDataSource<eventData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -43,6 +43,7 @@ export class VieListEventsComponent implements AfterViewInit {
 
     try {
       const result = await this.eventService.getEvents();
+      console.log('result', result);
       this.eventsList = await result.events;
       console.log(result.events);
       console.log(this.eventsList);
@@ -61,5 +62,23 @@ export class VieListEventsComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  async delete(row: any): Promise<any> {
+    try {
+      //const header = this.headerService.createHeader(localStorage.getItem('token'));
+      const deleteUser = await this.eventService.deleteEvent(row._id);
+      const newList = await this.eventService.getEvents();
+      for(let i = 0; i < this.eventsList.length; i ++){
+        if(this.eventsList[i]['_id'] === row._id){
+          this.eventsList.splice(i, 1);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    this.dataSource = new MatTableDataSource(this.eventsList);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

@@ -13,4 +13,8 @@ export class EventService {
   getEvents(): Promise<any> {
     return this.http.get<any>(this.path).toPromise();
   }
+
+  deleteEvent(_id): Promise<any>{
+    return this.http.delete<any>(`${this.path}/${_id}`).toPromise();
+  }
 }

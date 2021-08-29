@@ -19,7 +19,11 @@ export class UserService {
     return this.http.post<any>(this.path + '/add-user', data, {headers: header}).toPromise();
   }
 
-  getUsers(headers): Promise<any> {
+  getUsers(headers:any): Promise<any> {
     return this.http.get<any>(this.path, {headers: headers}).toPromise();
+  }
+
+  deleteUser(_id: string, headers: any): Promise<any>{
+    return this.http.delete<any>(this.path + '/' + _id, {headers: headers}).toPromise();
   }
 }

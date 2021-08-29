@@ -43,7 +43,7 @@
           <button mat-icon-button aria-label="Editar"  [routerLink]="'modify-event'">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Eliminar">
+          <button (click)= "delete(row)" mat-icon-button aria-label="Eliminar">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
