@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadService } from './upload.service';
@@ -22,12 +22,23 @@ export class EventsComponent implements OnInit {
     private routes : Router
   ) {
     this.form = this.fb.group({
-      date_event: [''],
-      city_event: [''],
-      direction_event: [''],
-      description_event: [''],
-      presale: [''],
-      artists: [''],
+      date_event: ['',[
+        Validators.required,
+        Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|\/)(0[1-9]|1[0-2])\2(\d{4})$/)]],
+      city_event: ['',[
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]+$/)]],
+      direction_event: ['',[
+        Validators.required]],
+      description_event: ['',[
+        Validators.required,
+        Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)]],
+      presale: ['',[
+        Validators.required,
+        Validators.pattern(/^[0-9]+$/)]],
+      artists:['',[
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]+$/)]],
       profile: ['']
     });
   }
@@ -73,6 +84,10 @@ export class EventsComponent implements OnInit {
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.get('profile').setValue(file);
+  }
+
+  viewList() {
+    this.routes.navigate(['/admin/list-event']);
   }
 
   submitForm() {
