@@ -17,9 +17,9 @@ export class EventsComponent implements OnInit {
   }
 
   images: CarouselImage[] = [
-    { id: 'australian', src: 'assets/img/slide1.jpg' },
-    { id: 'dachshund', src: 'assets/img/slide2.jpg' },
-    { id: 'shiba', src: 'assets/img/slide4.jpg' }
+    { id: 'australian', src: 'assets/img/Slide 3.JPG' },
+    { id: 'dachshund', src: 'assets/img/Slide 4.jpg' },
+    { id: 'shiba', src: 'assets/img/Slide 5.jpg' }
   ];
 
   onImgChange(id: string) {

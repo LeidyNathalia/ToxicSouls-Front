@@ -9,7 +9,9 @@ import { MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule} from '@angular/material/sort';
 import { MatIconModule} from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -25,7 +27,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatTabsModule
   ],
   exports: [
     //FormControl,
@@ -38,7 +42,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatTabsModule
   ]
 })
 

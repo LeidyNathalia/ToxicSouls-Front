@@ -1,3 +1,4 @@
+@import 'src/styles.scss';
 .bod {
     margin: 0;
     padding: 0;
@@ -26,8 +27,8 @@
     height: 120px;
     border-radius: 50%;
     position: absolute;
-    top: -80px;
-    left: calc(24% - 50px);
+    top: -70px;
+    left: calc(24% - 55px);
 }
 
 .login-box h1 {

@@ -1,32 +1,42 @@
 <div class="container-sidebar">
   <div class="row">
-    <div class="col-12 center-horizontal">
-      <img src="./assets/img/LogoTSWh.png" class="img-logo-banner" alt="Logo app">
+    <div class=" logo col-12 center-horizontal">
+      <img src="./assets/img/logo_header_larg.png" class="img-logo-banner" alt="Logo app"
+      />
     </div>
-    <div class="col-12">
-      <ul>
-        <li>
-          <a [routerLink]="'events'">Eventos</a>
-        </li>
-        <li>
-          <a [routerLink]="'/admin/artists'">Artistas</a>
-        </li>
-        <li>
-          <a [routerLink]="'/auth/register'">Registrar admin</a>
-        </li>
-        <div class="menu-inferior">
-          <li>
-            <a [routerLink]="'news'">Acerca De </a>
-          </li>
-          <li>
-            <a [routerLink]="'news'">Ayuda</a>
-          </li>
-          <li>
-            <a [routerLink]="'/'">Volver al Home</a>
-          </li>
-        </div>
-      </ul>
+
+    <div class="btSeccionOne">
+      <button class="center-left" mat-button [routerLink]="'events'">
+        <mat-icon>event</mat-icon>
+        Eventos
+      </button>
+
+      <button class="center-left" mat-button [routerLink]="'/admin/artists'">
+        <mat-icon>play_circle_outline</mat-icon>
+        Artistas
+      </button>
+
+      <button class="center-left" mat-button [routerLink]="'/auth/register'">
+        <mat-icon>library_books</mat-icon>
+        Registrar admin
+      </button>
+    </div>
+
+    <div class="btSeccionTwo">
+      <button class="center-left" mat-button [routerLink]="'news'">
+        <mat-icon>info</mat-icon>
+        Acerca De
+      </button>
+
+      <button class="center-left" mat-button [routerLink]="'news'">
+        <mat-icon>help_outline</mat-icon>
+        Ayuda
+      </button>
+
+      <button class="center-left" mat-button [routerLink]="'/'">
+        <mat-icon>person_outline</mat-icon>
+        Volver al Home
+      </button>
     </div>
   </div>
 </div>
-

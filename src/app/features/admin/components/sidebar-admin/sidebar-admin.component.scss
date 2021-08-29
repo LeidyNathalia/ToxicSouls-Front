@@ -5,13 +5,39 @@
   a:visited {color:#79CBBD;}
   a:active {color:#ffffff;}
   // a:hover {color:#ffffff;}
-  font-size: 19px;
-  line-height:50px;
-  color: #79CBBD;
+  line-height:55px;
+  color: #1EF0C3;
+  // color: #FFD200;
   text-decoration: none;
   padding: 10px;
 }
 
-.menu-inferior{
+.img-logo-banner{
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 15px ;
+  width:230px;
+}
+
+.btSeccionOne{
+  margin-left: 10px;
+  margin-top: 25px ;
+}
+
+.btSeccionTwo{
   margin-top: 55px ;
+  margin-left: 10px;
+}
+
+.btFacebook{
+  height:50px;
+  width:50px;
+  background-size: 60px 60px;
+
+}
+
+.example-tab-icon {
+  height:50px;
+  width:50px;
+  background-size: 60px 60px;
 }
