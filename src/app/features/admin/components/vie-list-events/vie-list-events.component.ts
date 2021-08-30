@@ -83,11 +83,8 @@ export class VieListEventsComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-<<<<<<< HEAD
-=======
 
   modify() {
     this.routes.navigate(['/admin/modify-event']);
   }
->>>>>>> origin/updateEvent
 }

@@ -1,11 +1,19 @@
 @import 'src/styles.scss';
 
 .crearEvento{
-  font-size: 19px;
-  padding: 10px;
+  font-size: 33px;
+  padding: 5px;
+  margin-left: 450px;
 }
 
-// .form-group {
+.toolbar {
+  height: 60px;
+  display: flex;
+  background-color: #000000;
+  color: #ffffff;
+
+}
+
 .example-card {
   max-width: 100vh;
   opacity: 45;
@@ -20,6 +28,13 @@
   width: 100%;
 }
 
+.example-full-width{
+  width: 60%;
+  justify-content: center;
+  margin-left: 200px;
+
+}
+
 .register {
   margin: 0;
   padding: 0 0 0px;
@@ -27,22 +42,18 @@
   font-size: 12px;
 }
 
-.example-full-width {
-  width: 100%;
-}
 
-.boton-guardar {
+.btn-danger {
   border: none;
   outline: none;
-  height: 40px;
+  height: 50px;
   background: #2aa869;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-size: 18px;
   border-radius: 20px;
 }
 
-// .form-group:hover {
-.boton-guardar:hover {
+.btn-danger:hover {
   cursor: pointer;
   background: #ffc107;
   color: #000;
@@ -57,11 +68,10 @@ height: 550px;
 background-color: white;
 background: rgba(255, 255, 255, 0.5);
 box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
-// background: radial-gradient(69.51% 65.86% at 30.49% 45.78%, #75777C 0%, rgba(255, 255, 255, 0) 100%);
-// filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 border-radius: 14px;
 }
 
 .viewList{
   margin-left: 980px;
 }
+
