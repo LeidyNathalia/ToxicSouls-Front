@@ -7,6 +7,7 @@ import { ViewListComponent } from './components/view-list/view-list.component';
 import { RegisterEventComponent } from './components/register-event/register-event.component';
 import { VieListEventsComponent } from './components/vie-list-events/vie-list-events.component';
 import { ModifyEventComponent } from './components/modify-event/modify-event.component';
+import { RegisterComponent } from '../admin/components/register/register.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
       { path: "list", component: ViewListComponent},
       { path: "register-event", component: RegisterEventComponent},
       { path: "list-event", component: VieListEventsComponent },
-      { path: "modify-event", component: ModifyEventComponent }
+      { path: "modify-event", component: ModifyEventComponent },
+      { path: "register", component: RegisterComponent }
     ]
   }
 ];

@@ -6,19 +6,16 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
   
-      <!-- ID Column -->
-      <ng-container matColumnDef="date_event">
+       <ng-container matColumnDef="date_event">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha</th>
         <td mat-cell *matCellDef="let row"> {{row.date_event}} </td>
       </ng-container>
-  
-      <!-- Progress Column -->
+
       <ng-container matColumnDef="city_event">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciudad</th>
         <td mat-cell *matCellDef="let row"> {{row.city_event}}</td>
       </ng-container>
   
-      <!-- Name Column -->
       <ng-container matColumnDef="direction_event">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Direccion</th>
         <td mat-cell *matCellDef="let row"> {{row.direction_event}} </td>
@@ -37,13 +34,12 @@
       <ng-container matColumnDef="artists">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Artistas</th>
         <td mat-cell *matCellDef="let row"> {{row.artists}} </td>
-      </ng-container>
-  
-  
+      </ng-container> -->
+      
       <ng-container matColumnDef="options">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> OPTIONS </th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button aria-label="Editar"  [routerLink]="'modify-event'">
+          <button (click)="modify()" mat-icon-button aria-label="Editar">
             <mat-icon>edit</mat-icon>
           </button>
           <button (click)= "delete(row)" mat-icon-button aria-label="Eliminar">

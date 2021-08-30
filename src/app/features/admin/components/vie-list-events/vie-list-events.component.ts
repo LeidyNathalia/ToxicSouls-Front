@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { EventService} from '../../../../services/user-service/event.service';
 import { HeaderService } from '../../../../services/header-service/header.service';
+import { Router } from '@angular/router';
 
 export interface eventData {
   date_event: string;
@@ -36,6 +37,7 @@ export class VieListEventsComponent implements AfterViewInit {
 
   constructor(
     private eventService: EventService,
+    private routes : Router,
     private headerService: HeaderService
   ) {}
 
@@ -81,4 +83,11 @@ export class VieListEventsComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+<<<<<<< HEAD
+=======
+
+  modify() {
+    this.routes.navigate(['/admin/modify-event']);
+  }
+>>>>>>> origin/updateEvent
 }

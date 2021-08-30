@@ -28,12 +28,15 @@ export class SignInComponent implements OnInit {
     try {
       const result = await this.userService.loginUser(this.userLogin.value);
       if (result.role === 'super-admin') {
+        localStorage.setItem('role', 'super-admin');
         this.router.navigate(['/admin']);
         localStorage.setItem('token', result.token);
         const header = this.headerService.createHeader(localStorage.getItem('token'));
         console.log(result.token);
       } else {
         console.log('Admin normal');
+        localStorage.setItem('role', 'admin');
+        this.router.navigate(['/']);
       }
       console.log(result);
     } catch (error) {

@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor() { }
+  isSuperAdmin : boolean;
+  isUser : boolean = false;
+  
+  constructor() {
+    const result = localStorage.getItem('role');
+
+    if(result === undefined){
+        this.isUser = true;
+    }
+
+    if (localStorage.getItem('role') === "super-admin") {
+      this.isSuperAdmin = true;
+    }
+  }
 
   ngOnInit(): void {
   }
+
+
 
 }

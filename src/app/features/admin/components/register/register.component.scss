@@ -41,6 +41,22 @@
   color: #000;
 }
 
+.boton-registrar{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #2aa869;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  border-radius: 20px;
+  padding-left: 15px;
+}
+
+.boton-registrar:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}
 
 .formulario{
 
