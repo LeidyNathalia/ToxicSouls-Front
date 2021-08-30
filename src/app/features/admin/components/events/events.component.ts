@@ -24,7 +24,7 @@ export class EventsComponent implements OnInit {
     this.form = this.fb.group({
       date_event: ['',[
         Validators.required,
-        Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|\/)(0[1-9]|1[0-2])\2(\d{4})$/)]],
+        Validators.pattern(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/)]],
       city_event: ['',[
         Validators.required,
         Validators.pattern(/^[a-zA-Z]+$/)]],
@@ -39,11 +39,16 @@ export class EventsComponent implements OnInit {
       artists:['',[
         Validators.required,
         Validators.pattern(/^[a-zA-Z]+$/)]],
+      aforo: ['',[
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]+$/)]], 
       profile: ['']
     });
   }
 
   ngOnInit() {
+    var current_date = new Date().toISOString().split('T')[0];
+    document.getElementsByName("appo_date")[0].setAttribute('min', current_date);
   }
 
   
@@ -88,6 +93,7 @@ export class EventsComponent implements OnInit {
 
   viewList() {
     this.routes.navigate(['/admin/list-event']);
+
   }
 
   submitForm() {
@@ -112,6 +118,7 @@ export class EventsComponent implements OnInit {
     formData.append('description_event',this.form.get('description_event').value);
     formData.append('presale', this.form.get('presale').value);
     formData.append('artists', this.form.get('artists').value);
+    formData.append('artists', this.form.get('aforo').value);
     
     //formData.append('profile', this.form.get('profile').value);
 
@@ -120,7 +127,7 @@ export class EventsComponent implements OnInit {
     let options = { headers: headers };
     const body = { date_event: this.form.get('date_event').value, city_event: this.form.get('city_event').value,
     direction_event: this.form.get('direction_event').value, description_event: this.form.get('description_event').value,
-    presale: this.form.get('presale').value, artists: this.form.get('artists').value, flyer: this.url_cloudinary_img_current};
+    presale: this.form.get('presale').value, artists: this.form.get('artists').value,aforo: this.form.get('aforo').value, flyer: this.url_cloudinary_img_current};
     this.http.post<any>('http://localhost:3000/api/events/add-event',body,options).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)

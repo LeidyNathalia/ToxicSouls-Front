@@ -362,8 +362,11 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Fecha del evento</mat-label>
-      <input type="text" matInput formControlName="date_event" placeholder="dd/mm/yyyy"
-        required>
+      <input type="date" matInput name="appo_date" formControlName="date_event" placeholder="dd/mm/yyyy"
+        uib-datepicker-popup="dd/mm/yyyy" close-text="Close" id="date" required>
+      <script>
+        consol.log(document.getElementById("date").value);
+      </script>  
       <mat-error *ngIf="form.get('date_event').hasError('required')">
         Por favor, ingrese la fecha del evento
       </mat-error>
@@ -386,10 +389,10 @@
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Direccion del evento</mat-label>
       <input type="text" matInput formControlName="direction_event" placeholder="Calle 19 # 12-13" required>
-      <mat-error *ngIf="form.get('city_event').hasError('required')">
+      <mat-error *ngIf="form.get('direction_event').hasError('required')">
         Por favor, ingrese la direccion del evento
       </mat-error>
-      <mat-error *ngIf="form.get('city_event').hasError('pattern')">
+      <mat-error *ngIf="form.get('direction_event').hasError('pattern')">
         Por favor, ingrese un formato valido
       </mat-error>
     </mat-form-field>
@@ -397,10 +400,10 @@
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Descripcion del evento</mat-label>
       <input type="text" matInput formControlName="description_event" placeholder="" required>
-      <mat-error *ngIf="form.get('city_event').hasError('required')">
+      <mat-error *ngIf="form.get('description_event').hasError('required')">
         Por favor, ingrese la descripcion del evento
       </mat-error>
-      <mat-error *ngIf="form.get('city_event').hasError('pattern')">
+      <mat-error *ngIf="form.get('description_event').hasError('pattern')">
         Por favor, ingrese un formato valido
       </mat-error>
     </mat-form-field>
@@ -408,10 +411,10 @@
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Presale</mat-label>
       <input type="number" matInput formControlName="presale" placeholder="10000" required>
-      <mat-error *ngIf="form.get('city_event').hasError('required')">
+      <mat-error *ngIf="form.get('presale').hasError('required')">
         Por favor, ingrese el precio del evento
       </mat-error>
-      <mat-error *ngIf="form.get('city_event').hasError('pattern')">
+      <mat-error *ngIf="form.get('presale').hasError('pattern')">
         Por favor, ingrese un formato valido(solo numeros)
       </mat-error>
     </mat-form-field>
@@ -419,11 +422,22 @@
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Artistas</mat-label>
       <input type="text" matInput formControlName="artists" placeholder="" required>
-      <mat-error *ngIf="form.get('city_event').hasError('required')">
+      <mat-error *ngIf="form.get('artists').hasError('required')">
         Por favor, ingrese los artistas del evento
       </mat-error>
-      <mat-error *ngIf="form.get('city_event').hasError('pattern')">
+      <mat-error *ngIf="form.get('artists').hasError('pattern')">
         Por favor, ingrese un formato valido(solo letras)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Aforo</mat-label>
+      <input type="text" matInput formControlName="aforo" placeholder="" required>
+      <mat-error *ngIf="form.get('aforo').hasError('required')">
+        Por favor, ingrese el aforo del evento
+      </mat-error>
+      <mat-error *ngIf="form.get('aforo').hasError('pattern')">
+        Por favor, ingrese un formato valido(solo numeros)
       </mat-error>
     </mat-form-field>
 
