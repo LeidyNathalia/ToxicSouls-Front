@@ -10,10 +10,18 @@ import { UserService } from 'src/app/services/user-service/user.service';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
-  userLogin = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    userLogin = new FormGroup({
+
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email]),
+
+      password: new FormControl('', [
+        Validators.required]),
   });
+
+
+
 
   constructor(
     private router: Router,
@@ -37,9 +45,13 @@ export class SignInComponent implements OnInit {
         );
         console.log(result.token);
       } else {
+        const header = this.headerService.createHeader(
+          localStorage.getItem('token')
+        );
         console.log('Admin normal');
         localStorage.setItem('role', 'admin');
         this.routes.navigate(['/admin']);
+
       }
       console.log(result);
     } catch (error) {
