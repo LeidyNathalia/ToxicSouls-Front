@@ -426,6 +426,17 @@
           Por favor, ingrese un formato valido(solo letras)
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Aforo</mat-label>
+        <input type="number" matInput formControlName="aforo" placeholder="" required />
+        <mat-error *ngIf="form.get('aforo').hasError('required')">
+          Por favor, ingrese el aforo del evento
+        </mat-error>
+        <mat-error *ngIf="form.get('aforo').hasError('pattern')">
+          Por favor, ingrese un formato valido(solo numeros)
+        </mat-error>
+      </mat-form-field>
   
       <div class="form-group">
         <button class="btn btn-danger">Modificar</button>

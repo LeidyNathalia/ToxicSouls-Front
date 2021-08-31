@@ -13,6 +13,7 @@ export interface eventData {
   description_event: string;
   presale: string;
   artists: string;
+  capacity: Number;
 }
 
 @Component({
@@ -29,6 +30,7 @@ export class VieListEventsComponent implements AfterViewInit {
     'description_event',
     'presale',
     'artists',
+    'capacity',
     'options',
   ];
   dataSource: MatTableDataSource<eventData>;

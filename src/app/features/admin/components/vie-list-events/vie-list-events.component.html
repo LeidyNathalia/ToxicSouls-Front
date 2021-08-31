@@ -35,6 +35,11 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Artistas</th>
         <td mat-cell *matCellDef="let row"> {{row.artists}} </td>
       </ng-container> -->
+
+      <ng-container matColumnDef="capacity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Aforo</th>
+        <td mat-cell *matCellDef="let row"> {{row.capacity}} </td>
+      </ng-container> -->
       
       <ng-container matColumnDef="options">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> OPTIONS </th>

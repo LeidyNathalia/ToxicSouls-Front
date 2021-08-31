@@ -64,7 +64,7 @@ export class ModifyEventComponent implements OnInit {
         Validators.pattern(/^[a-zA-Z]+$/)]],
       aforo: ['',[
         Validators.required,
-        Validators.pattern(/^[a-zA-Z]+$/)]], 
+        Validators.pattern(/^[0-9]+$/)]],
       profile: ['']
     });
     this.id_edit= this.actroutes.snapshot.queryParams.id;
@@ -187,7 +187,7 @@ export class ModifyEventComponent implements OnInit {
     let options = { headers: headers };
     const body = { date_event: this.form.get('date_event').value, city_event: this.form.get('city_event').value,
     direction_event: this.form.get('direction_event').value, description_event: this.form.get('description_event').value,
-    presale: this.form.get('presale').value, artists: this.form.get('artists').value, flyer: this.url_cloudinary_img_current};
+    presale: this.form.get('presale').value, artists: this.form.get('artists').value, capacity: this.form.get('aforo').value, flyer: this.url_cloudinary_img_current};
     this.http.post<any>('http://localhost:3000/api/events/add-event',body,options).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
