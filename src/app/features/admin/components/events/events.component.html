@@ -234,7 +234,8 @@
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link),
+
+    .card-container>*:not(.circle-link),
     .terminal {
       width: 100%;
     }
@@ -260,6 +261,7 @@
       visibility: hidden;
     }
   }
+
 </style>
 
 <!-- Toolbar -->
@@ -268,11 +270,10 @@
   <div class="spacer center-left"></div>
   <a>
     <svg>
-       <rect width="400" height="400" fill="none" />
+      <rect width="400" height="400" fill="none" />
       <path
         d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"
-        fill="#fff"
-      />
+        fill="#fff" />
     </svg>
   </a>
 </div>
@@ -299,13 +300,8 @@
   <div class="terminal">
     <ngx-dropzone (change)="onSelect($event)" style="margin: 20px">
       <ngx-dropzone-label>Selecciona una imagen</ngx-dropzone-label>
-      <ngx-dropzone-image-preview
-        ngProjectAs="ngx-dropzone-preview"
-        *ngFor="let f of files"
-        [file]="f"
-        [removable]="true"
-        (removed)="onRemove(f)"
-      >
+      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+        [removable]="true" (removed)="onRemove(f)">
         <ngx-dropzone-label> ({{ f.type }})</ngx-dropzone-label>
       </ngx-dropzone-image-preview>
     </ngx-dropzone>
@@ -318,14 +314,8 @@
 
   <!-- Footer -->
 
-  <svg
-    id="clouds"
-    alt="Gray Clouds Background"
-    xmlns="http://www.w3.org/2000/svg"
-    width="2611.084"
-    height="485.677"
-    viewBox="0 0 2611.084 485.677"
-  >
+  <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677"
+    viewBox="0 0 2611.084 485.677">
     <!-- <path
       id="Path_39"
       data-name="Path 39"
@@ -340,20 +330,8 @@
   <form [formGroup]="form" (ngSubmit)="submitForm()" #f="ngForm">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Fecha del evento</mat-label>
-      <input
-        type="date"
-        matInput
-        name="appo_date"
-        formControlName="date_event"
-        placeholder="dd/mm/yyyy"
-        uib-datepicker-popup="dd/mm/yyyy"
-        close-text="Close"
-        id="date"
-        required
-      />
-      <script>
-        consol.log(document.getElementById("date").value);
-      </script>
+      <input type="date" matInput name="appo_date" formControlName="date_event" placeholder="dd/mm/yyyy"
+        uib-datepicker-popup="dd/mm/yyyy" close-text="Close" id="date" required />
       <mat-error *ngIf="form.get('date_event').hasError('required')">
         Por favor, ingrese la fecha del evento
       </mat-error>
@@ -364,13 +342,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Ciudad del evento</mat-label>
-      <input
-        type="text"
-        matInput
-        formControlName="city_event"
-        placeholder="Tunja"
-        required
-      />
+      <input type="text" matInput formControlName="city_event" placeholder="Tunja" required />
       <mat-error *ngIf="form.get('city_event').hasError('required')">
         Por favor, ingrese la ciudad del evento
       </mat-error>
@@ -381,13 +353,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Direccion del evento</mat-label>
-      <input
-        type="text"
-        matInput
-        formControlName="direction_event"
-        placeholder="Calle 19 # 12-13"
-        required
-      />
+      <input type="text" matInput formControlName="direction_event" placeholder="Calle 19 # 12-13" required />
       <mat-error *ngIf="form.get('direction_event').hasError('required')">
         Por favor, ingrese la direccion del evento
       </mat-error>
@@ -398,13 +364,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Descripcion del evento</mat-label>
-      <input
-        type="text"
-        matInput
-        formControlName="description_event"
-        placeholder=""
-        required
-      />
+      <input type="text" matInput formControlName="description_event" placeholder="" required />
       <mat-error *ngIf="form.get('description_event').hasError('required')">
         Por favor, ingrese la descripcion del evento
       </mat-error>
@@ -415,13 +375,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Presale</mat-label>
-      <input
-        type="number"
-        matInput
-        formControlName="presale"
-        placeholder="10000"
-        required
-      />
+      <input type="number" matInput formControlName="presale" placeholder="10000" required />
       <mat-error *ngIf="form.get('presale').hasError('required')">
         Por favor, ingrese el precio del evento
       </mat-error>
@@ -432,13 +386,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Artistas</mat-label>
-      <input
-        type="text"
-        matInput
-        formControlName="artists"
-        placeholder=""
-        required
-      />
+      <input type="text" matInput formControlName="artists" placeholder="" required />
       <mat-error *ngIf="form.get('artists').hasError('required')">
         Por favor, ingrese los artistas del evento
       </mat-error>
@@ -449,13 +397,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Aforo</mat-label>
-      <input
-        type="text"
-        matInput
-        formControlName="aforo"
-        placeholder=""
-        required
-      />
+      <input type="text" matInput formControlName="aforo" placeholder="" required />
       <mat-error *ngIf="form.get('aforo').hasError('required')">
         Por favor, ingrese el aforo del evento
       </mat-error>
@@ -477,5 +419,3 @@
     </form>
   </div>
 </div>
-
-
