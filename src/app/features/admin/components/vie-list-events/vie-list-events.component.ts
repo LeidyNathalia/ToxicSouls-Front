@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { EventService} from '../../../../services/user-service/event.service';
+import { EventService } from '../../../../services/user-service/event.service';
 import { HeaderService } from '../../../../services/header-service/header.service';
 import { Router } from '@angular/router';
 
@@ -29,7 +29,8 @@ export class VieListEventsComponent implements AfterViewInit {
     'description_event',
     'presale',
     'artists',
-    'options'];
+    'options',
+  ];
   dataSource: MatTableDataSource<eventData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,12 +38,11 @@ export class VieListEventsComponent implements AfterViewInit {
 
   constructor(
     private eventService: EventService,
-    private routes : Router,
+    private routes: Router,
     private headerService: HeaderService
   ) {}
 
   async ngAfterViewInit(): Promise<any> {
-
     try {
       const result = await this.eventService.getEvents();
       console.log('result', result);
@@ -66,13 +66,18 @@ export class VieListEventsComponent implements AfterViewInit {
     }
   }
 
+  getEventById(row: any): string {
+    const id = row._id;
+    return id;
+  }
+
   async delete(row: any): Promise<any> {
     try {
       //const header = this.headerService.createHeader(localStorage.getItem('token'));
       const deleteUser = await this.eventService.deleteEvent(row._id);
       const newList = await this.eventService.getEvents();
-      for(let i = 0; i < this.eventsList.length; i ++){
-        if(this.eventsList[i]['_id'] === row._id){
+      for (let i = 0; i < this.eventsList.length; i++) {
+        if (this.eventsList[i]['_id'] === row._id) {
           this.eventsList.splice(i, 1);
         }
       }
@@ -84,7 +89,7 @@ export class VieListEventsComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  modify() {
-    this.routes.navigate(['/admin/modify-event']);
+  modify(row: any) {
+    this.routes.navigate(['/admin/mod-event'],{queryParams:{id:this.getEventById(row)}});
   }
 }

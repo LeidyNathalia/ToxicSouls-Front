@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UploadService } from '../features/admin/components/events/upload.service';
+import { UploadServiceModify } from '../features/admin/components/modify-event/upload.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { UploadService } from '../features/admin/components/events/upload.servic
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [UploadService],
+  providers: [UploadService,UploadServiceModify],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

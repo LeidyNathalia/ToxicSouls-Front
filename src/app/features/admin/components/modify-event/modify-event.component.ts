@@ -2,8 +2,8 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { UploadService } from './upload.service';
-import { Router } from '@angular/router';
+import { UploadServiceModify } from './upload.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EventService} from '../../../../services/user-service/event.service';
 
 
@@ -23,6 +23,7 @@ export interface eventData {
 })
 export class ModifyEventComponent implements OnInit {
   eventsList: eventData[];
+  id_edit: string;
   displayedColumns: string[] = [
     'date_event',
     'city_event',
@@ -30,7 +31,7 @@ export class ModifyEventComponent implements OnInit {
     'description_event',
     'presale',
     'artists',
-    'options'];
+    'flyer'];
 
   form: FormGroup;
   SERVER_URL = "http://localhost:3000/eventss";
@@ -38,8 +39,9 @@ export class ModifyEventComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private http: HttpClient,
-    private _uploadService: UploadService,
+    private _uploadService: UploadServiceModify,
     private routes : Router,
+    private actroutes: ActivatedRoute,
     private eventService: EventService
   ) {
     this.form = this.fb.group({
@@ -51,9 +53,12 @@ export class ModifyEventComponent implements OnInit {
       artists: [''],
       profile: ['']
     });
+    this.id_edit= this.actroutes.snapshot.queryParams.id;
+    this.getEvent();
   }
 
   ngOnInit() {
+    
   }
 
   async cargarInfo() {
@@ -69,6 +74,30 @@ export class ModifyEventComponent implements OnInit {
     }
   }
 
+  async edit():Promise<any> {
+    try{
+      const editEvent = await this.eventService.editEvent(this.id_edit,this.form.value);
+      const newList = await this.eventService.getEvents();
+      this.routes.navigate(['/admin/list-event']);
+    }catch (error) {
+      console.log(error)
+    }
+  }
+
+  async getEvent():Promise<any>{
+    const event = await this.eventService.getEventById(this.id_edit);
+    this.form.patchValue({date_event:event.event.date_event});
+    this.form.patchValue({city_event:event.event.city_event});
+    this.form.patchValue({direction_event:event.event.direction_event});
+    this.form.patchValue({description_event:event.event.description_event});
+    this.form.patchValue({presale:event.event.presale});
+    this.form.patchValue({artists:event.event.artists});
+
+    // console.log("valor fecha",event.event.date_event )
+    // console.log("form by id",event);
+    console.log("form.avlue",this.form.value.date_event);
+    // console.log("event",event.event);
+  }
   
   files: File[] = [];
 

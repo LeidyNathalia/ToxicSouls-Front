@@ -58,3 +58,19 @@ border-radius: 14px;
 .viewList{
   margin-left: 980px;
 }
+
+.btn-danger {
+  border: none;
+  outline: none;
+  height: 50px;
+  background: #2aa869;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.btn-danger:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}

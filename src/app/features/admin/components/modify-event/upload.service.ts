@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class UploadService {
+export class UploadServiceModify {
   constructor(private _http: HttpClient) {}
 
   uploadImage(vals): Observable<any> {
