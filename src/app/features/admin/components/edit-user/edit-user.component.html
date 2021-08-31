@@ -1,1 +1,122 @@
-<p>edit-user works!</p>
+<div class="center-horizontal" style="padding: 15px">
+    <div class="formulario">
+      <div class="fondo-formulario">
+        <!-- LOGO  -->
+        <div class="center-horizontal">
+          <mat-card class="example-card mat-elevation-z0">
+            <img
+              mat-card-image
+              src="../assets/img/logoTSG.png"
+              alt="Toxic Souls"
+            />
+          </mat-card>
+        </div>
+        <div class="register">
+          <h1>Editar</h1>
+        </div>
+  
+        <!-- Formulario -->
+        <form class="example-form" [formGroup]="editForm" (submit)="submit()" #f="ngForm">
+          <!-- Document  -->
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Documento</mat-label>
+            <input
+              type="number"
+              matInput
+              formControlName="cc"
+              placeholder="11112323 - example"
+            />
+            <mat-error *ngIf="editForm.controls.cc.hasError('maxLength')">
+              Por favor, ingrese la CC
+            </mat-error>
+          </mat-form-field>
+          <!-- Name  -->
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="name"
+              placeholder="Pedro Cifuentes"
+            />
+            <mat-error
+              *ngIf="
+                editForm.controls.name.hasError('email') &&
+                !editForm.controls.name.hasError('required')
+              "
+            >
+              Por favor ingrese un nombre válido
+            </mat-error>
+            <mat-error *ngIf="editForm.controls.name.hasError('required')">
+              Nombre es <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- E-mail -->
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>E-mail</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              placeholder="E-mail"
+            />
+            <mat-error
+              *ngIf="
+              editForm.controls.email.hasError('email') &&
+                !editForm.controls.email.hasError('required')
+              "
+            >
+              Por favor ingrese un correo válido
+            </mat-error>
+            <mat-error *ngIf="editForm.controls.email.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- E-mail -->
+          <!--
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              placeholder="Password"
+            />
+            <mat-error
+              *ngIf="
+                editForm.controls.password.hasError('email') &&
+                !editForm.controls.password.hasError('required')
+              "
+            >
+              Por favor ingrese una contraseña válido
+            </mat-error>
+            <mat-error
+              *ngIf="editForm.controls.password.hasError('required')"
+            >
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+  -->
+          <div class="center-horizontal">
+            <button
+              class="boton-guardar"
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="f.invalid"
+            >
+              Editar
+            </button>
+  
+            <button class="boton-registrar" mat-raised-button color="primary" type="submit">
+              Ver lista
+            </button>
+  
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -26,4 +26,12 @@ export class UserService {
   deleteUser(_id: string, headers: any): Promise<any>{
     return this.http.delete<any>(this.path + '/' + _id, {headers: headers}).toPromise();
   }
+
+  getUserById(_id: string, headers: any): Promise<any>{
+    return this.http.get<any>(this.path + '/' + _id, {headers: headers}).toPromise();
+  }
+
+  editUser(_id, body, headers: any): Promise<any>{
+    return this.http.put<any>(`${this.path}/${_id}`, body, {headers: headers}).toPromise();
+  }  
 }

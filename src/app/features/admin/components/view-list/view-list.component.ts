@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UserService } from '../../../../services/user-service/user.service';
 import { HeaderService } from '../../../../services/header-service/header.service';
+import { Router } from '@angular/router';
 
 export interface UserData {
   cc: number;
@@ -28,7 +29,8 @@ export class ViewListComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UserService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private router: Router
   ) {
 
   }
@@ -60,6 +62,7 @@ export class ViewListComponent implements AfterViewInit {
 
   edit(row: any) {
     console.log(row);
+    this.router.navigate(['admin/edit-user'], {queryParams: {id: row._id}});
   }
 
   async delete(row: any): Promise<any> {
