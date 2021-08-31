@@ -21,10 +21,13 @@
         PlayList
       </button>
 
-      <button class="center-left" mat-button [routerLink]="'register'">
-        <mat-icon>library_books</mat-icon>
-        Registrar admin
-      </button>
+      <div *ngIf="!isAdmin">
+        <button class="center-left" mat-button [routerLink]="'register'">
+          <mat-icon>library_books</mat-icon>
+          Registrar admin
+        </button>
+      </div>
+      <!--</ng-template>-->
     </div>
 
     <div class="btSeccionTwo">

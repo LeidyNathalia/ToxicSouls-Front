@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarAdminComponent implements OnInit {
 
-  constructor() { }
+  isAdmin: boolean;
+
+  constructor() {
+    if(localStorage.getItem('role') == 'admin') {
+      this.isAdmin = true;
+    }
+   }
 
   ngOnInit(): void {
   }
