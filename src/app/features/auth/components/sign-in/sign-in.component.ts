@@ -7,22 +7,22 @@ import { UserService } from 'src/app/services/user-service/user.service';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
-
   userLogin = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private userService: UserService,
-    private headerService: HeaderService
-    ) { }
+    private headerService: HeaderService,
+    private routes: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async submit(): Promise<any> {
     try {
@@ -31,12 +31,14 @@ export class SignInComponent implements OnInit {
         localStorage.setItem('role', 'super-admin');
         this.router.navigate(['/admin']);
         localStorage.setItem('token', result.token);
-        const header = this.headerService.createHeader(localStorage.getItem('token'));
+        const header = this.headerService.createHeader(
+          localStorage.getItem('token')
+        );
         console.log(result.token);
       } else {
         console.log('Admin normal');
         localStorage.setItem('role', 'admin');
-        this.router.navigate(['/']);
+        this.routes.navigate(['/admin']);
       }
       console.log(result);
     } catch (error) {

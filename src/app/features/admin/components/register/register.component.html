@@ -16,7 +16,7 @@
       </div>
 
       <!-- Formulario -->
-      <form class="example-form" [formGroup]="registerForm" (submit)="submit()">
+      <form class="example-form" [formGroup]="registerForm" (submit)="submit()" #f="ngForm">
         <!-- Document  -->
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Documento</mat-label>
@@ -104,6 +104,7 @@
             mat-raised-button
             color="primary"
             type="submit"
+            [disabled]="f.invalid"
           >
             Registrar
           </button>

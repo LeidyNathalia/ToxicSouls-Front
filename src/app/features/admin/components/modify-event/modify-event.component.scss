@@ -8,6 +8,20 @@
   height: 120px;
 }
 
+.toolbar {
+  height: 60px;
+  display: flex;
+  background-color: #000000;
+  color: #ffffff;
+
+}
+
+.modificarEvento{
+  font-size: 33px;
+  padding: 5px;
+  margin-left: 450px;
+}
+
 .example-form {
   min-width: 150px;
   max-width: 500px;

@@ -18,7 +18,8 @@ const routes: Routes = [
       { path: "list", component: ViewListComponent},
       { path: "register-event", component: RegisterEventComponent},
       { path: "list-event", component: VieListEventsComponent },
-      { path: "mod-event", component: ModifyEventComponent }
+      { path: "mod-event", component: ModifyEventComponent },
+      { path: "register", component: RegisterComponent}
     ]
   }
 ];

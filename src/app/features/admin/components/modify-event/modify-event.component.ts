@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadServiceModify } from './upload.service';
@@ -45,12 +45,26 @@ export class ModifyEventComponent implements OnInit {
     private eventService: EventService
   ) {
     this.form = this.fb.group({
-      date_event: [''],
-      city_event: [''],
-      direction_event: [''],
-      description_event: [''],
-      presale: [''],
-      artists: [''],
+      date_event: ['',[
+        Validators.required,
+        Validators.pattern(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/)]],
+      city_event: ['',[
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]+$/)]],
+      direction_event: ['',[
+        Validators.required]],
+      description_event: ['',[
+        Validators.required,
+        Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)]],
+      presale: ['',[
+        Validators.required,
+        Validators.pattern(/^[0-9]+$/)]],
+      artists:['',[
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]+$/)]],
+      aforo: ['',[
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]+$/)]], 
       profile: ['']
     });
     this.id_edit= this.actroutes.snapshot.queryParams.id;
@@ -58,7 +72,8 @@ export class ModifyEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    var current_date = new Date().toISOString().split('T')[0];
+    document.getElementsByName("appo_date")[0].setAttribute('min', current_date);
   }
 
   async cargarInfo() {
