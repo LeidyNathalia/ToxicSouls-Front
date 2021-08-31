@@ -31,6 +31,7 @@ export class ModifyEventComponent implements OnInit {
     'description_event',
     'presale',
     'artists',
+    'capacity',
     'flyer'];
 
   form: FormGroup;
@@ -62,7 +63,7 @@ export class ModifyEventComponent implements OnInit {
       artists:['',[
         Validators.required,
         Validators.pattern(/^[a-zA-Z]+$/)]],
-      aforo: ['',[
+      capacity: ['',[
         Validators.required,
         Validators.pattern(/^[0-9]+$/)]],
       profile: ['']
@@ -91,6 +92,7 @@ export class ModifyEventComponent implements OnInit {
 
   async edit():Promise<any> {
     try{
+      console.log('editMethod', this.form.value);
       const editEvent = await this.eventService.editEvent(this.id_edit,this.form.value);
       const newList = await this.eventService.getEvents();
       this.routes.navigate(['/admin/list-event']);
@@ -107,10 +109,10 @@ export class ModifyEventComponent implements OnInit {
     this.form.patchValue({description_event:event.event.description_event});
     this.form.patchValue({presale:event.event.presale});
     this.form.patchValue({artists:event.event.artists});
+    this.form.patchValue({capacity:event.event.capacity});
 
     // console.log("valor fecha",event.event.date_event )
     // console.log("form by id",event);
-    console.log("form.avlue",this.form.value.date_event);
     // console.log("event",event.event);
   }
   
@@ -158,6 +160,7 @@ export class ModifyEventComponent implements OnInit {
   }
 
   submitForm() {
+    console.log('capacityoo', this.form.get('capacity').value);
     this.routes.navigate(['/admin/list-event']);
 
     
@@ -179,15 +182,13 @@ export class ModifyEventComponent implements OnInit {
     formData.append('description_event',this.form.get('description_event').value);
     formData.append('presale', this.form.get('presale').value);
     formData.append('artists', this.form.get('artists').value);
-    
+    formData.append('capacity', this.form.get('capacity').value);
     //formData.append('profile', this.form.get('profile').value);
-
-    console.log(this.form.get('profile').value);
     //var aa = JSON.stringify(this.form.get('profile').value)
     let options = { headers: headers };
     const body = { date_event: this.form.get('date_event').value, city_event: this.form.get('city_event').value,
     direction_event: this.form.get('direction_event').value, description_event: this.form.get('description_event').value,
-    presale: this.form.get('presale').value, artists: this.form.get('artists').value, capacity: this.form.get('aforo').value, flyer: this.url_cloudinary_img_current};
+    presale: this.form.get('presale').value, artists: this.form.get('artists').value, capacity: this.form.get('capacity').value, flyer: this.url_cloudinary_img_current};
     this.http.post<any>('http://localhost:3000/api/events/add-event',body,options).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)

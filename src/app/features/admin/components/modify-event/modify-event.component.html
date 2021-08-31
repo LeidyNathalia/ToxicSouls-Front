@@ -429,11 +429,11 @@
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Aforo</mat-label>
-        <input type="number" matInput formControlName="aforo" placeholder="" required />
-        <mat-error *ngIf="form.get('aforo').hasError('required')">
+        <input type="number" matInput formControlName="capacity" placeholder="" required />
+        <mat-error *ngIf="form.get('capacity').hasError('required')">
           Por favor, ingrese el aforo del evento
         </mat-error>
-        <mat-error *ngIf="form.get('aforo').hasError('pattern')">
+        <mat-error *ngIf="form.get('capacity').hasError('pattern')">
           Por favor, ingrese un formato valido(solo numeros)
         </mat-error>
       </mat-form-field>
