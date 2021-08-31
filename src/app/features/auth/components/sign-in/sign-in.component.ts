@@ -25,6 +25,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
 
   async submit(): Promise<any> {
+    console.log("singIn")
     try {
       const result = await this.userService.loginUser(this.userLogin.value);
       if (result.role === 'super-admin') {
