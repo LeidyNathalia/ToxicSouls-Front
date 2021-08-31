@@ -7,6 +7,14 @@
       <!-- USERNAME INPUT -->
       <label for="username">Username</label>
       <input id="user" name="user" type="text" placeholder="Enter Username" formControlName="email">
+
+      <mat-error
+      *ngIf="
+        userLogin.controls.email.hasError('email') &&
+        !userLogin.controls.email.hasError('required')">
+        Por favor ingrese un correo válido
+    </mat-error>
+
       <!-- PASSWORD INPUT -->
       <label for="password">Password</label>
       <input id="pass" name="pass" type="password" formControlName="password" placeholder="Enter Password">
