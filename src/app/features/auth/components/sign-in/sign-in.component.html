@@ -5,6 +5,13 @@
     <h1>Login</h1>
     <form [formGroup]="userLogin" (submit)="submit()">
       <!-- USERNAME INPUT -->
+
+      <mat-error
+      *ngIf="email">
+        Error en los datos de autenticación!
+      </mat-error>
+
+
       <label for="username">Username</label>
       <input id="user" name="user" type="text" placeholder="Enter Username" formControlName="email">
 
@@ -13,11 +20,19 @@
         userLogin.controls.email.hasError('email') &&
         !userLogin.controls.email.hasError('required')">
         Por favor ingrese un correo válido
-    </mat-error>
+      </mat-error>
+
+
 
       <!-- PASSWORD INPUT -->
       <label for="password">Password</label>
       <input id="pass" name="pass" type="password" formControlName="password" placeholder="Enter Password">
+<!--
+      <mat-error
+      *ngIf="password">
+        Contraseña incorrecta
+      </mat-error> -->
+
       <!-- <input type="submit" value="Log In" onclick="location.href='/menu.html'"> -->
       <input id="boton-guardar" type="submit" value="Log In" [routerLink]="'/auth'">
       <a href="#">Lost your Password?</a><br>

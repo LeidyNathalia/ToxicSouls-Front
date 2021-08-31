@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user-service/user.service';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
+
+
     userLogin = new FormGroup({
 
       email: new FormControl('', [
@@ -20,8 +22,9 @@ export class SignInComponent implements OnInit {
         Validators.required]),
   });
 
-
-
+  email:boolean;
+  password:boolean;
+  result:any;
 
   constructor(
     private router: Router,
@@ -35,15 +38,15 @@ export class SignInComponent implements OnInit {
   async submit(): Promise<any> {
     console.log("singIn")
     try {
-      const result = await this.userService.loginUser(this.userLogin.value);
-      if (result.role === 'super-admin') {
+      this.result = await this.userService.loginUser(this.userLogin.value);
+      if (this.result.role === 'super-admin') {
         localStorage.setItem('role', 'super-admin');
         this.router.navigate(['/admin']);
-        localStorage.setItem('token', result.token);
+        localStorage.setItem('token', this.result.token);
         const header = this.headerService.createHeader(
           localStorage.getItem('token')
         );
-        console.log(result.token);
+        console.log(this.result.token);
       } else {
         const header = this.headerService.createHeader(
           localStorage.getItem('token')
@@ -51,10 +54,11 @@ export class SignInComponent implements OnInit {
         console.log('Admin normal');
         localStorage.setItem('role', 'admin');
         this.routes.navigate(['/admin']);
-
       }
-      console.log(result);
+
+      console.log(this.result);
     } catch (error) {
+      this.email = true;
       console.log(error);
     }
   }
