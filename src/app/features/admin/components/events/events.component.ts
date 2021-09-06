@@ -51,7 +51,7 @@ export class EventsComponent implements OnInit {
     document.getElementsByName("appo_date")[0].setAttribute('min', current_date);
   }
 
-  
+
   files: File[] = [];
 
   onSelect(event) {
@@ -97,10 +97,10 @@ export class EventsComponent implements OnInit {
   }
 
   submitForm() {
-    console.log('aqui no entra')
+    console.log("aqui no entra")
     this.routes.navigate(['/admin/list-event']);
 
-    
+
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('hola', 'mundo');
@@ -112,7 +112,7 @@ export class EventsComponent implements OnInit {
     let params = new HttpParams();
 
     const formData: FormData = new FormData();
-    
+
     formData.append('date_event', this.form.get('date_event').value);
     formData.append('city_event', this.form.get('city_event').value);
     formData.append('direction_event', this.form.get('direction_event').value);
@@ -120,7 +120,7 @@ export class EventsComponent implements OnInit {
     formData.append('presale', this.form.get('presale').value);
     formData.append('artists', this.form.get('artists').value);
     formData.append('artists', this.form.get('aforo').value);
-    
+
     //formData.append('profile', this.form.get('profile').value);
 
     console.log(this.form.get('profile').value);
@@ -133,7 +133,7 @@ export class EventsComponent implements OnInit {
       (response) => console.log(response),
       (error) => console.log(error)
     )
-    
+
    /*
     fetch('http://localhost:3000/eventss', {
       method: 'POST',

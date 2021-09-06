@@ -1,0 +1,79 @@
+<div class="center-horizontal" style="padding: 15px">
+  <div class="formulario">
+
+    <!-- Formulario -->
+    <form class="example-form" [formGroup]="form_artist">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nombre del artista</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="name_artist"
+          placeholder="Pedro "
+        />
+        <mat-error *ngIf="form_artist.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="form_artist.hasError('required')">
+          El nombre es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>País</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="country_artist"
+          placeholder="Colombia"
+        />
+        <mat-error *ngIf="form_artist.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="form_artist.hasError('required')">
+          El país es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Redes sociales</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="social_networks_artist"
+          placeholder="Facebook"
+        />
+        <mat-error *ngIf="form_artist.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="form_artist.hasError('required')">
+          El país es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="description_artist"
+          placeholder="Información"
+        />
+        <mat-error *ngIf="form_artist.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="form_artist.hasError('required')">
+          El país es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Boton  -->
+      <div class="buttons">
+        <div class="form-group, center-horizontal">
+          <button class="btn btn-danger">Agregar artista</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

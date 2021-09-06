@@ -1,8 +1,7 @@
 <div class="container-sidebar">
   <div class="row">
     <div class=" logo col-12 center-horizontal">
-      <img src="./assets/img/logo_header_larg.png" class="img-logo-banner" alt="Logo app"
-      />
+      <img src="./assets/img/logo_header_larg.png" class="img-logo-banner" alt="Logo app"/>
     </div>
 
     <div class="btSeccionOne">
@@ -11,9 +10,15 @@
         Eventos
       </button>
 
-      <button class="center-left" mat-button [routerLink]="'/admin/artists'">
-        <mat-icon>people</mat-icon>
+      <button class="center-left" mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>people icon</mat-icon>
         Artistas
+        <mat-menu #menu="matMenu" >
+          <button mat-menu-item [routerLink]="'/admin/add-artists'">Agregar</button>
+          <button mat-menu-item >Actualizar </button>
+          <button mat-menu-item [routerLink]="'/admin/ViewListArtistComponent'">Ver</button>
+          <button mat-menu-item>Eliminar</button>
+        </mat-menu>
       </button>
 
       <button class="center-left" mat-button [routerLink]="'play-list'">

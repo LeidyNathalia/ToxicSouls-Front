@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArtistComponent } from './components/artist/artist.component';
 import { EventsComponent } from './components/events/events.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { ViewListComponent } from './components/view-list/view-list.component';
@@ -9,13 +8,16 @@ import { VieListEventsComponent } from './components/vie-list-events/vie-list-ev
 import { ModifyEventComponent } from './components/modify-event/modify-event.component';
 import { RegisterComponent } from '../admin/components/register/register.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { AddArtistComponent } from './components/Artistas/add-artist/add-artist.component';
+import { ViewListArtistComponent } from './components/Artistas/view-list-artist/view-list-artist.component';
 
 const routes: Routes = [
   {
     path: "", component: PrincipalComponent,
     children: [
       { path: "events", component: EventsComponent },
-      { path: "artists", component: ArtistComponent },
+      { path: "add-artists", component: AddArtistComponent },
+      { path: "ViewListArtistComponent", component: ViewListArtistComponent},
       { path: "list", component: ViewListComponent},
       { path: "register-event", component: RegisterEventComponent},
       { path: "list-event", component: VieListEventsComponent },
