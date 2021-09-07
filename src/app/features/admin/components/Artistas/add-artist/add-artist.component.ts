@@ -6,6 +6,7 @@ import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 //import { UploadService } from './upload.service';
 import { Router } from '@angular/router';
+import { ArtistService } from '../../../../../services/user-service/artist.service';
 
 @Component({
   selector: 'app-add-artist',
@@ -17,28 +18,28 @@ export class AddArtistComponent implements OnInit {
   SERVER_URL = 'http://localhost:3000/eventss';
   url_cloudinary_img_current;
 
-  constructor() {
+  constructor(private artistService: ArtistService) {
     this.form_artist = new FormGroup({
       name_artist : new FormControl('', [
         Validators.required
       ]),
       country_artist : new FormControl('', [
         Validators.required
-  
+
       ]),
       social_networks_artist : new FormControl('', [
         Validators.required
-  
+
       ]),
       description_artist : new FormControl('', [
         Validators.required
-  
+
       ])
     })
   }
-  
 
-  
+
+
 
   ngOnInit(): void {
   }
@@ -48,4 +49,13 @@ export class AddArtistComponent implements OnInit {
     nationality_artist: {type: String, required: false},
     photo_artist: {type: String, required: false}
  */
+
+      registro(){
+        console.log(this.form_artist.value);
+        const data = this.form_artist.value;
+        this.artistService.registerArtist(data)
+          .subscribe((resp) => {
+            console.log(resp);
+          });
+      }
 }

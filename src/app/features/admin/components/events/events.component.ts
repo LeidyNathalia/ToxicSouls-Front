@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadService } from './upload.service';
 import { Router } from '@angular/router';

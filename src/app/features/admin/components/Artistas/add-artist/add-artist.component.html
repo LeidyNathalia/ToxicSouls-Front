@@ -1,7 +1,7 @@
 <div class="center-horizontal" style="padding: 15px">
   <div class="formulario">
     <!-- Formulario -->
-    <form class="example-form" [formGroup]="form_artist" #f="ngForm">
+    <form class="example-form" [formGroup]="form_artist" #f="ngForm" (ngSubmit)="registro()">
       <span class="crearEvento center-horizontal">Agregar artista</span>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre del artista</mat-label>
