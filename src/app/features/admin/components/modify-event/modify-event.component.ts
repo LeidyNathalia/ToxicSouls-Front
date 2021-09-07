@@ -14,6 +14,7 @@ export interface eventData {
   description_event: string;
   presale: string;
   artists: string;
+  flyer: string;
 }
 
 @Component({
@@ -66,7 +67,7 @@ export class ModifyEventComponent implements OnInit {
       capacity: ['',[
         Validators.required,
         Validators.pattern(/^[0-9]+$/)]],
-      profile: ['']
+      flyer: ['']
     });
     this.id_edit= this.actroutes.snapshot.queryParams.id;
     this.getEvent();
@@ -92,10 +93,13 @@ export class ModifyEventComponent implements OnInit {
 
   async edit():Promise<any> {
     try{
-      console.log('editMethod', this.form.value);
-      const editEvent = await this.eventService.editEvent(this.id_edit,this.form.value);
-      const newList = await this.eventService.getEvents();
-      this.routes.navigate(['/admin/list-event']);
+      this.onUpload();
+      setTimeout(async () => {
+        console.log('editMethod', this.form.value);
+        const editEvent = await this.eventService.editEvent(this.id_edit,this.form.value);
+        const newList = await this.eventService.getEvents();
+        this.routes.navigate(['/admin/list-event']);
+      }, 1000);
     }catch (error) {
       console.log(error)
     }
@@ -110,7 +114,6 @@ export class ModifyEventComponent implements OnInit {
     this.form.patchValue({presale:event.event.presale});
     this.form.patchValue({artists:event.event.artists});
     this.form.patchValue({capacity:event.event.capacity});
-
     // console.log("valor fecha",event.event.date_event )
     // console.log("form by id",event);
     // console.log("event",event.event);
@@ -146,19 +149,20 @@ export class ModifyEventComponent implements OnInit {
         console.log(response);
         console.log("url de img", response.url)
         this.url_cloudinary_img_current = response.url;
+        this.form.get('flyer').setValue(response.url);
       }
     });
   }
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    this.form.get('profile').setValue(file);
+    this.form.get('flyer').setValue(file);
   }
 
   viewList() {
     this.routes.navigate(['/admin/list-event']);
   }
-
+/* 
   submitForm() {
     console.log('capacityoo', this.form.get('capacity').value);
     this.routes.navigate(['/admin/list-event']);
@@ -183,8 +187,8 @@ export class ModifyEventComponent implements OnInit {
     formData.append('presale', this.form.get('presale').value);
     formData.append('artists', this.form.get('artists').value);
     formData.append('capacity', this.form.get('capacity').value);
-    //formData.append('profile', this.form.get('profile').value);
-    //var aa = JSON.stringify(this.form.get('profile').value)
+    //formData.append('flyer', this.form.get('flyer').value);
+    //var aa = JSON.stringify(this.form.get('flyer').value)
     let options = { headers: headers };
     const body = { date_event: this.form.get('date_event').value, city_event: this.form.get('city_event').value,
     direction_event: this.form.get('direction_event').value, description_event: this.form.get('description_event').value,
@@ -193,19 +197,6 @@ export class ModifyEventComponent implements OnInit {
       (response) => console.log(response),
       (error) => console.log(error)
     )
-    
-   /*
-    fetch('http://localhost:3000/eventss', {
-      method: 'POST',
-      headers:{
-        'Content-Type': 'application/text',
-        'hola': 'mundi'
-      },
-      body: 'aaaaa'
-    }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
-  */
-  }
+  } */
 
 }
