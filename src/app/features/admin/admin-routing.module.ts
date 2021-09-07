@@ -10,6 +10,8 @@ import { RegisterComponent } from '../admin/components/register/register.compone
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AddArtistComponent } from './components/Artistas/add-artist/add-artist.component';
 import { ViewListArtistComponent } from './components/Artistas/view-list-artist/view-list-artist.component';
+import { ModifyArtistComponent } from './components/Artistas/modify-artist/modify-artist.component';
+
 
 const routes: Routes = [
   {
@@ -18,6 +20,7 @@ const routes: Routes = [
       { path: "events", component: EventsComponent },
       { path: "add-artists", component: AddArtistComponent },
       { path: "ViewListArtistComponent", component: ViewListArtistComponent},
+      { path: "ModifyArtistComponent", component: ModifyArtistComponent },
       { path: "list", component: ViewListComponent},
       { path: "register-event", component: RegisterEventComponent},
       { path: "list-event", component: VieListEventsComponent },

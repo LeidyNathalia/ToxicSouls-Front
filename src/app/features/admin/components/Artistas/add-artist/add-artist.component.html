@@ -1,8 +1,8 @@
 <div class="center-horizontal" style="padding: 15px">
   <div class="formulario">
-
     <!-- Formulario -->
-    <form class="example-form" [formGroup]="form_artist">
+    <form class="example-form" [formGroup]="form_artist" #f="ngForm">
+      <span class="crearEvento center-horizontal">Agregar artista</span>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre del artista</mat-label>
         <input
@@ -70,10 +70,9 @@
       <!-- Boton  -->
       <div class="buttons">
         <div class="form-group, center-horizontal">
-          <button class="btn btn-danger">Agregar artista</button>
+          <button class="btn btn-danger" type="submit" [disabled]="f.invalid">Agregar artista</button>
         </div>
       </div>
     </form>
   </div>
-
 </div>

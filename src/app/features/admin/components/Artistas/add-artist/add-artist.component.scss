@@ -1,5 +1,12 @@
 @import 'src/styles.scss';
 
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
 .addArtists{
   font-size: 33px;
   padding: 5px;
@@ -14,34 +21,10 @@
 
 }
 
-.example-card {
-  max-width: 100vh;
-  opacity: 45;
-  background-color: rgb(255, 255, 255);
-  width: 250px;
-  height: 120px;
-}
-
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
 .example-full-width{
-  width: 60%;
-  justify-content: center;
-  margin-left: 200px;
+  width: 100%;
 
 }
-
-.add {
-  margin: 0;
-  padding: 0 0 0px;
-  text-align: center;
-  font-size: 12px;
-}
-
 
 .btn-danger {
   border: none;
@@ -68,4 +51,10 @@ background-color: white;
 background: rgba(255, 255, 255, 0.5);
 box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
 border-radius: 14px;
+}
+
+.crearEvento{
+  font-size: 30px;
+  padding: 5px;
+
 }

@@ -15,15 +15,19 @@
         Artistas
         <mat-menu #menu="matMenu" >
           <button mat-menu-item [routerLink]="'/admin/add-artists'">Agregar</button>
-          <button mat-menu-item >Actualizar </button>
+          <button mat-menu-item [routerLink]="'/admin/ModifyArtistComponent'">Modificar </button>
           <button mat-menu-item [routerLink]="'/admin/ViewListArtistComponent'">Ver</button>
-          <button mat-menu-item>Eliminar</button>
         </mat-menu>
       </button>
 
       <button class="center-left" mat-button [routerLink]="'play-list'">
         <mat-icon>play_circle_outline</mat-icon>
         PlayList
+      </button>
+
+      <button class="center-left" mat-button [routerLink]="'play-list'">
+        <mat-icon>play_circle_outline</mat-icon>
+        Boleteria 
       </button>
 
       <div *ngIf="!isAdmin">
