@@ -11,10 +11,10 @@ import { UploadService } from '../../events/upload.service';
   styleUrls: ['./add-artist.component.scss']
 })
 export class AddArtistComponent implements OnInit {
-  form: FormGroup;
+
   url_cloudinary_img_current;
 
-  form_artist = new FormGroup({
+  form = new FormGroup({
     name_artist : new FormControl('', [
       Validators.required
     ]),
