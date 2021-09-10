@@ -381,6 +381,106 @@
       </mat-error>
     </mat-form-field>
 
+    <!--Registrar preventa-->
+
+      <table class="example-full-width"><tr>
+        <td><mat-form-field appearance="fill">
+          <mat-label>Fecha preventa</mat-label>
+          <input matInput type="date" [formControl]="nuevaFechaPreventa">
+        </mat-form-field></td>
+
+        <td><mat-form-field appearance="fill">
+          <mat-label>Precio</mat-label>
+          <input matInput type="number" [formControl]="nuevoPrecioPreventa">
+        </mat-form-field></td>
+
+        <td>
+          <div class="buttons">
+            <div class="form-group, center-horizontal">
+              <button  type="button" class="btn btn-danger"
+              (click)="agregarPreventan()"
+              ><mat-icon>exposure_plus_1</mat-icon></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+
+      </tr>
+    </table>
+
+    <!--Agregar preventas-->
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Agregar Preventa</mat-label>
+      <input type="date" matInput [formControl]="nuevaFechaPreventa"/>
+      <div class="buttons">
+        <div class="form-group, center-horizontal">
+          <button  type="button" class="btn btn-danger"
+          (click)="agregarPreventa()"
+          >Registrar preventa</button>
+        </div>
+      </div>
+
+
+      <mat-error *ngIf="form.get('presale').hasError('required')">
+        Por favor, ingrese La fecha del evento
+      </mat-error>
+    </mat-form-field> -->
+
+    <!--Mostrar listado de preventas-->
+
+    <table class="example-full-width" formArrayName="presales"
+    *ngFor="let presale of presales.controls; let i = index"><tr>
+      <td><mat-form-field appearance="fill">
+        <mat-label>Fecha preventa</mat-label>
+        <input matInput type="date" [formControlName]="i">
+      </mat-form-field></td>
+      <td><mat-form-field appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number"  [formControlName]="i">
+      </mat-form-field></td>
+
+      <td>
+        <div class="buttons">
+          <div class="form-group, center-horizontal">
+            <button  type="button" class="btn btn-danger"
+            (click)="agregarPreventan()"
+            ><mat-icon>exposure_plus_1</mat-icon></button>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+
+    </tr>
+  </table>
+
+
+
+    <!-- <mat-form-field class="example-full-width" appearance="fill" formArrayName="presales"
+    *ngFor="let presale of presales.controls; let i = index">
+      <mat-label>Preventas</mat-label>
+      <input
+      type="text"
+      matInput
+      [formControlName]="i"
+      [value]="presale.value.fecha"
+      />
+
+      <div class="buttons">
+        <div class="form-group, center-horizontal">
+          <button  type="button" class="btn btn-danger"
+          (click)="eliminarPreventa(i)"
+          >
+          Eliminar Preventa</button>
+        </div>
+      </div>
+
+      <mat-error *ngIf="form.get('presale').hasError('required')">
+        Por favor, ingrese La fecha del evento
+      </mat-error>
+    </mat-form-field> -->
+
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Artistas</mat-label>
       <input type="text" matInput formControlName="artists" placeholder="" required />
@@ -415,3 +515,9 @@
     </form>
   </div>
 </div>
+
+<hr>
+<span>Value</span>
+<pre>{{form.value | json}}</pre>
+
+

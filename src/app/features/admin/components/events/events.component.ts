@@ -1,5 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -19,6 +20,19 @@ export class EventsComponent implements OnInit {
   form: FormGroup;
   SERVER_URL = 'http://localhost:3000/eventss';
   url_cloudinary_img_current;
+
+
+  nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
+  nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
+
+
+
+
+  get presales(){
+    return this.form.get('presales') as FormArray;
+  }
+
+
   constructor(
     public fb: FormBuilder,
     private http: HttpClient,
@@ -45,6 +59,9 @@ export class EventsComponent implements OnInit {
         [Validators.required, Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)],
       ],
       presale: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      presales: this.fb.array([
+
+      ], Validators.required),
       artists: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       aforo: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       profile: [''],
@@ -136,4 +153,34 @@ export class EventsComponent implements OnInit {
         );
     }, 1000);
   }
+
+  agregarPreventa(){
+    if(this.nuevaFechaPreventa.invalid){
+      this.nuevaFechaPreventa.markAllAsTouched();
+      return;
+    }
+    console.log(this.nuevaFechaPreventa.value);
+    this.presales.push(this.fb.control(this.nuevaFechaPreventa.value, Validators.required));
+    this.nuevaFechaPreventa.reset();
+  }
+
+  eliminarPreventa(i: number){
+    this.presales.removeAt(i);
+  }
+
+  agregarPreventan(){
+    if(this.nuevaFechaPreventa.invalid && this.nuevoPrecioPreventa.invalid){
+      this.nuevoPrecioPreventa.markAllAsTouched();
+      this.nuevaFechaPreventa.markAllAsTouched();
+      return;
+    }
+    console.log(this.nuevaFechaPreventa.value, this.nuevoPrecioPreventa.value);
+    this.presales.push(this.fb.control(this.nuevaFechaPreventa.value));
+    console.log(this.presales.controls);
+  }
+
+  // {
+  //   fecha: this.nuevaFechaPreventa.value,
+  //   precio: this.nuevoPrecioPreventa.value
+  // }
 }

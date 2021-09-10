@@ -29,7 +29,8 @@ import { MatTabsModule} from '@angular/material/tabs';
     MatIconModule,
     MatDialogModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ],
   exports: [
     //FormControl,
@@ -44,7 +45,8 @@ import { MatTabsModule} from '@angular/material/tabs';
     MatIconModule,
     MatDialogModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonModule
   ]
 })
 
