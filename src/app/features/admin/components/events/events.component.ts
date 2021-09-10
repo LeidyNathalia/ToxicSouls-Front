@@ -21,6 +21,10 @@ export class EventsComponent implements OnInit {
   SERVER_URL = 'http://localhost:3000/eventss';
   url_cloudinary_img_current;
 
+  arrayItems: {
+    fecha: string;
+    title: string;
+  }[];
 
   nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
   nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
@@ -40,6 +44,7 @@ export class EventsComponent implements OnInit {
     private routes: Router
   ) {
     this.form = this.fb.group({
+      demoArray: this.fb.array([]),
       date_event: [
         '',
         [
@@ -69,6 +74,7 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.arrayItems = [];
     var current_date = new Date().toISOString().split('T')[0];
     document
       .getElementsByName('appo_date')[0]
@@ -154,7 +160,7 @@ export class EventsComponent implements OnInit {
     }, 1000);
   }
 
-  agregarPreventa(){
+  /* agregarPreventa(){
     if(this.nuevaFechaPreventa.invalid){
       this.nuevaFechaPreventa.markAllAsTouched();
       return;
@@ -162,10 +168,12 @@ export class EventsComponent implements OnInit {
     console.log(this.nuevaFechaPreventa.value);
     this.presales.push(this.fb.control(this.nuevaFechaPreventa.value, Validators.required));
     this.nuevaFechaPreventa.reset();
-  }
+  } */
 
   eliminarPreventa(i: number){
     this.presales.removeAt(i);
+    this.arrayItems.splice(i,1);
+    this.demoArray.removeAt(this.demoArray.length - 1);
   }
 
   agregarPreventan(){
@@ -175,12 +183,22 @@ export class EventsComponent implements OnInit {
       return;
     }
     console.log(this.nuevaFechaPreventa.value, this.nuevoPrecioPreventa.value);
-    this.presales.push(this.fb.control(this.nuevaFechaPreventa.value));
+    this.arrayItems.push({fecha: this.nuevaFechaPreventa.value, title: this.nuevoPrecioPreventa.value});
+    this.presales.push(this.fb.control({
+      fecha: this.nuevaFechaPreventa.value,
+      precio: this.nuevoPrecioPreventa.value
+    }));
+    this.nuevaFechaPreventa.reset();
+    this.nuevoPrecioPreventa.reset();
     console.log(this.presales.controls);
   }
 
-  // {
-  //   fecha: this.nuevaFechaPreventa.value,
-  //   precio: this.nuevoPrecioPreventa.value
-  // }
+
+
+  //Lo que hizo Diego
+
+  get demoArray() {
+    return this.form.get('demoArray') as FormArray;
+ }
+  
 }

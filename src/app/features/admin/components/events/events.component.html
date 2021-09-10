@@ -429,23 +429,25 @@
 
     <!--Mostrar listado de preventas-->
 
-    <table class="example-full-width" formArrayName="presales"
-    *ngFor="let presale of presales.controls; let i = index"><tr>
-      <td><mat-form-field appearance="fill">
+    <table class="example-full-width" formArrayName="demoArray" 
+    *ngFor="let arrayItem of arrayItems; let i=index"><tr>
+      <td>
         <mat-label>Fecha preventa</mat-label>
-        <input matInput type="date" [formControlName]="i">
-      </mat-form-field></td>
-      <td><mat-form-field appearance="fill">
+        <mat-label for="arrayItem.id">
+          {{arrayItem.fecha}}</mat-label>
+      </td>
+      <td>
         <mat-label>Precio</mat-label>
-        <input matInput type="number"  [formControlName]="i">
-      </mat-form-field></td>
+        <mat-label for="arrayItem.id" class="array-item-title">
+          {{arrayItem.title}}</mat-label>
+      </td>
 
       <td>
         <div class="buttons">
           <div class="form-group, center-horizontal">
             <button  type="button" class="btn btn-danger"
-            (click)="agregarPreventan()"
-            ><mat-icon>exposure_plus_1</mat-icon></button>
+            (click)="eliminarPreventa(i)">
+            borrar</button>
           </div>
         </div>
       </td>
@@ -454,8 +456,13 @@
 
     </tr>
   </table>
-
-
+    <!-- <div formArrayName="demoArray" 
+       *ngFor="let arrayItem of arrayItems; let i=index">
+       <label for="arrayItem.id">
+         {{arrayItem.fecha}}</label>
+       <label for="arrayItem.id" class="array-item-title">
+          {{arrayItem.title}}</label>
+    </div> -->
 
     <!-- <mat-form-field class="example-full-width" appearance="fill" formArrayName="presales"
     *ngFor="let presale of presales.controls; let i = index">
