@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators
+import {
+  FormGroup, FormControl, Validators, FormBuilder, FormArray
 } from '@angular/forms';
 
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
@@ -18,44 +19,67 @@ export class AddArtistComponent implements OnInit {
   SERVER_URL = 'http://localhost:3000/eventss';
   url_cloudinary_img_current;
 
-  constructor(private artistService: ArtistService) {
+
+  redSocial: FormControl = this.fb.control('', []);
+
+
+  get redesSocialesArr() {
+    return this.form_artist.get('social_networks') as FormArray;
+  }
+
+
+  constructor(private artistService: ArtistService,
+    private fb: FormBuilder) {
     this.form_artist = new FormGroup({
-      name_artist : new FormControl('', [
+      name_artist: new FormControl('', [
         Validators.required
       ]),
-      country_artist : new FormControl('', [
+      nationality_artist: new FormControl('', [
         Validators.required
 
       ]),
-      social_networks_artist : new FormControl('', [
-        Validators.required
+      social_networks: this.fb.array([], Validators.required),
 
-      ]),
-      description_artist : new FormControl('', [
-        Validators.required
+      description_artist: new FormControl('', [
 
       ])
     })
   }
 
-
-
-
   ngOnInit(): void {
   }
 
- /*  name_artist: {type: String, required: true},
-    description_artist: {type: String, required: false},
-    nationality_artist: {type: String, required: false},
-    photo_artist: {type: String, required: false}
- */
 
-      registro(){
-        console.log(this.form_artist.value);
-        const data = this.form_artist.value;
-        this.artistService.registerArtist(data)
-          .subscribe((resp) => {
-            console.log(resp);
-          });
-      }
+  registro() {
+    if(this.form_artist.invalid){
+      this.form_artist.markAllAsTouched();
+      return;
+    }
+    console.log(this.form_artist.value);
+    const data = this.form_artist.value;
+    this.artistService.registerArtist(data)
+      .subscribe((resp) => {
+        console.log(resp);
+      });
+    this.form_artist.reset();
+  }
+
+  campoValido(campo: string) {
+    return this.form_artist.controls[campo].errors &&
+      this.form_artist.controls[campo].touched;
+  }
+
+  agregarRedSocial() {
+    if (this.redSocial.invalid) {
+      //this.redSocial.markAsTouched();
+      return;
+    }
+    console.log(this.redSocial.value);
+    this.redesSocialesArr.push(this.fb.control(this.redSocial.value, Validators.required));
+    this.redSocial.reset();
+  }
+
+  eliminarRedSocial(i: number) {
+    this.redesSocialesArr.removeAt(i);
+  }
 }

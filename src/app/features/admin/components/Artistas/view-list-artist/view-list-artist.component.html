@@ -7,34 +7,29 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="Id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
 
     <!-- Nombre artista Column -->
-    <ng-container matColumnDef="Nombre">
+    <ng-container matColumnDef="name_artist">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-      <td mat-cell *matCellDef="let row"> {{row.name}}% </td>
+      <td mat-cell *matCellDef="let row"> {{row.name_artist}}</td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="Pais">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pais </th>
-      <td mat-cell *matCellDef="let row"> {{row.country}} </td>
+    <ng-container matColumnDef="nationality_artist">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> País </th>
+      <td mat-cell *matCellDef="let row"> {{row.nationality_artist}} </td>
     </ng-container>
 
     <!-- Fruit Column -->
-    <ng-container matColumnDef="Redes sociales">
+    <ng-container matColumnDef="social_networks">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Redes sociales </th>
-      <td mat-cell *matCellDef="let row"> {{row.socialNetworks}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.social_networks}} </td>
     </ng-container>
 
         <!-- Fruit Column -->
-    <ng-container matColumnDef="Descripción">
+    <ng-container matColumnDef="description_artist">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
-      <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.description_artist}} </td>
     </ng-container>
 
     <ng-container matColumnDef="options">
@@ -43,13 +38,13 @@
         <button mat-icon-button aria-label="Editar">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button aria-label="Eliminar">
+        <button  mat-icon-button aria-label="Eliminar">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
 
-    
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 

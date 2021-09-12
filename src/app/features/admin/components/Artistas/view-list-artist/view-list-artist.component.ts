@@ -2,36 +2,43 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { ArtistService } from 'src/app/services/user-service/artist.service';
+import { Artist } from '../interfaces/artist.interface';
 
-export interface ArtistData {
-  id: string;
-  nameArtist: string;
-  countryArtist: string;
-  socialNetworks: string;
-  description: string;
-}
 @Component({
   selector: 'app-view-list-artist',
   templateUrl: './view-list-artist.component.html',
   styleUrls: ['./view-list-artist.component.scss']
 })
 export class ViewListArtistComponent implements OnInit {
+  // export interface Artist {
+  //   name_artist: string,
+  //   description_artist: string,
+  //   nationality_artist: string,
+  //   social_networks: [string],
+  //   photo_artist: string
+  // };
+  artistsList: Artist[];
 
-  artistsList: ArtistData[];
-
-  displayedColumns: string[] = ['Id', 'Nombre', 'Pais', 'Redes sociales', 'Descripción'];
-  dataSource: MatTableDataSource<ArtistData>;
+  displayedColumns: string[] = ['name_artist', 'nationality_artist', 'social_networks', 'description_artist', 'options'];
+  dataSource: MatTableDataSource<Artist>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private artistService: ArtistService) {
 
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.artistService.getAllArtists()
+    .subscribe((resp)=>{
+      this.artistsList = resp.artists;
+      console.log(this.artistsList);
+      this.dataSource = new MatTableDataSource(this.artistsList);
+      this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    });
   }
 
   applyFilter(event: Event) {

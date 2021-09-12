@@ -387,106 +387,65 @@
         <td><mat-form-field appearance="fill">
           <mat-label>Fecha preventa</mat-label>
           <input matInput type="date" [formControl]="nuevaFechaPreventa">
-        </mat-form-field></td>
+           <!-- <mat-error *ngIf="form.get('nuevaFechaPreventa').hasError('required')">
+             La fecha es necesaria para crear un preventa
+           </mat-error> -->
+        </mat-form-field>
+
+      </td>
 
         <td><mat-form-field appearance="fill">
           <mat-label>Precio</mat-label>
           <input matInput type="number" [formControl]="nuevoPrecioPreventa">
-        </mat-form-field></td>
+        </mat-form-field>
+        <!-- <mat-error *ngIf="form.get('nuevoPrecioPreventa').hasError('required')">
+          El precio es necesario para crear un preventa
+        </mat-error> -->
+      </td>
 
         <td>
-          <div class="buttons">
-            <div class="form-group, center-horizontal">
-              <button  type="button" class="btn btn-danger"
-              (click)="agregarPreventan()"
-              ><mat-icon>exposure_plus_1</mat-icon></button>
-            </div>
-          </div>
+        <button
+        type="button"
+        (click)="agregarPreventan()"
+        mat-mini-fab
+        color="primary">
+          <mat-icon>plus_one</mat-icon>
+        </button>
         </td>
       </tr>
       <tr>
-
       </tr>
     </table>
 
-    <!--Agregar preventas-->
-    <!-- <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Agregar Preventa</mat-label>
-      <input type="date" matInput [formControl]="nuevaFechaPreventa"/>
-      <div class="buttons">
-        <div class="form-group, center-horizontal">
-          <button  type="button" class="btn btn-danger"
-          (click)="agregarPreventa()"
-          >Registrar preventa</button>
-        </div>
-      </div>
-
-
-      <mat-error *ngIf="form.get('presale').hasError('required')">
-        Por favor, ingrese La fecha del evento
-      </mat-error>
-    </mat-form-field> -->
-
     <!--Mostrar listado de preventas-->
 
-    <table class="example-full-width" formArrayName="demoArray" 
-    *ngFor="let arrayItem of arrayItems; let i=index"><tr>
+    <table class="example-full-width" formArrayName="demoArray"
+    *ngFor="let arrayItem of arrayItems; let i=index">
+    <tr>
       <td>
-        <mat-label>Fecha preventa</mat-label>
-        <mat-label for="arrayItem.id">
-          {{arrayItem.fecha}}</mat-label>
+        <mat-form-field appearance="fill">
+          <input matInput [value]="arrayItem.fecha">
+        </mat-form-field>
       </td>
       <td>
-        <mat-label>Precio</mat-label>
-        <mat-label for="arrayItem.id" class="array-item-title">
-          {{arrayItem.title}}</mat-label>
+        <mat-form-field appearance="fill">
+          <input matInput [value]="arrayItem.title">
+        </mat-form-field>
       </td>
 
       <td>
-        <div class="buttons">
-          <div class="form-group, center-horizontal">
-            <button  type="button" class="btn btn-danger"
-            (click)="eliminarPreventa(i)">
-            borrar</button>
-          </div>
-        </div>
+          <button
+          mat-mini-fab
+          type="button"
+          (click)="eliminarPreventa(i)"
+          color="primary">
+            <mat-icon>delete</mat-icon>
+          </button>
       </td>
     </tr>
     <tr>
-
     </tr>
   </table>
-    <!-- <div formArrayName="demoArray" 
-       *ngFor="let arrayItem of arrayItems; let i=index">
-       <label for="arrayItem.id">
-         {{arrayItem.fecha}}</label>
-       <label for="arrayItem.id" class="array-item-title">
-          {{arrayItem.title}}</label>
-    </div> -->
-
-    <!-- <mat-form-field class="example-full-width" appearance="fill" formArrayName="presales"
-    *ngFor="let presale of presales.controls; let i = index">
-      <mat-label>Preventas</mat-label>
-      <input
-      type="text"
-      matInput
-      [formControlName]="i"
-      [value]="presale.value.fecha"
-      />
-
-      <div class="buttons">
-        <div class="form-group, center-horizontal">
-          <button  type="button" class="btn btn-danger"
-          (click)="eliminarPreventa(i)"
-          >
-          Eliminar Preventa</button>
-        </div>
-      </div>
-
-      <mat-error *ngIf="form.get('presale').hasError('required')">
-        Por favor, ingrese La fecha del evento
-      </mat-error>
-    </mat-form-field> -->
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Artistas</mat-label>
