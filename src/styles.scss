@@ -15,7 +15,7 @@ body {
 }
 
 body {
-  margin: 1;
+  margin: 2px;
   font-family: Headliner;
 }
 
@@ -35,6 +35,11 @@ body {
 .center-left {
   display: flex;
   justify-content: left;
+}
+
+.center-right{
+  display: flex;
+  justify-content: right;
 }
 
 .center-vertical {
@@ -59,7 +64,7 @@ body {
 .img-logo-banner{
   padding: 5px;
   height: 130px !important;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 

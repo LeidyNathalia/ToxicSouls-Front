@@ -12,6 +12,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatTabsModule} from '@angular/material/tabs';
+import { MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -30,7 +31,8 @@ import { MatTabsModule} from '@angular/material/tabs';
     MatDialogModule,
     MatMenuModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule
   ],
   exports: [
     //FormControl,
@@ -46,7 +48,8 @@ import { MatTabsModule} from '@angular/material/tabs';
     MatDialogModule,
     MatMenuModule,
     MatTabsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule
   ]
 })
 
