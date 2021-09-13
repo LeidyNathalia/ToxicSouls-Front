@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderService } from 'src/app/services/header-service/header.service';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,54 +13,85 @@ import { UserService } from 'src/app/services/user-service/user.service';
 export class SignInComponent implements OnInit {
 
 
-    userLogin = new FormGroup({
+  userLogin = new FormGroup({
 
-      email: new FormControl('', [
-        Validators.required,
-        Validators.email]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email]),
 
-      password: new FormControl('', [
-        Validators.required]),
+    password: new FormControl('', [
+      Validators.required]),
   });
 
-  email:boolean;
-  password:boolean;
-  result:any;
+  email: boolean = false;
+  password: boolean = false;
+  error: boolean = false;
+
+
 
   constructor(
     private router: Router,
     private userService: UserService,
     private headerService: HeaderService,
-    private routes: Router
-  ) {}
+    private routes: Router,
+    private snackBar: MatSnackBar
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  async submit(): Promise<any> {
-    console.log("singIn")
-    try {
-      this.result = await this.userService.loginUser(this.userLogin.value);
-      if (this.result.role === 'super-admin') {
-        localStorage.setItem('role', 'super-admin');
-        this.router.navigate(['/admin']);
-        localStorage.setItem('token', this.result.token);
-        const header = this.headerService.createHeader(
-          localStorage.getItem('token')
-        );
-        console.log(this.result.token);
-      } else {
-        const header = this.headerService.createHeader(
-          localStorage.getItem('token')
-        );
-        console.log('Admin normal');
-        localStorage.setItem('role', 'admin');
-        this.routes.navigate(['/admin']);
-      }
-
-      console.log(this.result);
-    } catch (error) {
-      this.email = true;
-      console.log(error);
-    }
+  signIn(): void {
+    this.userService.signIn(this.userLogin.value)
+      .subscribe((resp) => {
+        console.log(resp);
+        if (resp.role === 'super-admin') {
+          localStorage.setItem('role', 'super-admin');
+          this.router.navigate(['/admin']);
+          localStorage.setItem('token', resp.token);
+          const header = this.headerService.createHeader(
+            localStorage.getItem('token')
+          );
+          console.log(resp.token);
+        } else {
+          const header = this.headerService.createHeader(
+            localStorage.getItem('token')
+          );
+          console.log('Admin normal');
+          localStorage.setItem('role', 'admin');
+          this.routes.navigate(['/admin']);
+        }
+      }, (err) => {
+        console.log(err.error.message);
+        if (err.error.message === 'User not found') {
+          this.email = true;
+          this.password = false;
+          this.error = false;
+        } else if (err.error.message === 'Wrong password') {
+          this.password = true;
+          this.email = false;
+          this.error = false;
+        } else {
+          this.error = true;
+          this.snackBar.openFromComponent(ErrorComponet, {
+            duration: 5000
+          });
+          this.password = false;
+          this.email = false;
+        }
+      });
   }
 }
+
+@Component({
+  selector: 'error-component',
+  template: `<span class="error-card">
+  El servidor no puede procesar la petición, intente nuevamente más tarde
+</span>`,
+  styles: [`
+    .error-card {
+      color: hotpink;
+      font-size: 20px;
+      font-family:"Times New Roman";
+    }
+  `],
+})
+export class ErrorComponet { }

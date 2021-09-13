@@ -1,17 +1,12 @@
 <!-- <mat-card style="width: 300px;"> -->
 <div class="bod">
+
   <div class="login-box">
     <img src="../assets/img/logoTSG.png" class="avatar" alt="Avatar Image">
     <h1>Login</h1>
-    <form [formGroup]="userLogin" (submit)="submit()">
+    <form [formGroup]="userLogin" (submit)="signIn()">
+
       <!-- USERNAME INPUT -->
-
-      <mat-error
-      *ngIf="email">
-        Error en los datos de autenticación!
-      </mat-error>
-
-
       <label for="username">Username</label>
       <input id="user" name="user" type="text" placeholder="Enter Username" formControlName="email">
 
@@ -22,23 +17,26 @@
         Por favor ingrese un correo válido
       </mat-error>
 
+      <mat-error *ngIf="email">
+        El usuario no está registrado, revise el email
+      </mat-error>
+
 
 
       <!-- PASSWORD INPUT -->
       <label for="password">Password</label>
       <input id="pass" name="pass" type="password" formControlName="password" placeholder="Enter Password">
-<!--
-      <mat-error
-      *ngIf="password">
-        Contraseña incorrecta
-      </mat-error> -->
+
+
+      <mat-error *ngIf="password">
+        La contraseña es erronea, por favor verifique
+      </mat-error>
 
       <!-- <input type="submit" value="Log In" onclick="location.href='/menu.html'"> -->
-      <input id="boton-guardar" type="submit" value="Log In" [routerLink]="'/auth'">
+      <input id="boton-guardar" type="submit" value="Log In">
       <a href="#">Lost your Password?</a><br>
       <a href="#">Don't have An account?</a>
     </form>
   </div>
 </div>
-<!-- </mat-card> -->
 
