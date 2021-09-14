@@ -336,11 +336,8 @@
           formControlName="name_artist"
           placeholder="Pedro "
         />
-        <mat-error *ngIf="form.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="form.hasError('required')">
-          El nombre es <strong>requerido</strong>
+        <mat-error *ngIf="form_artist.get('name_artist').hasError('required')">
+          El nombre del artista es obligatorio
         </mat-error>
       </mat-form-field>
 
@@ -349,31 +346,42 @@
         <input
           type="text"
           matInput
-          formControlName="country_artist"
+          formControlName="nationality_artist"
           placeholder="Colombia"
         />
-        <mat-error *ngIf="form.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="form.hasError('required')">
-          El país es <strong>requerido</strong>
+        <mat-error *ngIf="form_artist.get('nationality_artist').hasError('required')">
+          El país es  <strong>requerido</strong>
         </mat-error>
       </mat-form-field>
 
+      <!--Add social network-->
       <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Redes sociales</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="social_networks_artist"
-          placeholder="Facebook"
-        />
-        <mat-error *ngIf="form.hasError('required')">
-          Please enter a valid email address
+        <mat-label>Agregar enlace a red social</mat-label>
+        <input type="text" matInput [formControl]="redSocial">
+        <button
+        matSuffix
+        type="button"
+        (click)="agregarRedSocial()"
+        mat-icon-button>
+          <mat-icon>exposure_plus_1</mat-icon>
+        </button>
+        <mat-error *ngIf="redSocial.hasError('required')">
+          Ingrese un enlace o link de la red social para poder registrarla
         </mat-error>
-        <mat-error *ngIf="form.hasError('required')">
-          El país es <strong>requerido</strong>
-        </mat-error>
+      </mat-form-field>
+
+      <!--Lista de redes sociales-->
+      <mat-form-field class="example-full-width" appearance="fill"
+      formArrayName="social_networks"
+      *ngFor="let redSocial of redesSocialesArr.controls; let i = index">
+        <input matInput type="text" [formControlName]="i">
+        <button
+        matSuffix
+        type="button"
+        (click)="eliminarRedSocial(i)"
+        mat-icon-button>
+        <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
@@ -384,20 +392,20 @@
           formControlName="description_artist"
           placeholder="Información"
         />
-        <mat-error *ngIf="form.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="form.hasError('required')">
-          El país es <strong>requerido</strong>
-        </mat-error>
       </mat-form-field>
 
       <!-- Boton  -->
       <div class="buttons">
         <div class="form-group, center-horizontal">
-          <button class="btn btn-danger" type="submit" [disabled]="f.invalid">Agregar artista</button>
+          <button class="btn btn-danger" type="button"
+          (click)="registro()">Agregar artista</button>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+
+<span>Form</span>
+<pre>{{form_artist.value | json}}</pre>
+<pre>{{form_artist.valid}}</pre>

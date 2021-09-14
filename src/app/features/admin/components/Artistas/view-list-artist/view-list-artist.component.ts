@@ -4,25 +4,25 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ArtistService} from '../../../../../services/user-service/artist.service';
+import { Artist } from '../interfaces/artist.interface';
 
-export interface ArtistData {
-  id: string;
-  nameArtist: string;
-  countryArtist: string;
-  socialNetworks: string;
-  description: string;
-}
 @Component({
   selector: 'app-view-list-artist',
   templateUrl: './view-list-artist.component.html',
   styleUrls: ['./view-list-artist.component.scss']
 })
 export class ViewListArtistComponent implements OnInit {
+  // export interface Artist {
+  //   name_artist: string,
+  //   description_artist: string,
+  //   nationality_artist: string,
+  //   social_networks: [string],
+  //   photo_artist: string
+  // };
+  artistsList: Artist[];
 
-  artistsList: ArtistData[];
-
-  displayedColumns: string[] = ['Id', 'Nombre', 'Pais', 'Redes sociales', 'Descripción'];
-  dataSource: MatTableDataSource<ArtistData>;
+  displayedColumns: string[] = ['name_artist', 'nationality_artist', 'social_networks', 'description_artist', 'options'];
+  dataSource: MatTableDataSource<Artist>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -33,20 +33,33 @@ export class ViewListArtistComponent implements OnInit {
   ) {
 
   }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
-  async ngAfterViewInit(): Promise<any> {
-    try {
-      const result = await this.artistService.getArtist();
-      console.log('result', result);
-      this.artistsList = await result.artists;
-      console.log(result.artists);
+  // async ngAfterViewInit(): Promise<any> {
+  //   try {
+  //     const result = await this.artistService.getArtist();
+  //     console.log('result', result);
+  //     this.artistsList = await result.artists;
+  //     console.log(result.artists);
+  //     console.log(this.artistsList);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   this.dataSource = new MatTableDataSource(this.artistsList);
+  //   this.dataSource.paginator = this.paginator;
+  // }  
+
+  ngAfterViewInit() {
+    this.artistService.getAllArtists()
+    .subscribe((resp)=>{
+      this.artistsList = resp.artists;
       console.log(this.artistsList);
-    } catch (error) {
-      console.log(error);
-    }
-    this.dataSource = new MatTableDataSource(this.artistsList);
-    this.dataSource.paginator = this.paginator;
+      this.dataSource = new MatTableDataSource(this.artistsList);
+      this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    });
   }
 
   applyFilter(event: Event) {
@@ -83,9 +96,6 @@ export class ViewListArtistComponent implements OnInit {
 
   modify(row: any) {
     this.routes.navigate(['/admin/ModifyArtistComponent'],{queryParams:{id:this.getArtistById(row)}});
-  }
-
-  ngOnInit(): void {
   }
 
 }

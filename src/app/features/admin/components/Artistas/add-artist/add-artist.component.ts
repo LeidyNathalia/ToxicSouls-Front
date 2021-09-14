@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder, FormArray} from '@angular/forms';
+//import { UploadService } from './upload.service';
 import { Router } from '@angular/router';
+import { ArtistService } from '../../../../../services/user-service/artist.service';
 import { UploadService } from '../../events/upload.service';
-
 
 @Component({
   selector: 'app-add-artist',
@@ -11,34 +12,35 @@ import { UploadService } from '../../events/upload.service';
   styleUrls: ['./add-artist.component.scss']
 })
 export class AddArtistComponent implements OnInit {
-
+  form_artist: FormGroup;
+  SERVER_URL = 'http://localhost:3000/eventss';
   url_cloudinary_img_current;
+  redSocial: FormControl = this.fb.control('', []);
 
-  form = new FormGroup({
-    name_artist : new FormControl('', [
-      Validators.required
-    ]),
-    country_artist : new FormControl('', [
-      Validators.required
 
-    ]),
-    social_networks_artist : new FormControl('', [
-      Validators.required
+  get redesSocialesArr() {
+    return this.form_artist.get('social_networks') as FormArray;
+  }
 
-    ]),
-    description_artist : new FormControl('', [
-      Validators.required
-
-    ])
-  })
-
-  constructor(
-    public fb: FormBuilder,
+  constructor(private artistService: ArtistService,
+    private fb: FormBuilder,
     private http: HttpClient,
     private _uploadService: UploadService,
-    private routes: Router
-  ) {
+    private routes: Router) {
+    this.form_artist = new FormGroup({
+      name_artist: new FormControl('', [
+        Validators.required
+      ]),
+      nationality_artist: new FormControl('', [
+        Validators.required
    
+      ]),
+      social_networks: this.fb.array([], Validators.required),
+
+      description_artist: new FormControl('', [
+
+      ])
+    })
   }
 
   ngOnInit(): void {
@@ -81,7 +83,7 @@ export class AddArtistComponent implements OnInit {
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    this.form.get('profile').setValue(file);
+    this.form_artist.get('profile').setValue(file);
   }
 
   submitForm() {
@@ -100,10 +102,10 @@ export class AddArtistComponent implements OnInit {
     setTimeout(() => {
       console.log('se ejecuta?');
       const body = {
-        name_artist: this.form.get('name_artist').value,
-        country_artist: this.form.get('country_artist').value,
-        social_networks_artist: this.form.get('social_networks_artist').value,
-        description_artist: this.form.get('description_artist').value,
+        name_artist: this.form_artist.get('name_artist').value,
+        country_artist: this.form_artist.get('country_artist').value,
+        social_networks_artist: this.form_artist.get('social_networks_artist').value,
+        description_artist: this.form_artist.get('description_artist').value,
         flyer: this.url_cloudinary_img_current,
       };
       console.log('bodyyy', body);
@@ -117,4 +119,36 @@ export class AddArtistComponent implements OnInit {
   }
 
 
+  registro() {
+    if(this.form_artist.invalid){
+      this.form_artist.markAllAsTouched();
+      return;
+    }
+    console.log(this.form_artist.value);
+    const data = this.form_artist.value;
+    this.artistService.registerArtist(data)
+      .subscribe((resp) => {
+        console.log(resp);
+      });
+    this.form_artist.reset();
+  }
+
+  campoValido(campo: string) {
+    return this.form_artist.controls[campo].errors &&
+      this.form_artist.controls[campo].touched;
+  }
+
+  agregarRedSocial() {
+    if (this.redSocial.invalid) {
+      //this.redSocial.markAsTouched();
+      return;
+    }
+    console.log(this.redSocial.value);
+    this.redesSocialesArr.push(this.fb.control(this.redSocial.value, Validators.required));
+    this.redSocial.reset();
+  }
+
+  eliminarRedSocial(i: number) {
+    this.redesSocialesArr.removeAt(i);
+  }
 }

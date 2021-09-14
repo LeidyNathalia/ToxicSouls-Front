@@ -381,6 +381,72 @@
       </mat-error>
     </mat-form-field>
 
+    <!--Registrar preventa-->
+
+      <table class="example-full-width"><tr>
+        <td><mat-form-field appearance="fill">
+          <mat-label>Fecha preventa</mat-label>
+          <input matInput type="date" [formControl]="nuevaFechaPreventa">
+           <!-- <mat-error *ngIf="form.get('nuevaFechaPreventa').hasError('required')">
+             La fecha es necesaria para crear un preventa
+           </mat-error> -->
+        </mat-form-field>
+
+      </td>
+
+        <td><mat-form-field appearance="fill">
+          <mat-label>Precio</mat-label>
+          <input matInput type="number" [formControl]="nuevoPrecioPreventa">
+        </mat-form-field>
+        <!-- <mat-error *ngIf="form.get('nuevoPrecioPreventa').hasError('required')">
+          El precio es necesario para crear un preventa
+        </mat-error> -->
+      </td>
+
+        <td>
+        <button
+        type="button"
+        (click)="agregarPreventan()"
+        mat-mini-fab
+        color="primary">
+          <mat-icon>plus_one</mat-icon>
+        </button>
+        </td>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+
+    <!--Mostrar listado de preventas-->
+
+    <table class="example-full-width" formArrayName="demoArray"
+    *ngFor="let arrayItem of arrayItems; let i=index">
+    <tr>
+      <td>
+        <mat-form-field appearance="fill">
+          <input matInput [value]="arrayItem.fecha">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input matInput [value]="arrayItem.title">
+        </mat-form-field>
+      </td>
+
+      <td>
+          <button
+          mat-mini-fab
+          type="button"
+          (click)="eliminarPreventa(i)"
+          color="primary">
+            <mat-icon>delete</mat-icon>
+          </button>
+      </td>
+    </tr>
+    <tr>
+    </tr>
+  </table>
+
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Artistas</mat-label>
       <input type="text" matInput formControlName="artists" placeholder="" required />
@@ -415,3 +481,9 @@
     </form>
   </div>
 </div>
+
+<hr>
+<span>Value</span>
+<pre>{{form.value | json}}</pre>
+
+

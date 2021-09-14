@@ -1,11 +1,12 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadService } from './upload.service';
 import { Router } from '@angular/router';
@@ -19,6 +20,23 @@ export class EventsComponent implements OnInit {
   form: FormGroup;
   SERVER_URL = 'http://localhost:3000/eventss';
   url_cloudinary_img_current;
+
+  arrayItems: {
+    fecha: string;
+    title: string;
+  }[];
+
+  nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
+  nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
+
+
+
+
+  get presales(){
+    return this.form.get('presales') as FormArray;
+  }
+
+
   constructor(
     public fb: FormBuilder,
     private http: HttpClient,
@@ -26,6 +44,7 @@ export class EventsComponent implements OnInit {
     private routes: Router
   ) {
     this.form = this.fb.group({
+      demoArray: this.fb.array([]),
       date_event: [
         '',
         [
@@ -45,6 +64,9 @@ export class EventsComponent implements OnInit {
         [Validators.required, Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)],
       ],
       presale: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      presales: this.fb.array([
+
+      ], Validators.required),
       artists: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       aforo: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       profile: [''],
@@ -52,6 +74,7 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.arrayItems = [];
     var current_date = new Date().toISOString().split('T')[0];
     document
       .getElementsByName('appo_date')[0]
@@ -136,4 +159,46 @@ export class EventsComponent implements OnInit {
         );
     }, 1000);
   }
+
+  /* agregarPreventa(){
+    if(this.nuevaFechaPreventa.invalid){
+      this.nuevaFechaPreventa.markAllAsTouched();
+      return;
+    }
+    console.log(this.nuevaFechaPreventa.value);
+    this.presales.push(this.fb.control(this.nuevaFechaPreventa.value, Validators.required));
+    this.nuevaFechaPreventa.reset();
+  } */
+
+  eliminarPreventa(i: number){
+    this.presales.removeAt(i);
+    this.arrayItems.splice(i,1);
+    this.demoArray.removeAt(this.demoArray.length - 1);
+  }
+
+  agregarPreventan(){
+    if(this.nuevaFechaPreventa.invalid && this.nuevoPrecioPreventa.invalid){
+      this.nuevoPrecioPreventa.markAllAsTouched();
+      this.nuevaFechaPreventa.markAllAsTouched();
+      return;
+    }
+    console.log(this.nuevaFechaPreventa.value, this.nuevoPrecioPreventa.value);
+    this.arrayItems.push({fecha: this.nuevaFechaPreventa.value, title: this.nuevoPrecioPreventa.value});
+    this.presales.push(this.fb.control({
+      fecha: this.nuevaFechaPreventa.value,
+      precio: this.nuevoPrecioPreventa.value
+    }));
+    this.nuevaFechaPreventa.reset();
+    this.nuevoPrecioPreventa.reset();
+    console.log(this.presales.controls);
+  }
+
+
+
+  //Lo que hizo Diego
+
+  get demoArray() {
+    return this.form.get('demoArray') as FormArray;
+ }
+  
 }

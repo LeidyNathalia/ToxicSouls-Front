@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class UserService {
 
   loginUser(data: any): Promise<any> {
     return this.http.post<any>(this.path + '/login-user', data).toPromise();
+  }
+
+  signIn(data: {}): Observable<any>{
+    return this.http.post(`${this.path}/login-user`, data);
   }
 
   registerUser(header: any, data: any): Promise<any> {
@@ -33,5 +38,7 @@ export class UserService {
 
   editUser(_id, body, headers: any): Promise<any>{
     return this.http.put<any>(`${this.path}/${_id}`, body, {headers: headers}).toPromise();
-  }  
+  }
+
+
 }
