@@ -111,12 +111,6 @@ export class ModifyEventComponent implements OnInit {
     this.form.patchValue({city_event:event.event.city_event});
     this.form.patchValue({direction_event:event.event.direction_event});
     this.form.patchValue({description_event:event.event.description_event});
-    this.form.patchValue({presale:event.event.presale});
-    this.form.patchValue({artists:event.event.artists});
-    this.form.patchValue({capacity:event.event.capacity});
-    // console.log("valor fecha",event.event.date_event )
-    // console.log("form by id",event);
-    // console.log("event",event.event);
   }
   
   files: File[] = [];
@@ -162,41 +156,5 @@ export class ModifyEventComponent implements OnInit {
   viewList() {
     this.routes.navigate(['/admin/list-event']);
   }
-/* 
-  submitForm() {
-    console.log('capacityoo', this.form.get('capacity').value);
-    this.routes.navigate(['/admin/list-event']);
-
-    
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    headers = headers.append('hola', 'mundo');
-
-    //headers.set('Content-Type', 'application/json; charset=utf-8');
-    //headers.set('Hola', 'mundo');
-    //headers = headers.append('enctype', 'multipart/form-data');
-    //headers.set('Accept', "multipart/form-data");
-    let params = new HttpParams();
-
-    const formData: FormData = new FormData();
-    
-    formData.append('date_event', this.form.get('date_event').value);
-    formData.append('city_event', this.form.get('city_event').value);
-    formData.append('direction_event', this.form.get('direction_event').value);
-    formData.append('description_event',this.form.get('description_event').value);
-    formData.append('presale', this.form.get('presale').value);
-    formData.append('artists', this.form.get('artists').value);
-    formData.append('capacity', this.form.get('capacity').value);
-    //formData.append('flyer', this.form.get('flyer').value);
-    //var aa = JSON.stringify(this.form.get('flyer').value)
-    let options = { headers: headers };
-    const body = { date_event: this.form.get('date_event').value, city_event: this.form.get('city_event').value,
-    direction_event: this.form.get('direction_event').value, description_event: this.form.get('description_event').value,
-    presale: this.form.get('presale').value, artists: this.form.get('artists').value, capacity: this.form.get('capacity').value, flyer: this.url_cloudinary_img_current};
-    this.http.post<any>('http://localhost:3000/api/events/add-event',body,options).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    )
-  } */
 
 }

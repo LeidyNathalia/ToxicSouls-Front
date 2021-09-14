@@ -326,7 +326,7 @@
 <div class="center-horizontal" style="padding: 15px">
   <div class="formulario">
     <!-- Formulario -->
-    <form class="example-form" [formGroup]="form" #f="ngForm">
+    <form class="example-form" [formGroup]="form_artist">
       
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre del artista</mat-label>
@@ -404,8 +404,3 @@
     </form>
   </div>
 </div>
-
-
-<span>Form</span>
-<pre>{{form_artist.value | json}}</pre>
-<pre>{{form_artist.valid}}</pre>

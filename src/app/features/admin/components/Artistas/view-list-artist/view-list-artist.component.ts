@@ -34,7 +34,7 @@ export class ViewListArtistComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
 
   // async ngAfterViewInit(): Promise<any> {
@@ -95,7 +95,7 @@ export class ViewListArtistComponent implements OnInit {
   }
 
   modify(row: any) {
-    this.routes.navigate(['/admin/ModifyArtistComponent'],{queryParams:{id:this.getArtistById(row)}});
+    this.routes.navigate(['/admin/ModifyArtistComponent'],{queryParams:{id_artist:this.getArtistById(row)}});
   }
 
 }

@@ -36,7 +36,6 @@ export class AddArtistComponent implements OnInit {
    
       ]),
       social_networks: this.fb.array([], Validators.required),
-
       description_artist: new FormControl('', [
 
       ])
@@ -83,54 +82,34 @@ export class AddArtistComponent implements OnInit {
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    this.form_artist.get('profile').setValue(file);
+    this.form_artist.get('photo_artist').setValue(file);
   }
-
-  submitForm() {
-    this.routes.navigate(['/admin/ViewListArtistComponent']);
-
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    headers = headers.append('hola', 'mundo');
-
-    let options = { headers: headers };
-    this.postData(options);
-  }
-
-  postData(options) {
-    this.onUpload();
-    setTimeout(() => {
-      console.log('se ejecuta?');
-      const body = {
-        name_artist: this.form_artist.get('name_artist').value,
-        country_artist: this.form_artist.get('country_artist').value,
-        social_networks_artist: this.form_artist.get('social_networks_artist').value,
-        description_artist: this.form_artist.get('description_artist').value,
-        flyer: this.url_cloudinary_img_current,
-      };
-      console.log('bodyyy', body);
-      this.http
-        .post<any>('http://localhost:3000/api/events/add-artist', body, options)
-        .subscribe(
-          (response) => console.log(response),
-          (error) => console.log(error)
-        );
-    }, 1000);
-  }
-
 
   registro() {
+  
     if(this.form_artist.invalid){
       this.form_artist.markAllAsTouched();
       return;
     }
     console.log(this.form_artist.value);
     const data = this.form_artist.value;
-    this.artistService.registerArtist(data)
+    this.onUpload();
+
+    setTimeout(() => {
+    const body = {
+      name_artist: this.form_artist.get('name_artist').value,
+      nationality_artist: this.form_artist.get('nationality_artist').value,
+      social_networks: this.form_artist.get('social_networks').value,
+      description_artist: this.form_artist.get('description_artist').value,
+      photo_artist: this.url_cloudinary_img_current
+    };
+    console.log("url en enviar" , this.url_cloudinary_img_current);
+    this.artistService.registerArtist(body)
       .subscribe((resp) => {
         console.log(resp);
       });
     this.form_artist.reset();
+  }, 1500);
   }
 
   campoValido(campo: string) {
