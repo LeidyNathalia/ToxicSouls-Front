@@ -9,6 +9,7 @@ import { EventsComponent } from './components/events/events.component';
 import { NewsComponent } from './components/news/news.component';
 import { NgSimpleCarouselModule } from 'ng-simple-carousel';
 import { PlayListComponent } from './components/play-list/play-list.component';
+import { TicketComponent } from './components/ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PlayListComponent } from './components/play-list/play-list.component';
     SidebarHomeComponent,
     EventsComponent,
     NewsComponent,
-    PlayListComponent
+    PlayListComponent,
+    TicketComponent
   ],
   imports: [
     CommonModule,
