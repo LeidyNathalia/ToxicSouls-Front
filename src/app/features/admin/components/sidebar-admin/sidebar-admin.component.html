@@ -1,5 +1,4 @@
 <div class="container-sidebar">
-  <div class="row">
     <div class=" logo col-12 center-horizontal">
       <img src="./assets/img/logo_header_larg.png" class="img-logo-banner" alt="Logo app"/>
     </div>
@@ -25,14 +24,14 @@
       </button>
 
       <button class="center-left" mat-button [routerLink]="'play-list'">
-        <mat-icon>play_circle_outline</mat-icon>
-        Boleteria
+        <mat-icon>tab</mat-icon>
+        Ticket
       </button>
 
       <div *ngIf="!isAdmin">
         <button class="center-left" mat-button [routerLink]="'register'">
           <mat-icon>library_books</mat-icon>
-          Registrar admin
+          Registrar
         </button>
       </div>
       <!--</ng-template>-->
@@ -50,9 +49,11 @@
       </button>
 
       <button class="center-left" mat-button [routerLink]="'/'">
-        <mat-icon>person_outline</mat-icon>
-        Volver al Home
+        <mat-icon>exit_to_app</mat-icon>
+        Salir
       </button>
     </div>
-  </div>
+    <div class = "user">
+      <span> Usuario: </span>
+    </div>
 </div>

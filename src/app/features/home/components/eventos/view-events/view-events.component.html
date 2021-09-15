@@ -1,0 +1,55 @@
+<span class="events center-horizontal"> EVENTOS </span>
+<div class = "contend" *ngFor = "let event of events">
+  <mat-grid-list class="target center-horizontal" cols="6" rowHeight="50px">
+    <!-- Imagen -->
+    <mat-grid-tile
+    [colspan]="2"
+    [rowspan]="4">
+    <img class = "image" mat-card-image src="./assets/img/artista 1.jpg"/>
+    </mat-grid-tile>
+
+    <!-- Titulo  -->
+    <mat-grid-tile class = "title"
+    [colspan]="4"
+    [rowspan]="1">
+    {{event.description_event}}
+    </mat-grid-tile>
+
+    <!-- vacio  -->
+    <mat-grid-tile
+    [colspan]="4"
+    [rowspan]="1">
+    {{event.artists}}
+    </mat-grid-tile>
+
+    <!-- Fecha -->
+    <mat-grid-tile
+    [colspan]="1"
+    [rowspan]="2">
+    <p> {{event.date_event}}</p>
+    </mat-grid-tile>
+
+    <!-- Ciudad -->
+    <mat-grid-tile  class = "center-horizontal"
+    [colspan]="1"
+    [rowspan]="2">
+    <p> {{event.city_event}}
+    </p>
+    </mat-grid-tile>
+
+    <!-- Botones -->
+    <div class="buttons">
+      <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="2">
+      <button class = "btn-danger" mat-icon-button [routerLink]="'/tickets'">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button class = "btn-danger" [routerLink]="'/DetailsEvents'"> Ver detalles </button >
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</div>
+
+
+
