@@ -45,7 +45,7 @@ export class SignInComponent implements OnInit {
         console.log(resp);
         if (resp.role === 'super-admin') {
           localStorage.setItem('role', 'super-admin');
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/admin/list-event']);
           localStorage.setItem('token', resp.token);
           const header = this.headerService.createHeader(
             localStorage.getItem('token')
@@ -57,7 +57,7 @@ export class SignInComponent implements OnInit {
           );
           console.log('Admin normal');
           localStorage.setItem('role', 'admin');
-          this.routes.navigate(['/admin']);
+          this.routes.navigate(['/admin/list-event']);
         }
       }, (err) => {
         console.log(err.error.message);

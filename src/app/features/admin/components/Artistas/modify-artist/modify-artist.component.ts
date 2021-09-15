@@ -84,8 +84,16 @@ export class ModifyArtistComponent implements OnInit {
     const artist = await this.artistService.getArtistById(this.id_edit);
     this.form_artist.patchValue({name_artist:artist.artist.name_artist});
     this.form_artist.patchValue({nationality_artist:artist.artist.nationality_artist});
-    this.form_artist.patchValue({social_networks:artist.artist.social_networks});
+    console.log('social', artist.artist.social_networks)
+    //this.form_artist.patchValue({social_networks:artist.artist.social_networks});
+    this.form_artist.get("social_networks").setValue(artist.artist.social_networks);
     this.form_artist.patchValue({description_artist:artist.artist.description_artist});
+    //this.form = artist.artist.social_networks;
+    /* artist.artist.social_networks.forEach(function (value) {
+      console.log('socialll', value);
+      this.redesSocialesArr.push(this.fb.control(value, Validators.required));
+    });  */
+    //
   }
   
   files: File[] = [];
@@ -126,33 +134,6 @@ export class ModifyArtistComponent implements OnInit {
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form_artist.get('photo_artist').setValue(file);
-  }
-
-  registro() {
-  
-    if(this.form_artist.invalid){
-      this.form_artist.markAllAsTouched();
-      return;
-    }
-    console.log(this.form_artist.value);
-    const data = this.form_artist.value;
-    this.onUpload();
-
-    setTimeout(() => {
-    const body = {
-      name_artist: this.form_artist.get('name_artist').value,
-      nationality_artist: this.form_artist.get('nationality_artist').value,
-      social_networks: this.form_artist.get('social_networks').value,
-      description_artist: this.form_artist.get('description_artist').value,
-      photo_artist: this.url_cloudinary_img_current
-    };
-    console.log("url en enviar" , this.url_cloudinary_img_current);
-    this.artistService.registerArtist(body)
-      .subscribe((resp) => {
-        console.log(resp);
-      });
-    this.form_artist.reset();
-  }, 1500);
   }
 
   campoValido(campo: string) {

@@ -3,12 +3,12 @@
 
   <div class="login-box">
     <img src="../assets/img/logoTSG.png" class="avatar" alt="Avatar Image">
-    <h1>Login</h1>
+    <h1>LogIn</h1>
     <form [formGroup]="userLogin" (submit)="signIn()">
 
       <!-- USERNAME INPUT -->
-      <label for="username">Username</label>
-      <input id="user" name="user" type="text" placeholder="Enter Username" formControlName="email">
+      <label for="username">Correo</label>
+      <input id="user" name="user" type="text" placeholder="Ingrese correo electronico" formControlName="email">
 
       <mat-error
       *ngIf="
@@ -24,8 +24,8 @@
 
 
       <!-- PASSWORD INPUT -->
-      <label for="password">Password</label>
-      <input id="pass" name="pass" type="password" formControlName="password" placeholder="Enter Password">
+      <label for="password">Contraseña</label>
+      <input id="pass" name="pass" type="password" formControlName="password" placeholder="Ingrese contraseña">
 
 
       <mat-error *ngIf="password">
@@ -33,9 +33,9 @@
       </mat-error>
 
       <!-- <input type="submit" value="Log In" onclick="location.href='/menu.html'"> -->
-      <input id="boton-guardar" type="submit" value="Log In">
-      <a href="#">Lost your Password?</a><br>
-      <a href="#">Don't have An account?</a>
+      <input id="boton-guardar" type="submit" value="Ingresar">
+<!--       <a href="#">Lost your Password?</a><br>
+      <a href="#">Don't have An account?</a> -->
     </form>
   </div>
 </div>
