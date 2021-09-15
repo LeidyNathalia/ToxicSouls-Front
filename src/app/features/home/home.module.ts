@@ -9,8 +9,9 @@ import { HomeComponent } from './components/home/home.component';
 import { NewsComponent } from './components/news/news.component';
 import { NgSimpleCarouselModule } from 'ng-simple-carousel';
 import { PlayListComponent } from './components/play-list/play-list.component';
-import { ViewEventsComponent } from './components/view-events/view-events.component';
+import { ViewEventsComponent } from './components/eventos/view-events/view-events.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
+import { DetailsEventsComponent } from './components/eventos/details-events/details-events.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TicketsComponent } from './components/tickets/tickets.component';
     NewsComponent,
     PlayListComponent,
     ViewEventsComponent,
-    TicketsComponent
+    TicketsComponent,
+    DetailsEventsComponent
   ],
   imports: [
     CommonModule,

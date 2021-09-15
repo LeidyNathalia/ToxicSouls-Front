@@ -1,5 +1,5 @@
 <span class="events center-horizontal"> EVENTOS </span>
-<div class = "contend">
+<div class = "contend" *ngFor = "let event of events">
   <mat-grid-list class="target center-horizontal" cols="6" rowHeight="50px">
     <!-- Imagen -->
     <mat-grid-tile
@@ -12,28 +12,29 @@
     <mat-grid-tile class = "title"
     [colspan]="4"
     [rowspan]="1">
-    GHOSTBEAT
+    {{event.description_event}}
     </mat-grid-tile>
 
     <!-- vacio  -->
-    <mat-grid-tile class = "title"
+    <mat-grid-tile
     [colspan]="4"
     [rowspan]="1">
-    Holi que hace
+    {{event.artists}}
     </mat-grid-tile>
 
     <!-- Fecha -->
     <mat-grid-tile
     [colspan]="1"
     [rowspan]="2">
-    <p> 06 Noviembre 2022</p>
+    <p> {{event.date_event}}</p>
     </mat-grid-tile>
 
     <!-- Ciudad -->
-    <mat-grid-tile
+    <mat-grid-tile  class = "center-horizontal"
     [colspan]="1"
     [rowspan]="2">
-    <p> Tunja</p>
+    <p> {{event.city_event}}
+    </p>
     </mat-grid-tile>
 
     <!-- Botones -->
@@ -44,16 +45,9 @@
       <button class = "btn-danger" mat-icon-button [routerLink]="'/tickets'">
         <mat-icon>shopping_cart</mat-icon>
       </button>
-      <button class = "btn-danger"> Ver detalles </button >
+      <button class = "btn-danger" [routerLink]="'/DetailsEvents'"> Ver detalles </button >
       </mat-grid-tile>
     </div>
-    <!-- Ejemplo con arreglo en ts -->
-        <!-- *ngFor="let tile of tiles"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.background]="tile.color">
-      {{tile.text}}
-      Holi -->
   </mat-grid-list>
 </div>
 

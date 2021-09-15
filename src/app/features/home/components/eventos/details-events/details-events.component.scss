@@ -3,11 +3,19 @@
 .events{
   font-size: 40px;
   padding: 5px;
+  background-color: #000;
+  color: #ffffff;
+}
+
+.contend{
+  padding: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+
 }
 
 .image{
   height: auto;
-  width: 80%;
+  width: 90%;
   border-radius: 5px;
 }
 
@@ -16,14 +24,14 @@
 }
 
 .target{
-  color: #ffffff;
-  height: 200px;
-  width: 700px;
+  color: #000000;
+  width: 600px;
   left: 18%;
   margin-top: 20px;
-  background-color: #000000;
+  background-color: #ffffff;
   box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
   border-radius: 14px;
+  // border-style: initial;
 }
 
 .btn-danger {
@@ -31,9 +39,11 @@
   height: 50px;
   background: #2AA869;
   color: rgb(0, 0, 0);
-  font-size: 18px;
-  border-radius: 18px;
+  font-size: 14px;
+  border-radius: 15px;
   margin: 10px;
+  border-radius: 15px;
+  margin-top: 40px;
 }
 
 .btn-danger:hover {
