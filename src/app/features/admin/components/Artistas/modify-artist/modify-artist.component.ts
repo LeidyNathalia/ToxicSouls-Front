@@ -38,7 +38,7 @@ export class ModifyArtistComponent implements OnInit {
       ]),
       nationality_artist: new FormControl('', [
         Validators.required
-   
+
       ]),
       social_networks: this.fb.array([], Validators.required),
       description_artist: new FormControl('', [
@@ -49,7 +49,7 @@ export class ModifyArtistComponent implements OnInit {
     this.id_edit= this.actroutes.snapshot.queryParams.id_artist;
     this.getArtist();
   }
-  
+
   ngOnInit(): void {
   }
 
@@ -85,17 +85,10 @@ export class ModifyArtistComponent implements OnInit {
     this.form_artist.patchValue({name_artist:artist.artist.name_artist});
     this.form_artist.patchValue({nationality_artist:artist.artist.nationality_artist});
     console.log('social', artist.artist.social_networks)
-    //this.form_artist.patchValue({social_networks:artist.artist.social_networks});
-    this.form_artist.get("social_networks").setValue(artist.artist.social_networks);
+    this.form_artist.patchValue({'social_networks': this.covertArrayToArrayControl(artist.artist.social_networks)});
     this.form_artist.patchValue({description_artist:artist.artist.description_artist});
-    //this.form = artist.artist.social_networks;
-    /* artist.artist.social_networks.forEach(function (value) {
-      console.log('socialll', value);
-      this.redesSocialesArr.push(this.fb.control(value, Validators.required));
-    });  */
-    //
   }
-  
+
   files: File[] = [];
 
   onSelect(event) {
@@ -106,6 +99,12 @@ export class ModifyArtistComponent implements OnInit {
   onRemove(event) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  covertArrayToArrayControl(array: string[]){
+    for(let value of array){
+      this.redesSocialesArr.push(this.fb.control(value));
+    }
   }
 
   onUpload() {
