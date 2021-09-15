@@ -109,9 +109,9 @@ export class ModifyArtistComponent implements OnInit {
 
   onUpload() {
     //Scape empty array
-    if (!this.files[0]) {
+    /* if (!this.files[0]) {
       alert('Primero sube una imagen, por favor');
-    }
+    } */
     //Upload my image to cloudinary
     const file_data = this.files[0];
     const data = new FormData();
