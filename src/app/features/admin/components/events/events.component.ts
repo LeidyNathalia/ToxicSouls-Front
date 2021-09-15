@@ -126,14 +126,13 @@ export class EventsComponent implements OnInit {
   }
 
   submitForm() {
-    this.routes.navigate(['/admin/list-event']);
-
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('hola', 'mundo');
 
     let options = { headers: headers };
     this.postData(options);
+
   }
 
   postData(options) {
@@ -154,10 +153,13 @@ export class EventsComponent implements OnInit {
       this.http
         .post<any>('http://localhost:3000/api/events/add-event', body, options)
         .subscribe(
-          (response) => console.log('response', response),
+          (response) => {
+            console.log('response', response)
+            this.routes.navigate(['/admin/list-event']);
+          },
           (error) => console.log(error)
         );
-    }, 1000);
+    }, 1500);
   }
 
   eliminarPreventa(i: number){
@@ -194,5 +196,5 @@ export class EventsComponent implements OnInit {
   get demoArray() {
     return this.form.get('demoArray') as FormArray;
  }
-  
+
 }
