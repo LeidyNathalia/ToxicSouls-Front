@@ -43,6 +43,11 @@ export class SignInComponent implements OnInit {
     this.userService.signIn(this.userLogin.value)
       .subscribe((resp) => {
         console.log(resp);
+        const userData = {
+          name: resp.name,
+          email: resp.email
+        };
+        localStorage.setItem('userData', JSON.stringify(userData));
         if (resp.role === 'super-admin') {
           localStorage.setItem('role', 'super-admin');
           this.router.navigate(['/admin/list-event']);
@@ -51,6 +56,7 @@ export class SignInComponent implements OnInit {
             localStorage.getItem('token')
           );
           console.log(resp.token);
+          console.log(resp.name, resp.email);
         } else {
           const header = this.headerService.createHeader(
             localStorage.getItem('token')
@@ -58,6 +64,7 @@ export class SignInComponent implements OnInit {
           console.log('Admin normal');
           localStorage.setItem('role', 'admin');
           this.routes.navigate(['/admin/list-event']);
+
         }
       }, (err) => {
         console.log(err.error.message);

@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+interface UserData{
+  name: string,
+  email: string
+};
+
 
 @Component({
   selector: 'app-sidebar-admin',
@@ -8,14 +15,23 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarAdminComponent implements OnInit {
 
   isAdmin: boolean;
+  userData: UserData;
 
-  constructor() {
+  constructor(private router: Router) {
     if(localStorage.getItem('role') == 'admin') {
       this.isAdmin = true;
     }
    }
 
   ngOnInit(): void {
+    if(localStorage.getItem('userData')){
+      this.userData = JSON.parse(localStorage.getItem('userData'));
+    }
+    console.log(this.userData);
   }
 
+  exitToApp(){
+    localStorage.clear();
+    this.router.navigate(['/']);
+  }
 }

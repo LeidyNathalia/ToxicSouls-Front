@@ -2,7 +2,11 @@
     <div class=" logo col-12 center-horizontal">
       <img src="./assets/img/logo_header_larg.png" class="img-logo-banner" alt="Logo app"/>
     </div>
-
+    <div class = "user">
+      <span> Usuario: <mat-label> {{userData.name}}</mat-label></span><br>
+      <span> Correo: {{userData.email}}</span>
+    </div>
+    <hr>
     <div class="btSeccionOne">
       <button class="center-left" mat-button [routerLink]="'events'">
         <mat-icon>event</mat-icon>
@@ -48,12 +52,9 @@
         Ayuda
       </button>
 
-      <button class="center-left" mat-button [routerLink]="'/'">
+      <button class="center-left" mat-button (click)="exitToApp()">
         <mat-icon>exit_to_app</mat-icon>
         Salir
       </button>
-    </div>
-    <div class = "user">
-      <span> Usuario: </span>
     </div>
 </div>
