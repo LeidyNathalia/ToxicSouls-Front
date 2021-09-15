@@ -21,7 +21,7 @@ export class ViewListArtistComponent implements OnInit {
   // };
   artistsList: Artist[];
 
-  displayedColumns: string[] = ['name_artist', 'nationality_artist', 'social_networks', 'description_artist', 'options'];
+  displayedColumns: string[] = ['photo_artist','name_artist', 'nationality_artist', 'social_networks', 'description_artist', 'options'];
   dataSource: MatTableDataSource<Artist>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,7 +34,7 @@ export class ViewListArtistComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    
+
   }
 
   // async ngAfterViewInit(): Promise<any> {
@@ -49,7 +49,7 @@ export class ViewListArtistComponent implements OnInit {
   //   }
   //   this.dataSource = new MatTableDataSource(this.artistsList);
   //   this.dataSource.paginator = this.paginator;
-  // }  
+  // }
 
   ngAfterViewInit() {
     this.artistService.getAllArtists()

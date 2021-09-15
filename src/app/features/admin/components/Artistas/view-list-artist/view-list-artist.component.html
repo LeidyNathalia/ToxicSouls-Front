@@ -1,12 +1,17 @@
 <span class="listArtists center-horizontal">LISTA DE ARTISTAS</span>
 <mat-form-field appearance="standard">
-  <mat-label>Filter</mat-label>
+  <mat-label>Filtro</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
 </mat-form-field>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
+     <!-- Nombre artista Column -->
+     <ng-container matColumnDef="photo_artist">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
+      <td mat-cell *matCellDef="let row"><img class="photo_artist" [src]="row.photo_artist"></td>
+    </ng-container>
 
     <!-- Nombre artista Column -->
     <ng-container matColumnDef="name_artist">
