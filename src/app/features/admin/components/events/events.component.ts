@@ -22,8 +22,8 @@ export class EventsComponent implements OnInit {
   url_cloudinary_img_current;
 
   arrayItems: {
-    fecha: string;
-    title: string;
+    date_end_presale: string;
+    price_presale: string;
   }[];
 
   nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
@@ -63,7 +63,7 @@ export class EventsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)],
       ],
-      presale: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      //presale: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       presales: this.fb.array([
 
       ], Validators.required),
@@ -84,12 +84,12 @@ export class EventsComponent implements OnInit {
   files: File[] = [];
 
   onSelect(event) {
-    console.log(event);
+    //console.log(event);
     this.files.push(...event.addedFiles);
   }
 
   onRemove(event) {
-    console.log(event);
+    //console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
@@ -109,7 +109,7 @@ export class EventsComponent implements OnInit {
       .uploadImage(data)
       .subscribe((response) => {
         if (response) {
-          console.log(response);
+          //console.log(response);
           console.log('url de img', response.url);
           this.url_cloudinary_img_current = response.url;
         }
@@ -145,7 +145,7 @@ export class EventsComponent implements OnInit {
         city_event: this.form.get('city_event').value,
         direction_event: this.form.get('direction_event').value,
         description_event: this.form.get('description_event').value,
-        presale: this.form.get('presale').value,
+        presales: this.arrayItems,
         artists: this.form.get('artists').value,
         capacity: this.form.get('aforo').value,
         flyer: this.url_cloudinary_img_current,
@@ -154,21 +154,11 @@ export class EventsComponent implements OnInit {
       this.http
         .post<any>('http://localhost:3000/api/events/add-event', body, options)
         .subscribe(
-          (response) => console.log(response),
+          (response) => console.log('response', response),
           (error) => console.log(error)
         );
     }, 1000);
   }
-
-  /* agregarPreventa(){
-    if(this.nuevaFechaPreventa.invalid){
-      this.nuevaFechaPreventa.markAllAsTouched();
-      return;
-    }
-    console.log(this.nuevaFechaPreventa.value);
-    this.presales.push(this.fb.control(this.nuevaFechaPreventa.value, Validators.required));
-    this.nuevaFechaPreventa.reset();
-  } */
 
   eliminarPreventa(i: number){
     this.presales.removeAt(i);
@@ -181,21 +171,25 @@ export class EventsComponent implements OnInit {
       this.nuevoPrecioPreventa.markAllAsTouched();
       this.nuevaFechaPreventa.markAllAsTouched();
       return;
+    }else if(this.nuevaFechaPreventa.invalid){
+      this.nuevoPrecioPreventa.markAllAsTouched();
+      return;
+    }
+    else if(this.nuevoPrecioPreventa.invalid){
+      this.nuevoPrecioPreventa.markAllAsTouched();
+      return;
     }
     console.log(this.nuevaFechaPreventa.value, this.nuevoPrecioPreventa.value);
-    this.arrayItems.push({fecha: this.nuevaFechaPreventa.value, title: this.nuevoPrecioPreventa.value});
+    this.arrayItems.push({date_end_presale: this.nuevaFechaPreventa.value, price_presale: this.nuevoPrecioPreventa.value});
     this.presales.push(this.fb.control({
-      fecha: this.nuevaFechaPreventa.value,
-      precio: this.nuevoPrecioPreventa.value
+      date_end_presale: this.nuevaFechaPreventa.value,
+      price_presale: this.nuevoPrecioPreventa.value
     }));
     this.nuevaFechaPreventa.reset();
     this.nuevoPrecioPreventa.reset();
-    console.log(this.presales.controls);
+    console.log('preventan', this.presales.controls);
+    console.log('arrays', this.arrayItems);
   }
-
-
-
-  //Lo que hizo Diego
 
   get demoArray() {
     return this.form.get('demoArray') as FormArray;

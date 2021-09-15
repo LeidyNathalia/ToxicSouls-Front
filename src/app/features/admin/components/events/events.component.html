@@ -370,7 +370,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Presale</mat-label>
       <input type="number" matInput formControlName="presale" placeholder="10000" required />
       <mat-error *ngIf="form.get('presale').hasError('required')">
@@ -379,7 +379,7 @@
       <mat-error *ngIf="form.get('presale').hasError('pattern')">
         Por favor, ingrese un formato valido(solo numeros)
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <!--Registrar preventa-->
 
@@ -424,12 +424,12 @@
     <tr>
       <td>
         <mat-form-field appearance="fill">
-          <input matInput [value]="arrayItem.fecha">
+          <input matInput [value]="arrayItem.date_end_presale">
         </mat-form-field>
       </td>
       <td>
         <mat-form-field appearance="fill">
-          <input matInput [value]="arrayItem.title">
+          <input matInput [value]="arrayItem.price_presale">
         </mat-form-field>
       </td>
 
