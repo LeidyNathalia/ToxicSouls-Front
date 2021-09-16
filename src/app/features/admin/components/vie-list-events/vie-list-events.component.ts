@@ -5,14 +5,15 @@ import { MatSort } from '@angular/material/sort';
 import { EventService } from '../../../../services/user-service/event.service';
 import { HeaderService } from '../../../../services/header-service/header.service';
 import { Router } from '@angular/router';
+import { Artist } from '../Artistas/interfaces/artist.interface';
 
 export interface eventData {
   date_event: string;
   city_event: string;
   direction_event: string;
   description_event: string;
-  presale: string;
-  artists: string;
+  presales: any [];
+  artists: Artist [];
   capacity: Number;
 }
 

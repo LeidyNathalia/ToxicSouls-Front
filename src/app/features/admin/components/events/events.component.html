@@ -370,17 +370,6 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Presale</mat-label>
-      <input type="number" matInput formControlName="presale" placeholder="10000" required />
-      <mat-error *ngIf="form.get('presale').hasError('required')">
-        Por favor, ingrese el precio del evento
-      </mat-error>
-      <mat-error *ngIf="form.get('presale').hasError('pattern')">
-        Por favor, ingrese un formato valido(solo numeros)
-      </mat-error>
-    </mat-form-field> -->
-
     <!--Registrar preventa-->
 
       <table class="example-full-width"><tr>
@@ -449,18 +438,20 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Artistas</mat-label>
-      <input type="text" matInput formControlName="artists" placeholder="" required />
-      <mat-error *ngIf="form.get('artists').hasError('required')">
-        Por favor, ingrese los artistas del evento
-      </mat-error>
-      <mat-error *ngIf="form.get('artists').hasError('pattern')">
-        Por favor, ingrese un formato valido(solo letras)
+      <mat-select multiple formControlName="artists" >
+        <mat-option *ngFor="let artist of artistList" [value]="artist">
+          <img [src]="artist.photo_artist" class="photo_artist">
+          {{artist.name_artist}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="artistSelected.hasError('required')">
+        Se debe seleccionar por lo menos un artista para cada evento.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Aforo</mat-label>
-      <input type="number" matInput formControlName="aforo" placeholder="" required />
+      <input type="number" matInput formControlName="aforo"/>
       <mat-error *ngIf="form.get('aforo').hasError('required')">
         Por favor, ingrese el aforo del evento
       </mat-error>
@@ -485,5 +476,6 @@
 <hr>
 <span>Value</span>
 <pre>{{form.value | json}}</pre>
-
+<hr>
+<pre>{{artistSelected.value | json}}</pre>
 

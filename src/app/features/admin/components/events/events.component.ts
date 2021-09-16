@@ -10,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadService } from './upload.service';
 import { Router } from '@angular/router';
+import { Artist } from '../Artistas/interfaces/artist.interface';
+import { ArtistService } from 'src/app/services/user-service/artist.service';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-events',
@@ -21,6 +24,8 @@ export class EventsComponent implements OnInit {
   SERVER_URL = 'http://localhost:3000/eventss';
   url_cloudinary_img_current;
 
+  artistList: Artist[] = [];
+
   arrayItems: {
     date_end_presale: string;
     price_presale: string;
@@ -28,11 +33,11 @@ export class EventsComponent implements OnInit {
 
   nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
   nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
+  artistSelected: FormControl = this.fb.control('', Validators.required);
 
 
 
-
-  get presales(){
+  get presales() {
     return this.form.get('presales') as FormArray;
   }
 
@@ -41,7 +46,8 @@ export class EventsComponent implements OnInit {
     public fb: FormBuilder,
     private http: HttpClient,
     private _uploadService: UploadService,
-    private routes: Router
+    private routes: Router,
+    private artistService: ArtistService
   ) {
     this.form = this.fb.group({
       demoArray: this.fb.array([]),
@@ -63,14 +69,17 @@ export class EventsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)],
       ],
-      //presale: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       presales: this.fb.array([
 
       ], Validators.required),
-      artists: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-      aforo: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      artists: ['', Validators.required],
+      aforo: [0, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       profile: [''],
     });
+  }
+
+  get artistsListArr() {
+    return this.form.get('artistsList') as FormArray;
   }
 
   ngOnInit() {
@@ -79,6 +88,14 @@ export class EventsComponent implements OnInit {
     document
       .getElementsByName('appo_date')[0]
       .setAttribute('min', current_date);
+
+    //cargando el listado de artistas desde le back
+    this.artistService.getAllArtists()
+      .subscribe((resp) => {
+        this.artistList = resp.artists;
+      }, (error) => {
+        this.artistList = [];
+      })
   }
 
   files: File[] = [];
@@ -162,27 +179,27 @@ export class EventsComponent implements OnInit {
     }, 1500);
   }
 
-  eliminarPreventa(i: number){
+  eliminarPreventa(i: number) {
     this.presales.removeAt(i);
-    this.arrayItems.splice(i,1);
+    this.arrayItems.splice(i, 1);
     this.demoArray.removeAt(this.demoArray.length - 1);
   }
 
-  agregarPreventan(){
-    if(this.nuevaFechaPreventa.invalid && this.nuevoPrecioPreventa.invalid){
+  agregarPreventan() {
+    if (this.nuevaFechaPreventa.invalid && this.nuevoPrecioPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
       this.nuevaFechaPreventa.markAllAsTouched();
       return;
-    }else if(this.nuevaFechaPreventa.invalid){
+    } else if (this.nuevaFechaPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
       return;
     }
-    else if(this.nuevoPrecioPreventa.invalid){
+    else if (this.nuevoPrecioPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
       return;
     }
     console.log(this.nuevaFechaPreventa.value, this.nuevoPrecioPreventa.value);
-    this.arrayItems.push({date_end_presale: this.nuevaFechaPreventa.value, price_presale: this.nuevoPrecioPreventa.value});
+    this.arrayItems.push({ date_end_presale: this.nuevaFechaPreventa.value, price_presale: this.nuevoPrecioPreventa.value });
     this.presales.push(this.fb.control({
       date_end_presale: this.nuevaFechaPreventa.value,
       price_presale: this.nuevoPrecioPreventa.value
@@ -195,6 +212,5 @@ export class EventsComponent implements OnInit {
 
   get demoArray() {
     return this.form.get('demoArray') as FormArray;
- }
-
+  }
 }

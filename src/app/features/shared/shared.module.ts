@@ -14,6 +14,7 @@ import { MatMenuModule} from '@angular/material/menu';
 import { MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,8 @@ import { MatGridListModule} from '@angular/material/grid-list';
     MatTabsModule,
     MatIconModule,
     MatSnackBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSelectModule
   ],
   exports: [
     //FormControl,
@@ -52,7 +54,8 @@ import { MatGridListModule} from '@angular/material/grid-list';
     MatTabsModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSelectModule
   ]
 })
 
