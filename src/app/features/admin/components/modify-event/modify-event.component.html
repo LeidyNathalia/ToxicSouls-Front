@@ -464,14 +464,18 @@
         </mat-error>
       </mat-form-field>
 
-      <div class="form-group">
-        <button class="btn btn-danger">Modificar</button>
+      <div>
+        <div class="form-group">
+          <button class="btn btn-danger">Modificar</button>
+        </div>
+        <div class="viewList">
+          <form (submit)="viewList()">
+          <button class="btn btn-danger">Ver eventos</button>
+          </form>
+        </div>
       </div>
+
     </form>
   </div>
 
-  <div class="viewList">
-    <form (submit)="viewList()">
-    <button class= "center-horizontal" id="btn btn-danger">Ver eventos</button>
-    </form>
-  </div>
+

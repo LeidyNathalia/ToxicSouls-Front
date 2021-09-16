@@ -33,7 +33,7 @@ export class AddArtistComponent implements OnInit {
       ]),
       nationality_artist: new FormControl('', [
         Validators.required
-   
+
       ]),
       social_networks: this.fb.array([], Validators.required),
       description_artist: new FormControl('', [
@@ -86,7 +86,7 @@ export class AddArtistComponent implements OnInit {
   }
 
   registro() {
-  
+
     if(this.form_artist.invalid){
       this.form_artist.markAllAsTouched();
       return;
@@ -109,7 +109,7 @@ export class AddArtistComponent implements OnInit {
         console.log(resp);
       });
     this.form_artist.reset();
-  }, 1500);
+  }, 2500);
   }
 
   campoValido(campo: string) {

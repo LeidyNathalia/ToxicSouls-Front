@@ -12,8 +12,13 @@
     <mat-grid-tile class = "title"
     [colspan]="3"
     [rowspan]="1">
-    TITULO <br>
-    ARTISTAS
+    <span>
+      <strong>
+        TITULO
+        <br>
+        ARTISTAS
+      </strong>
+    </span>
     <!-- {{event.description_event}} -->
     </mat-grid-tile>
 
@@ -21,7 +26,9 @@
     <mat-grid-tile
     [colspan]="3"
     [rowspan]="1">
-    PRECIOS
+    <strong>
+      Precios:
+    </strong>
     <!-- {{event.artists}} -->
     </mat-grid-tile>
 
@@ -29,7 +36,7 @@
     <mat-grid-tile
     [colspan]="1"
     [rowspan]="2">
-    FECHA Y HORA
+    <strong>Fecha y hora: </strong>
     <!-- <p> {{event.date_event}}</p> -->
     </mat-grid-tile>
 
@@ -37,18 +44,20 @@
     <mat-grid-tile  class = "center-horizontal"
     [colspan]="1"
     [rowspan]="2">
-    DIRECCION Y CIUDAD
-    <!-- <p> {{event.city_event}} <br>
-      {{event.direction_event}}
-    </p> -->
+    <strong>
+      Direccion y ciudad:
+    </strong>
     </mat-grid-tile>
-    
+
     <!-- Botones -->
     <div class="buttons">
       <mat-grid-tile
       [colspan]="1"
       [rowspan]="2">
-      <button class = "btn-danger" mat-icon-button [routerLink]="'/tickets'">
+      <button class = "btn-danger" mat-button color="primary" [routerLink]="'/tickets'">
+        <strong>
+          Comprar
+        </strong>
         <mat-icon>shopping_cart</mat-icon>
       </button>
       </mat-grid-tile>

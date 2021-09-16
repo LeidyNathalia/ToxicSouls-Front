@@ -5,42 +5,59 @@
     <mat-grid-tile
       [colspan]="2"
       [rowspan]="4">
-      <img class = "image" mat-card-image src="./assets/img/artista 1.jpg"/>
+      <img class = "image" mat-card-image [src]="event.flyer"/>
     </mat-grid-tile>
 
     <!-- Titulo  -->
     <mat-grid-tile class = "title"
     [colspan]="5"
     [rowspan]="1">
-    GHOSTBEAT
+    <span>
+      <strong> {{event.description_event}} </strong>
+    </span>
     </mat-grid-tile>
 
     <!-- vacio  -->
     <mat-grid-tile class = "title"
     [colspan]="5"
     [rowspan]="1">
-    Información general del evento
+    <span><strong class ="artist">Artistas:</strong>
+      <button mat-stroked-button color="basic" *ngFor="let item of event.artists">
+          {{item.name_artist}}
+      </button>
+    </span>
     </mat-grid-tile>
 
     <!-- Fecha -->
     <mat-grid-tile
     [colspan]="1"
     [rowspan]="2">
-    <p> General </p>
+    <span>
+      <strong> Ubicación: General </strong>
+    </span>
     </mat-grid-tile>
 
     <!-- Ciudad -->
     <mat-grid-tile
     [colspan]="1"
     [rowspan]="2">
-    <p>40000</p>
+    <span>
+      <span *ngFor="let item of event.presales">
+        <strong> Valor: </strong>
+        {{item.date_end_presale}}
+        {{item.price_presale | currency: "COP":"symbol"}}
+        <br>
+      </span>
+    </span>
     </mat-grid-tile>
 
     <!-- Ciudad -->
     <mat-grid-tile class = "buttons"
     [colspan]="2"
     [rowspan]="2">
-    <span class="text"> Cantidad: </span>
+    <span class="text">
+      <strong> Cantidad: </strong>
+    </span>
     <input type="number" min="0" max="50" step="2" value="0" size="6" name="cantitate">
     </mat-grid-tile>
 
@@ -49,7 +66,9 @@
       <mat-grid-tile
       [colspan]="1"
       [rowspan]="2">
-      <button class="button" mat-button color="primary" type="submit">COMPRAR</button>
+      <button class="button" mat-button color="primary" type="submit">
+        <strong> COMPRAR </strong>
+      </button>
       </mat-grid-tile>
     </div>
   </mat-grid-list>

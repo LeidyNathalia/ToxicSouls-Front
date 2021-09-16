@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ResponseEvents } from '../../features/home/components/eventos/interface/events.interface';
+import { ResponseEvents, responseEventById } from '../../features/home/components/eventos/interface/events.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,10 @@ export class EventService {
 
   getEventById(_id): Promise<any>{
     return this.http.get<any>(`${this.path}/${_id}`).toPromise();
+  }
+
+  getEventById2(_id:string): Observable<responseEventById>{
+    return this.http.get<responseEventById>(`${this.path}/${_id}`);
   }
 
   deleteEvent(_id): Promise<any>{
