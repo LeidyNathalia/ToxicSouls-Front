@@ -1,3 +1,4 @@
+import { Artist } from '../../../../admin/components/Artistas/interfaces/artist.interface';
 export interface Events{
 
   date_event: string,
@@ -5,7 +6,7 @@ export interface Events{
   direction_event: string,
   description_event: string,
   presale: [string],
-  artists: [string],
+  artists: [Artist],
   flyer: string,
   capacity: number
 }

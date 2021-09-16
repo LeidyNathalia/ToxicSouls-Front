@@ -1,6 +1,6 @@
 <span class="events center-horizontal"> EVENTOS </span>
 <div class = "contend" *ngFor = "let event of events">
-  <mat-grid-list class="target center-horizontal" cols="6" rowHeight="50px">
+  <mat-grid-list class="target center-horizontal" cols="6" rowHeight="57px">
     <!-- Imagen -->
     <mat-grid-tile
     [colspan]="2"
@@ -12,29 +12,37 @@
     <mat-grid-tile class = "title"
     [colspan]="4"
     [rowspan]="1">
-    {{event.description_event}}
+    <strong> {{event.description_event}} </strong>
     </mat-grid-tile>
 
     <!-- vacio  -->
     <mat-grid-tile
     [colspan]="4"
     [rowspan]="1">
-    {{event.artists}}
+    <span><strong class ="artist">Artistas:</strong>
+    <button mat-stroked-button color="basic" *ngFor="let item of event.artists">
+        {{item.name_artist}}
+    </button>
+    </span>
     </mat-grid-tile>
 
     <!-- Fecha -->
     <mat-grid-tile
     [colspan]="1"
     [rowspan]="2">
-    <p> {{event.date_event}}</p>
+    <span><strong>Fecha evento</strong> <br>
+       {{event.date_event}}
+    </span>
+
     </mat-grid-tile>
 
     <!-- Ciudad -->
     <mat-grid-tile  class = "center-horizontal"
     [colspan]="1"
     [rowspan]="2">
-    <p> {{event.city_event}}
-    </p>
+    <span><strong>Ciudad</strong> <br>
+      {{event.city_event}}
+    </span>
     </mat-grid-tile>
 
     <!-- Botones -->
@@ -45,7 +53,8 @@
       <button class = "btn-danger" mat-icon-button [routerLink]="'/tickets'">
         <mat-icon>shopping_cart</mat-icon>
       </button>
-      <button class = "btn-danger" [routerLink]="'/DetailsEvents'"> Ver detalles </button >
+      <button class = "btn-danger" [routerLink]="'/DetailsEvents'">
+        <strong> Ver detalles </strong> </button >
       </mat-grid-tile>
     </div>
   </mat-grid-list>

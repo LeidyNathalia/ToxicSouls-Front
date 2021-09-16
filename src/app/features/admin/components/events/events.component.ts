@@ -155,7 +155,6 @@ export class EventsComponent implements OnInit {
   postData(options) {
     this.onUpload();
     setTimeout(() => {
-      console.log('se ejecuta?');
       const body = {
         date_event: this.form.get('date_event').value,
         city_event: this.form.get('city_event').value,
@@ -176,7 +175,7 @@ export class EventsComponent implements OnInit {
           },
           (error) => console.log(error)
         );
-    }, 1500);
+    }, 2500);
   }
 
   eliminarPreventa(i: number) {

@@ -459,23 +459,22 @@
         Por favor, ingrese un formato valido(solo numeros)
       </mat-error>
     </mat-form-field>
-    <div class="buttons">
-      <div class="form-group, center-horizontal">
+    <div class="center-horizontal">
+      <div class="form-group, center-horizontal" id="button">
         <button class="btn btn-danger" [disabled]="f.invalid">Create</button>
+      </div>
+      <div class="viewList, center-horizontal" id="button" >
+        <form (submit)="viewList()">
+          <button class="btn btn-danger">Ver eventos</button>
+        </form>
       </div>
     </div>
   </form>
-
-  <div class="viewList, center-horizontal">
-    <form (submit)="viewList()">
-      <button class="btn btn-danger">Ver eventos</button>
-    </form>
-  </div>
 </div>
 
-<hr>
+<!-- <hr>
 <span>Value</span>
 <pre>{{form.value | json}}</pre>
 <hr>
-<pre>{{artistSelected.value | json}}</pre>
+<pre>{{artistSelected.value | json}}</pre> -->
 
