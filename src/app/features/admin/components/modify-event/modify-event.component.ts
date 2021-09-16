@@ -5,6 +5,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { UploadServiceModify } from './upload.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EventService} from '../../../../services/user-service/event.service';
+import { Artist } from '../Artistas/interfaces/artist.interface';
+import { ArtistService } from 'src/app/services/user-service/artist.service';
 
 
 export interface eventData {
@@ -24,6 +26,7 @@ export interface eventData {
 })
 export class ModifyEventComponent implements OnInit {
   eventsList: eventData[];
+  artistList: Artist[] = [];
   id_edit: string;
   displayedColumns: string[] = [
     'date_event',
@@ -46,6 +49,7 @@ export class ModifyEventComponent implements OnInit {
 
   nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
   nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
+  //artistSelected: FormControl = this.fb.control('', Validators.required);
 
   get presales(){
     return this.form.get('presales') as FormArray;
@@ -56,7 +60,8 @@ export class ModifyEventComponent implements OnInit {
     private _uploadService: UploadServiceModify,
     private routes : Router,
     private actroutes: ActivatedRoute,
-    private eventService: EventService
+    private eventService: EventService,
+    private artisService: ArtistService
   ) {
     this.form = this.fb.group({
       demoArray: this.fb.array([]),
@@ -71,15 +76,11 @@ export class ModifyEventComponent implements OnInit {
       description_event: ['',[
         Validators.required,
         Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)]],
-      /* presale: ['',[
-        Validators.required,
-        Validators.pattern(/^[0-9]+$/)]], */
+
       presales: this.fb.array([
 
         ], Validators.required),
-      artists:['',[
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z]+$/)]],
+        artists: ['', Validators.required],
       capacity: ['',[
         Validators.required,
         Validators.pattern(/^[0-9]+$/)]],
@@ -123,13 +124,17 @@ export class ModifyEventComponent implements OnInit {
   }
 
   async getEvent():Promise<any>{
+    this.artisService.getAllArtists()
+      .subscribe((resp) => {
+        this.artistList = resp.artists;
+      });
     const event = await this.eventService.getEventById(this.id_edit);
     this.form.patchValue({date_event:event.event.date_event});
     this.form.patchValue({city_event:event.event.city_event});
     this.form.patchValue({direction_event:event.event.direction_event});
     this.form.patchValue({description_event:event.event.description_event});
-    this.form.patchValue({artists:event.event.artists})
-    //this.form.patchValue({'demoArray': this.covertArrayToArrayControl(event.event.presales)});
+    //this.form.patchValue({artists:event.event.artists})
+    this.form.patchValue({artists: event.event.artists});
     console.log('press', event.event.presales)
     this.arrayItems = event.event.presales;
     this.addPresale(event.event.presales)
@@ -141,7 +146,7 @@ export class ModifyEventComponent implements OnInit {
       this.arrayItems.push(this.fb.control(value));
     }
   } */
-  
+
   files: File[] = [];
 
   onSelect(event) {
@@ -231,6 +236,6 @@ export class ModifyEventComponent implements OnInit {
       price_presale: presale.price_presale
     }));
   })
-  
+
  }
 }

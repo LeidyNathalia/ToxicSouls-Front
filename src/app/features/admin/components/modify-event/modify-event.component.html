@@ -22,7 +22,7 @@
     margin: 0;
   }
 
-  form { 
+  form {
     margin: 0 auto;
   }
 
@@ -267,7 +267,7 @@
   }
 
 </style>
-  
+
   <!-- Toolbar -->
   <div class="toolbar" role="banner">
     <span class="modificarEvento">Modificar Evento</span>
@@ -281,7 +281,7 @@
       </svg>
     </a>
   </div>
-  
+
   <div class="content" role="main">
     <!-- Highlight Card -->
     <div class="card highlight-card card-small">
@@ -294,12 +294,12 @@
           </g>
         </g>
       </svg>
-  
+
       <svg>
         <path />
       </svg>
     </div>
-  
+
     <!-- Terminal -->
     <div class="terminal">
       <ngx-dropzone (change)="onSelect($event)" style="margin: 20px;">
@@ -310,13 +310,13 @@
         </ngx-dropzone-image-preview>
       </ngx-dropzone>
     </div>
-  
+
     <!-- Links -->
-  
-  
+
+
     <!-- Footer -->
-  
-  
+
+
     <!-- <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677"
       viewBox="0 0 2611.084 485.677">
       <path id="Path_39" data-name="Path 39"
@@ -324,10 +324,10 @@
         transform="translate(142.69 -634.312)" fill="#eee" />
     </svg> -->
   </div>
-  
+
   <div class="container">
     <form class="example-form" [formGroup]="form" (ngSubmit)="edit()" #f="ngForm">
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Fecha del evento</mat-label>
         <input type="date" matInput name="appo_date" formControlName="date_event" placeholder="dd/mm/yyyy"
@@ -339,7 +339,7 @@
           Por favor, ingrese un formato valido
         </mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Ciudad del evento</mat-label>
         <input type="text" matInput formControlName="city_event" placeholder="Tunja" required>
@@ -350,7 +350,7 @@
           Por favor, ingrese un formato valido(solo letras)
         </mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Direccion del evento</mat-label>
         <input type="text" matInput formControlName="direction_event" placeholder="Calle 19 # 12-13" required>
@@ -361,7 +361,7 @@
           Por favor, ingrese un formato valido
         </mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Descripcion del evento</mat-label>
         <input type="text" matInput formControlName="description_event" placeholder="" required>
@@ -372,18 +372,7 @@
           Por favor, ingrese un formato valido
         </mat-error>
       </mat-form-field>
-  
-      <!-- <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Presale</mat-label>
-        <input type="number" matInput formControlName="presale" placeholder="10000" required>
-        <mat-error *ngIf="form.get('city_event').hasError('required')">
-          Por favor, ingrese el precio del evento
-        </mat-error>
-        <mat-error *ngIf="form.get('city_event').hasError('pattern')">
-          Por favor, ingrese un formato valido(solo numeros)
-        </mat-error>
-      </mat-form-field>
- -->
+
       <!--Registrar preventa-->
 
       <table class="example-full-width"><tr>
@@ -449,18 +438,20 @@
     <tr>
     </tr>
   </table>
-      
-  
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Artistas</mat-label>
-        <input type="text" matInput formControlName="artists" placeholder="" required>
-        <mat-error *ngIf="form.get('city_event').hasError('required')">
-          Por favor, ingrese los artistas del evento
-        </mat-error>
-        <mat-error *ngIf="form.get('city_event').hasError('pattern')">
-          Por favor, ingrese un formato valido(solo letras)
-        </mat-error>
-      </mat-form-field>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Artistas</mat-label>
+    <mat-select multiple formControlName="artists" >
+      <mat-option *ngFor="let artist of artistList" [value]="artist">
+        <img [src]="artist.photo_artist" class="photo_artist">
+        {{artist.name_artist}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('artists').hasError('required')">
+      Se debe seleccionar por lo menos un artista para cada evento.
+    </mat-error>
+  </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Aforo</mat-label>
@@ -472,16 +463,15 @@
           Por favor, ingrese un formato valido(solo numeros)
         </mat-error>
       </mat-form-field>
-  
+
       <div class="form-group">
         <button class="btn btn-danger">Modificar</button>
       </div>
     </form>
   </div>
-  
+
   <div class="viewList">
     <form (submit)="viewList()">
     <button class="btn btn-danger">Ver eventos</button>
     </form>
   </div>
-  
