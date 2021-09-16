@@ -109,7 +109,7 @@ export class AddArtistComponent implements OnInit {
         console.log(resp);
       });
     this.form_artist.reset();
-  }, 1500);
+  }, 2500);
   }
 
   campoValido(campo: string) {

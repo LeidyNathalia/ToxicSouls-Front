@@ -74,7 +74,7 @@ export class ModifyArtistComponent implements OnInit {
         const editEvent = await this.artistService.editArtist(this.id_edit,this.form_artist.value);
         const newList = await this.artistService.getArtist();
         this.routes.navigate(['/admin/ViewListArtistComponent']);
-      }, 1500);
+      }, 2500);
     }catch (error) {
       console.log(error)
     }
