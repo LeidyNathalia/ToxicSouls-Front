@@ -3,85 +3,59 @@
       /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
         "Segoe UI Symbol"; */
-      font-size: 14px;
-      color: #333;
+      /* font-size: 14px;
+      color: #333; */
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-  
+
     h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-      margin: 8px 0;
+      margin: 10px 0;
     }
-  
+
     p {
       margin: 0;
     }
-  
+
     .spacer {
       flex: 1;
     }
-  
-    .toolbar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      background-color: #262626;
-      color: white;
-      font-weight: 600;
-    }
-  
-    .toolbar img {
-      margin: 0 16px;
-    }
-  
-    .toolbar #twitter-logo {
-      height: 40px;
-      margin: 0 16px;
-    }
-  
-    .toolbar #twitter-logo:hover {
-      opacity: 0.8;
-    }
-  
+
     .content {
-      display: flex;
-      margin: 82px auto 32px;
-      padding: 0 16px;
-      max-width: 960px;
-      flex-direction: column;
-      align-items: center;
-    }
-  
+    display: flex;
+    margin: 20px auto 22px;
+    padding: 0 2px;
+    max-width: 300px;
+    flex-direction: column;
+    align-items: center;
+  }
+
     svg.material-icons {
       height: 24px;
       width: auto;
     }
-  
+
     svg.material-icons:not(:last-child) {
       margin-right: 8px;
     }
-  
+
     .card svg.material-icons path {
       fill: #888;
     }
-  
+
     .card-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       margin-top: 16px;
     }
-  
+
     .card {
       border-radius: 4px;
       border: 1px solid #eee;
@@ -97,29 +71,29 @@
       transition: all 0.2s ease-in-out;
       line-height: 24px;
     }
-  
+
     .card-container .card:not(:last-child) {
       margin-right: 0;
     }
-  
+
     .card.card-small {
       height: 16px;
       width: 168px;
     }
-  
+
     .card-container .card:not(.highlight-card) {
       cursor: pointer;
     }
-  
+
     .card-container .card:not(.highlight-card):hover {
       transform: translateY(-3px);
       box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     }
-  
+
     .card-container .card:not(.highlight-card):hover .material-icons path {
       fill: rgb(105, 103, 103);
     }
-  
+
     .card.highlight-card {
       background-color: #262626;
       color: white;
@@ -129,18 +103,18 @@
       min-width: 30%;
       position: relative;
     }
-  
+
     .card.card.highlight-card span {
       margin-left: 60px;
     }
-  
+
     svg#rocket {
       width: 80px;
       position: absolute;
       left: -10px;
       top: -24px;
     }
-  
+
     svg#rocket-smoke {
       height: calc(100vh - 95px);
       position: absolute;
@@ -148,18 +122,18 @@
       right: 180px;
       z-index: -10;
     }
-  
+
     a,
     a:visited,
     a:hover {
       color: #1976d2;
       text-decoration: none;
     }
-  
+
     a:hover {
       color: #125699;
     }
-  
+
     .terminal {
       position: relative;
       width: 80%;
@@ -170,7 +144,7 @@
       overflow: hidden;
       background-color: rgb(15, 15, 16);
     }
-  
+
     .terminal::before {
       content: "\2022 \2022 \2022";
       position: absolute;
@@ -185,14 +159,13 @@
       padding: 14px 0;
       text-indent: 4px;
     }
-  
+
     .terminal pre {
-      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
       color: white;
       padding: 0 1rem 1rem;
       margin: 0;
     }
-  
+
     .circle-link {
       height: 40px;
       width: 40px;
@@ -207,24 +180,24 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: 1s ease-out;
     }
-  
+
     .circle-link:hover {
       transform: translateY(-0.25rem);
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     }
-  
+
     footer {
       margin-top: 8px;
       display: flex;
       align-items: center;
       line-height: 20px;
     }
-  
+
     footer a {
       display: flex;
       align-items: center;
     }
-  
+
     .github-star-badge {
       color: #24292e;
       display: flex;
@@ -239,19 +212,19 @@
       font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
         sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     }
-  
+
     .github-star-badge:hover {
       background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
       border-color: rgba(27, 31, 35, 0.35);
       background-position: -0.5em;
     }
-  
+
     .github-star-badge .material-icons {
       height: 16px;
       width: 16px;
       margin-right: 4px;
     }
-  
+
     svg#clouds {
       position: fixed;
       bottom: -160px;
@@ -259,46 +232,41 @@
       z-index: -10;
       width: 1920px;
     }
-  
+
     /* Responsive Styles */
     @media screen and (max-width: 767px) {
-  
+
       .card-container>*:not(.circle-link),
       .terminal {
         width: 100%;
       }
-  
+
       .card:not(.highlight-card) {
         height: 16px;
         margin: 8px 0;
       }
-  
+
       .card.highlight-card span {
         margin-left: 72px;
       }
-  
+
       svg#rocket-smoke {
         right: 120px;
         transform: rotate(-5deg);
       }
     }
-  
+
     @media screen and (max-width: 575px) {
       svg#rocket-smoke {
         display: none;
         visibility: hidden;
       }
     }
-  
+
   </style>
-  
+
   <!-- Toolbar -->
   <div class="toolbar" role="banner">
-    <!-- <img
-        width="40"
-        alt="Angular Logo"
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-      > -->
     <span class="modificarEvento">Modificar Evento</span>
     <div class="spacer"></div>
     <a>
@@ -310,7 +278,7 @@
       </svg>
     </a>
   </div>
-  
+
   <div class="content" role="main">
     <!-- Highlight Card -->
     <div class="card highlight-card card-small">
@@ -323,12 +291,12 @@
           </g>
         </g>
       </svg>
-  
+
       <svg>
         <path />
       </svg>
     </div>
-  
+
     <!-- Terminal -->
     <div class="terminal">
       <ngx-dropzone (change)="onSelect($event)" style="margin: 20px;">
@@ -339,13 +307,13 @@
         </ngx-dropzone-image-preview>
       </ngx-dropzone>
     </div>
-  
+
     <!-- Links -->
-  
-  
+
+
     <!-- Footer -->
-  
-  
+
+
     <!-- <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677"
       viewBox="0 0 2611.084 485.677">
       <path id="Path_39" data-name="Path 39"
@@ -353,10 +321,10 @@
         transform="translate(142.69 -634.312)" fill="#eee" />
     </svg> -->
   </div>
-  
+
   <div class="container">
     <form [formGroup]="form" (ngSubmit)="edit()" #f="ngForm">
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Fecha del evento</mat-label>
         <input type="date" matInput name="appo_date" formControlName="date_event" placeholder="dd/mm/yyyy"
@@ -368,7 +336,7 @@
           Por favor, ingrese un formato valido
         </mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Ciudad del evento</mat-label>
         <input type="text" matInput formControlName="city_event" placeholder="Tunja" required>
@@ -379,7 +347,7 @@
           Por favor, ingrese un formato valido(solo letras)
         </mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Direccion del evento</mat-label>
         <input type="text" matInput formControlName="direction_event" placeholder="Calle 19 # 12-13" required>
@@ -390,7 +358,7 @@
           Por favor, ingrese un formato valido
         </mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Descripcion del evento</mat-label>
         <input type="text" matInput formControlName="description_event" placeholder="" required>
@@ -401,7 +369,7 @@
           Por favor, ingrese un formato valido
         </mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Presale</mat-label>
         <input type="number" matInput formControlName="presale" placeholder="10000" required>
@@ -412,7 +380,7 @@
           Por favor, ingrese un formato valido(solo numeros)
         </mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Artistas</mat-label>
         <input type="text" matInput formControlName="artists" placeholder="" required>
@@ -434,16 +402,15 @@
           Por favor, ingrese un formato valido(solo numeros)
         </mat-error>
       </mat-form-field>
-  
+
       <div class="form-group">
         <button class="btn btn-danger">Modificar</button>
       </div>
     </form>
   </div>
-  
+
   <div class="viewList">
     <form (submit)="viewList()">
     <button class="btn btn-danger">Ver eventos</button>
     </form>
   </div>
-  

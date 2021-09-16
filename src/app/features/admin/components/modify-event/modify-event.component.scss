@@ -1,19 +1,18 @@
 @import 'src/styles.scss';
 
+.toolbar {
+  height: 60px;
+  display: flex;
+  background-color: #000000;
+  color: #ffffff;
+}
+
 .example-card {
   max-width: 100vh;
   opacity: 45;
   background-color: rgb(255, 255, 255);
   width: 250px;
   height: 120px;
-}
-
-.toolbar {
-  height: 60px;
-  display: flex;
-  background-color: #000000;
-  color: #ffffff;
-
 }
 
 .modificarEvento{
@@ -56,7 +55,7 @@
 }
 
 
-.formulario{
+.container{
 
 position: static;
 width: 450px;
