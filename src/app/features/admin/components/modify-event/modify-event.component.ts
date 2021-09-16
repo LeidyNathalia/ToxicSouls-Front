@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadServiceModify } from './upload.service';
@@ -30,7 +30,7 @@ export class ModifyEventComponent implements OnInit {
     'city_event',
     'direction_event',
     'description_event',
-    'presale',
+    'presales',
     'artists',
     'capacity',
     'flyer'];
@@ -38,6 +38,18 @@ export class ModifyEventComponent implements OnInit {
   form: FormGroup;
   SERVER_URL = "http://localhost:3000/eventss";
   url_cloudinary_img_current;
+
+  arrayItems: {
+    date_end_presale: string;
+    price_presale: string;
+  }[];
+
+  nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
+  nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
+
+  get presales(){
+    return this.form.get('presales') as FormArray;
+  }
   constructor(
     public fb: FormBuilder,
     private http: HttpClient,
@@ -47,6 +59,7 @@ export class ModifyEventComponent implements OnInit {
     private eventService: EventService
   ) {
     this.form = this.fb.group({
+      demoArray: this.fb.array([]),
       date_event: ['',[
         Validators.required,
         Validators.pattern(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/)]],
@@ -58,9 +71,12 @@ export class ModifyEventComponent implements OnInit {
       description_event: ['',[
         Validators.required,
         Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)]],
-      presale: ['',[
+      /* presale: ['',[
         Validators.required,
-        Validators.pattern(/^[0-9]+$/)]],
+        Validators.pattern(/^[0-9]+$/)]], */
+      presales: this.fb.array([
+
+        ], Validators.required),
       artists:['',[
         Validators.required,
         Validators.pattern(/^[a-zA-Z]+$/)]],
@@ -74,6 +90,7 @@ export class ModifyEventComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.arrayItems = [];
     var current_date = new Date().toISOString().split('T')[0];
     document.getElementsByName("appo_date")[0].setAttribute('min', current_date);
   }
@@ -111,7 +128,19 @@ export class ModifyEventComponent implements OnInit {
     this.form.patchValue({city_event:event.event.city_event});
     this.form.patchValue({direction_event:event.event.direction_event});
     this.form.patchValue({description_event:event.event.description_event});
+    this.form.patchValue({artists:event.event.artists})
+    //this.form.patchValue({'demoArray': this.covertArrayToArrayControl(event.event.presales)});
+    console.log('press', event.event.presales)
+    this.arrayItems = event.event.presales;
+    this.addPresale(event.event.presales)
+    this.form.patchValue({capacity:event.event.capacity});
   }
+
+  /* covertArrayToArrayControl(array: string[]){
+    for(let value of array){
+      this.arrayItems.push(this.fb.control(value));
+    }
+  } */
   
   files: File[] = [];
 
@@ -127,9 +156,9 @@ export class ModifyEventComponent implements OnInit {
 
   onUpload() {
     //Scape empty array
-    if (!this.files[0]) {
+    /* if (!this.files[0]) {
       alert('Primero sube una imagen, por favor');
-    }
+    } */
 
     //Upload my image to cloudinary
     const file_data = this.files[0];
@@ -157,4 +186,51 @@ export class ModifyEventComponent implements OnInit {
     this.routes.navigate(['/admin/list-event']);
   }
 
+  agregarPreventan(){
+    if(this.nuevaFechaPreventa.invalid && this.nuevoPrecioPreventa.invalid){
+      this.nuevoPrecioPreventa.markAllAsTouched();
+      this.nuevaFechaPreventa.markAllAsTouched();
+      return;
+    }else if(this.nuevaFechaPreventa.invalid){
+      this.nuevoPrecioPreventa.markAllAsTouched();
+      return;
+    }
+    else if(this.nuevoPrecioPreventa.invalid){
+      this.nuevoPrecioPreventa.markAllAsTouched();
+      return;
+    }
+    console.log(this.nuevaFechaPreventa.value, this.nuevoPrecioPreventa.value);
+    this.arrayItems.push({date_end_presale: this.nuevaFechaPreventa.value, price_presale: this.nuevoPrecioPreventa.value});
+    this.presales.push(this.fb.control({
+      date_end_presale: this.nuevaFechaPreventa.value,
+      price_presale: this.nuevoPrecioPreventa.value
+    }));
+    this.nuevaFechaPreventa.reset();
+    this.nuevoPrecioPreventa.reset();
+    console.log('preventan', this.presales.controls);
+    console.log('arrays', this.arrayItems);
+  }
+
+  eliminarPreventa(i: number){
+    this.presales.removeAt(i);
+    this.arrayItems.splice(i,1);
+    this.demoArray.removeAt(this.demoArray.length - 1);
+  }
+
+  get demoArray() {
+    return this.form.get('demoArray') as FormArray;
+ }
+
+ addPresale(presalesC){
+  presalesC.forEach(presale => {
+/*     console.log('presaleCurrent', presale);
+    console.log('presaleCurrent', presale.date_end_presale);
+    console.log('pricePresale', presale.price_presale); */
+    this.presales.push(this.fb.control({
+      date_end_presale: presale.date_end_presale,
+      price_presale: presale.price_presale
+    }));
+  })
+  
+ }
 }
