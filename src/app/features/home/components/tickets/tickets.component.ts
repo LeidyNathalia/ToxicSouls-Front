@@ -21,6 +21,8 @@ export class TicketsComponent implements OnInit {
   cantidad: FormControl = new FormControl(1,[Validators.required,Validators.min(1)]);
   can: number = this.cantidad.value;
   precioUnit:number = 0;
+  refPago:string = '';
+  cont:number = 0;
 
   constructor(private actroutes: ActivatedRoute, private eventsService: EventService, private router:Router, private datePipe:DatePipe) {
     const fech = new Date();
@@ -40,7 +42,17 @@ export class TicketsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refPago = this.generaNss();
+  }
 
+  generaNss():string {
+    let result = '';
+    const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const charactersLength = 10;
+    for (let i = 0; i < charactersLength; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
   }
 
   compareDate(presales:Presale[]){

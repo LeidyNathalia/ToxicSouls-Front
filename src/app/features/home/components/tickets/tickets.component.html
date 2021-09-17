@@ -79,7 +79,7 @@
             <input type="hidden" name="public-key" value="pub_test_LXYmYNddCsbdCOO4oUtcDEhZzCrl3VNa" />
             <input type="hidden" name="currency" value="COP" />
             <input type="hidden" name="amount-in-cents" [value]="precio" />
-            <input type="hidden" name="reference" value="4XMPGKWWPKWZ" />
+            <input type="hidden" name="reference" [value]="refPago" />
             <!-- OPCIONALES -->
             <input type="hidden" name="redirect-url" value="https://transaction-redirect.wompi.co/check" />
             <input type="hidden" name="tax-in-cents:vat" [value]="iva" />
