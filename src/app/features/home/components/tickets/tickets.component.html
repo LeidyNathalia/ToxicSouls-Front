@@ -59,8 +59,9 @@
     <span class="text">
       <strong> Cantidad: </strong>
     </span>
-    <input type="number" min="0" max="50" step="2" value="0" size="6" name="cantitate">
-    </mat-grid-tile>
+    <input type="number" [formControl]="cantidad" (change)=onChange(cantidad.value)  #f="ngForm">
+    <span>jhon</span>
+  </mat-grid-tile>
 
     <!-- Botones -->
     <div class="buttons">
@@ -77,8 +78,8 @@
             <input type="hidden" name="reference" value="4XMPGKWWPKWC" />
             <!-- OPCIONALES -->
             <input type="hidden" name="redirect-url" value="https://transaction-redirect.wompi.co/check" />
-            <input type="hidden" name="tax-in-cents:vat" value="570000" />
-            <input type="hidden" name="tax-in-cents:consumption" value="240000" />
+            <input type="hidden" name="tax-in-cents:vat" [value]="iva" />
+            <input type="hidden" name="tax-in-cents:consumption" [value]="consumption" />
             <input type="hidden" name="customer-data:email" value="CORREO_DEL_PAGADOR" />
             <input type="hidden" name="customer-data:full-name" value="NOMBRE_DEL_PAGADOR" />
             <input type="hidden" name="customer-data:phone-number" value="3991111111" />
@@ -89,7 +90,8 @@
             <input type="hidden" name="shipping-address:phone-number" value="3991111111" />
             <input type="hidden" name="shipping-address:city" value="CIUDAD_DE_ENVIO" />
             <input type="hidden" name="shipping-address:region" value="REGION_DE_ENVIO" />
-            <button type="submit" class = "button">Pagar con Wompi</button>
+            <button type="submit" (click)="onClick()" [disabled]="f.invalid" class = "button">Pagar con Wompi</button>
+
           </form>
         </strong>
       <!-- </button> -->
@@ -97,6 +99,9 @@
     </div>
   </mat-grid-list>
 </div>
+
+<pre>{{cantidad.value}}</pre>
+<pre>{{cantidad.valid}}</pre>
 
 <!-- REGISTRO DE USUARIOS  -->
 
