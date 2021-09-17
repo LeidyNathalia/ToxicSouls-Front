@@ -43,10 +43,10 @@
     [rowspan]="2">
     <span> Valores de preventa:
       <span *ngFor="let item of event.presales">
-        <strong> <br> Fecha / Valor: </strong>
+        <strong> <br> Valor: </strong>
         <br>
-        {{item.date_end_presale}}
-        {{item.price_presale | currency: "COP ":"symbol"}}
+        <!-- {{item.date_end_presale}} -->
+        {{precio | currency: "COP ":"symbol"}}
         <br>
       </span>
     </span>
@@ -73,7 +73,7 @@
             <!-- OBLIGATORIOS -->
             <input type="hidden" name="public-key" value="pub_test_LXYmYNddCsbdCOO4oUtcDEhZzCrl3VNa" />
             <input type="hidden" name="currency" value="COP" />
-            <input type="hidden" name="amount-in-cents" value="30000000" />
+            <input type="hidden" name="amount-in-cents" [value]="precio" />
             <input type="hidden" name="reference" value="4XMPGKWWPKWC" />
             <!-- OPCIONALES -->
             <input type="hidden" name="redirect-url" value="https://transaction-redirect.wompi.co/check" />
@@ -100,11 +100,11 @@
 
 <!-- REGISTRO DE USUARIOS  -->
 
-<div class="login-box">
+<!-- <div class="login-box"> -->
 <!-- USERNAME INPUT -->
-    <span> Registro de clientes</span>
-    <label for="username">Correo</label>
-    <input id="user" name="user" type="text" placeholder="Ingrese correo electronico" formControlName="email">
+    <!-- <span> Registro de clientes</span> -->
+    <!-- <label for="username">Correo</label> -->
+    <!-- <input id="user" name="user" type="text" placeholder="Ingrese correo electronico" formControlName="email"> -->
 
     <!-- <mat-error
     *ngIf="
@@ -120,8 +120,8 @@
 
 
       <!-- PASSWORD INPUT -->
-      <label for="password">Contraseña</label>
-      <input id="pass" name="pass" type="password" formControlName="password" placeholder="Ingrese contraseña">
+      <!-- <label for="password">Contraseña</label> -->
+      <!-- <input id="pass" name="pass" type="password" formControlName="password" placeholder="Ingrese contraseña"> -->
 
       <!--
       <mat-error *ngIf="password">
@@ -129,7 +129,7 @@
       </mat-error>
 
       <!-- <input type="submit" value="Log In" onclick="location.href='/menu.html'"> -->
-      <input id="boton-guardar" type="submit" value="Ingresar">
+      <!-- <input id="boton-guardar" type="submit" value="Ingresar"> -->
       <!--       <a href="#">Lost your Password?</a><br>
       <a href="#">Don't have An account?</a> -->
-<div>
+<!-- <div> -->

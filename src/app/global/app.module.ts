@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UploadService } from '../features/admin/components/events/upload.service';
 import { UploadServiceModify } from '../features/admin/components/modify-event/upload.service';
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { UploadServiceModify } from '../features/admin/components/modify-event/u
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [UploadService,UploadServiceModify],
+  providers: [UploadService,UploadServiceModify,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
