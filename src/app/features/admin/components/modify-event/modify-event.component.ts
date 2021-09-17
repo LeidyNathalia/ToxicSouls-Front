@@ -142,6 +142,7 @@ export class ModifyEventComponent implements OnInit {
     this.arrayItems = event.event.presales;
     this.addPresale(event.event.presales);
     this.form.patchValue({ capacity: event.event.capacity });
+    this.form.get('flyer').setValue(event.event.flyer);
   }
 
   /* covertArrayToArrayControl(array: string[]){
