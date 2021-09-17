@@ -1,12 +1,6 @@
-<span class="events center-horizontal"> EVENTOS </span>
+<span class="events center-horizontal"> DETALLES DE EVENTOS </span>
 <div class = "contend" >
   <mat-grid-list class="target center-horizontal" cols="5" rowHeight="100px">
-    <!-- Imagen -->
-    <mat-grid-tile
-    [colspan]="2"
-    [rowspan]="4">
-    <img class = "image" mat-card-image src="./assets/img/artista 1.jpg"/>
-    </mat-grid-tile>
 
     <!-- Titulo  -->
     <mat-grid-tile class = "title"
@@ -22,10 +16,17 @@
     <!-- {{event.description_event}} -->
     </mat-grid-tile>
 
+    <!-- Imagen -->
+    <mat-grid-tile
+      [colspan]="2"
+      [rowspan]="4">
+    <img class = "image" mat-card-image src="./assets/img/artista 1.jpg"/>
+    </mat-grid-tile>
+
     <!-- vacio  -->
     <mat-grid-tile
     [colspan]="3"
-    [rowspan]="1">
+    [rowspan]="2">
     <strong>
       Precios:
     </strong>

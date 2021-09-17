@@ -18,10 +18,10 @@
     </mat-grid-tile>
 
     <!-- vacio  -->
-    <mat-grid-tile class = "title"
+    <mat-grid-tile
     [colspan]="5"
     [rowspan]="1">
-    <span><strong class ="artist">Artistas:</strong>
+    <span><strong class ="artist">Artistas:  </strong>
       <button mat-stroked-button color="basic" *ngFor="let item of event.artists">
           {{item.name_artist}}
       </button>
@@ -39,13 +39,14 @@
 
     <!-- Ciudad -->
     <mat-grid-tile
-    [colspan]="1"
+    [colspan]="2"
     [rowspan]="2">
-    <span>
+    <span> Valores de preventa:
       <span *ngFor="let item of event.presales">
-        <strong> Valor: </strong>
+        <strong> <br> Fecha / Valor: </strong>
+        <br>
         {{item.date_end_presale}}
-        {{item.price_presale | currency: "COP":"symbol"}}
+        {{item.price_presale | currency: "COP ":"symbol"}}
         <br>
       </span>
     </span>
@@ -53,7 +54,7 @@
 
     <!-- Ciudad -->
     <mat-grid-tile class = "buttons"
-    [colspan]="2"
+    [colspan]="1"
     [rowspan]="2">
     <span class="text">
       <strong> Cantidad: </strong>
@@ -66,13 +67,69 @@
       <mat-grid-tile
       [colspan]="1"
       [rowspan]="2">
-      <button class="button" mat-button color="primary" type="submit">
-        <strong> COMPRAR </strong>
-      </button>
+      <!-- <button class="button" mat-button color="primary" type="submit"></button> -->
+        <strong>
+          <form action="https://checkout.wompi.co/p/" method="GET">
+            <!-- OBLIGATORIOS -->
+            <input type="hidden" name="public-key" value="pub_test_LXYmYNddCsbdCOO4oUtcDEhZzCrl3VNa" />
+            <input type="hidden" name="currency" value="COP" />
+            <input type="hidden" name="amount-in-cents" value="30000000" />
+            <input type="hidden" name="reference" value="4XMPGKWWPKWC" />
+            <!-- OPCIONALES -->
+            <input type="hidden" name="redirect-url" value="https://transaction-redirect.wompi.co/check" />
+            <input type="hidden" name="tax-in-cents:vat" value="570000" />
+            <input type="hidden" name="tax-in-cents:consumption" value="240000" />
+            <input type="hidden" name="customer-data:email" value="CORREO_DEL_PAGADOR" />
+            <input type="hidden" name="customer-data:full-name" value="NOMBRE_DEL_PAGADOR" />
+            <input type="hidden" name="customer-data:phone-number" value="3991111111" />
+            <input type="hidden" name="customer-data:legal-id" value="DOCUMENTO_DE_IDENTIDAD_DEL_PAGADOR" />
+            <input type="hidden" name="customer-data:legal-id-type" value="TIPO_DEL_DOCUMENTO_DE_IDENTIDAD_DEL_PAGADOR" />
+            <input type="hidden" name="shipping-address:address-line-1" value="DIRECCION_DE_ENVIO" />
+            <input type="hidden" name="shipping-address:country" value="CO" />
+            <input type="hidden" name="shipping-address:phone-number" value="3991111111" />
+            <input type="hidden" name="shipping-address:city" value="CIUDAD_DE_ENVIO" />
+            <input type="hidden" name="shipping-address:region" value="REGION_DE_ENVIO" />
+            <button type="submit" class = "button">Pagar con Wompi</button>
+          </form>
+        </strong>
+      <!-- </button> -->
       </mat-grid-tile>
     </div>
   </mat-grid-list>
 </div>
 
+<!-- REGISTRO DE USUARIOS  -->
+
+<div class="login-box">
+<!-- USERNAME INPUT -->
+    <span> Registro de clientes</span>
+    <label for="username">Correo</label>
+    <input id="user" name="user" type="text" placeholder="Ingrese correo electronico" formControlName="email">
+
+    <!-- <mat-error
+    *ngIf="
+      userLogin.controls.email.hasError('email') &&
+      !userLogin.controls.email.hasError('required')">
+      Por favor ingrese un correo válido
+    </mat-error>
+
+    <mat-error *ngIf="email">
+      El usuario no está registrado, revise el email
+    </mat-error> -->
 
 
+
+      <!-- PASSWORD INPUT -->
+      <label for="password">Contraseña</label>
+      <input id="pass" name="pass" type="password" formControlName="password" placeholder="Ingrese contraseña">
+
+      <!--
+      <mat-error *ngIf="password">
+        La contraseña es erronea, por favor verifique
+      </mat-error>
+
+      <!-- <input type="submit" value="Log In" onclick="location.href='/menu.html'"> -->
+      <input id="boton-guardar" type="submit" value="Ingresar">
+      <!--       <a href="#">Lost your Password?</a><br>
+      <a href="#">Don't have An account?</a> -->
+<div>
