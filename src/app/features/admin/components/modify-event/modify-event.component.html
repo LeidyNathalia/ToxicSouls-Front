@@ -326,7 +326,7 @@
   </div>
 
   <div class="container">
-    <form class="example-form" [formGroup]="form" (ngSubmit)="edit()" #f="ngForm">
+    <form class="example-form" [formGroup]="form" (ngSubmit)="onUpload()" #f="ngForm">
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Fecha del evento</mat-label>
@@ -474,7 +474,6 @@
           </form>
         </div>
       </div>
-
     </form>
   </div>
 

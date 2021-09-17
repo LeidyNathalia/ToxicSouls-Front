@@ -324,7 +324,7 @@
 </div>
 
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="submitForm()" #f="ngForm">
+  <form [formGroup]="form" (ngSubmit)="onUpload()" #f="ngForm">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Fecha del evento</mat-label>
       <input type="date" matInput name="appo_date" formControlName="date_event" placeholder="dd/mm/yyyy"

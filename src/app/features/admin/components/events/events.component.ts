@@ -1,11 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import {FormArray,FormBuilder,FormControl,FormGroup,Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadService } from './upload.service';
@@ -35,12 +29,9 @@ export class EventsComponent implements OnInit {
   nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
   artistSelected: FormControl = this.fb.control('', Validators.required);
 
-
-
   get presales() {
     return this.form.get('presales') as FormArray;
   }
-
 
   constructor(
     public fb: FormBuilder,
@@ -69,11 +60,10 @@ export class EventsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)],
       ],
-      presales: this.fb.array([
-
-      ], Validators.required),
-      artists: ['', Validators.required],
-      aforo: [0, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      //presale: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      presales: this.fb.array([], Validators.required),
+      artists: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
+      aforo: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       profile: [''],
     });
   }
@@ -111,6 +101,7 @@ export class EventsComponent implements OnInit {
   }
 
   onUpload() {
+    console.log('aqui entra?');
     //Scape empty array
     if (!this.files[0]) {
       alert('Primero sube una imagen, por favor');
@@ -122,15 +113,14 @@ export class EventsComponent implements OnInit {
     data.append('upload_preset', 'angular_cloudinary');
     data.append('cloud_name', 'toxic-souls');
 
-    this._uploadService
-      .uploadImage(data)
-      .subscribe((response) => {
-        if (response) {
-          //console.log(response);
-          console.log('url de img', response.url);
-          this.url_cloudinary_img_current = response.url;
-        }
-      });
+    this._uploadService.uploadImage(data).subscribe(async (response) => {
+      if (response) {
+        //console.log(response);
+        console.log('url de img', response.url);
+        this.url_cloudinary_img_current = await response.url;
+        this.postData();
+      }
+    });
   }
 
   uploadFile(event) {
@@ -142,40 +132,33 @@ export class EventsComponent implements OnInit {
     this.routes.navigate(['/admin/list-event']);
   }
 
-  submitForm() {
+  postData() {
+    console.log('tiene que llegar despues de la url');
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append('hola', 'mundo');
-
     let options = { headers: headers };
-    this.postData(options);
-
-  }
-
-  postData(options) {
-    this.onUpload();
-    setTimeout(() => {
-      const body = {
-        date_event: this.form.get('date_event').value,
-        city_event: this.form.get('city_event').value,
-        direction_event: this.form.get('direction_event').value,
-        description_event: this.form.get('description_event').value,
-        presales: this.arrayItems,
-        artists: this.form.get('artists').value,
-        capacity: this.form.get('aforo').value,
-        flyer: this.url_cloudinary_img_current,
-      };
-      console.log('bodyyy', body);
-      this.http
-        .post<any>('http://localhost:3000/api/events/add-event', body, options)
-        .subscribe(
-          (response) => {
-            console.log('response', response)
-            this.routes.navigate(['/admin/list-event']);
-          },
-          (error) => console.log(error)
-        );
-    }, 2500);
+    console.log('se ejecuta?');
+    const body = {
+      date_event: this.form.get('date_event').value,
+      city_event: this.form.get('city_event').value,
+      direction_event: this.form.get('direction_event').value,
+      description_event: this.form.get('description_event').value,
+      presales: this.arrayItems,
+      artists: this.form.get('artists').value,
+      capacity: this.form.get('aforo').value,
+      flyer: this.url_cloudinary_img_current,
+    };
+    console.log('bodyyy', body);
+    this.http
+      .post<any>('http://localhost:3000/api/events/add-event', body, options)
+      .subscribe(
+        (response) => {
+          console.log('response', response);
+          this.routes.navigate(['/admin/list-event']);
+        },
+        (error) => console.log(error)
+      );
   }
 
   eliminarPreventa(i: number) {
@@ -192,17 +175,21 @@ export class EventsComponent implements OnInit {
     } else if (this.nuevaFechaPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
       return;
-    }
-    else if (this.nuevoPrecioPreventa.invalid) {
+    } else if (this.nuevoPrecioPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
       return;
     }
     console.log(this.nuevaFechaPreventa.value, this.nuevoPrecioPreventa.value);
-    this.arrayItems.push({ date_end_presale: this.nuevaFechaPreventa.value, price_presale: this.nuevoPrecioPreventa.value });
-    this.presales.push(this.fb.control({
+    this.arrayItems.push({
       date_end_presale: this.nuevaFechaPreventa.value,
-      price_presale: this.nuevoPrecioPreventa.value
-    }));
+      price_presale: this.nuevoPrecioPreventa.value,
+    });
+    this.presales.push(
+      this.fb.control({
+        date_end_presale: this.nuevaFechaPreventa.value,
+        price_presale: this.nuevoPrecioPreventa.value,
+      })
+    );
     this.nuevaFechaPreventa.reset();
     this.nuevoPrecioPreventa.reset();
     console.log('preventan', this.presales.controls);
