@@ -373,6 +373,17 @@
         </mat-error>
       </mat-form-field>
 
+      <!-- <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Presale</mat-label>
+        <input type="number" matInput formControlName="presale" placeholder="10000" required>
+        <mat-error *ngIf="form.get('city_event').hasError('required')">
+          Por favor, ingrese el precio del evento
+        </mat-error>
+        <mat-error *ngIf="form.get('city_event').hasError('pattern')">
+          Por favor, ingrese un formato valido(solo numeros)
+        </mat-error>
+      </mat-form-field>
+ -->
       <!--Registrar preventa-->
 
       <table class="example-full-width"><tr>
@@ -464,17 +475,13 @@
         </mat-error>
       </mat-form-field>
 
-      <div>
-        <div class="form-group">
-          <button class="btn btn-danger">Modificar</button>
-        </div>
-        <div class="viewList">
-          <form (submit)="viewList()">
-          <button class="btn btn-danger">Ver eventos</button>
-          </form>
-        </div>
+      <div class="form-group, center-horizontal" id="button">
+        <button class="btn btn-danger" >Modificar</button>
+      </div>
+      <div class="viewList" id="button">
+        <form (submit)="viewList()">
+        <button class="btn btn-danger">Ver eventos</button>
+        </form>
       </div>
     </form>
   </div>
-
-

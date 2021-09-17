@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import {FormArray,FormBuilder,FormControl,FormGroup,Validators} from '@angular/forms';
+import {FormArray,FormBuilder,FormControl,FormGroup,Validators,} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UploadService } from './upload.service';
@@ -62,7 +62,8 @@ export class EventsComponent implements OnInit {
       ],
       //presale: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       presales: this.fb.array([], Validators.required),
-      artists: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
+      artists: ['', Validators.required],
+      // artists: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       aforo: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       profile: [''],
     });

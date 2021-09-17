@@ -37,7 +37,7 @@
     </span>
     </mat-grid-tile>
 
-    <!-- Ciudad -->
+    <!-- Valores de preventa -->
     <mat-grid-tile
     [colspan]="2"
     [rowspan]="2">
@@ -46,21 +46,25 @@
         <strong> <br> Valor: </strong>
         <br>
         <!-- {{item.date_end_presale}} -->
-        {{precio | currency: "COP ":"symbol"}}
+        {{(precio/100)| currency: "COP ":"symbol"}}
         <br>
       </span>
     </span>
     </mat-grid-tile>
 
-    <!-- Ciudad -->
+    <!-- Cantidad  -->
     <mat-grid-tile class = "buttons"
     [colspan]="1"
     [rowspan]="2">
-    <span class="text">
-      <strong> Cantidad: </strong>
-    </span>
-    <input type="number" [formControl]="cantidad" (change)=onChange(cantidad.value)  #f="ngForm">
-    <span>jhon</span>
+    <div>
+      <span class="text">
+        <strong> Cantidad: </strong>
+      </span>
+      <br>
+      <input class="text" type="number" min="0" [formControl]="cantidad" (change)=onChange(cantidad.value)  #f="ngForm">
+    </div>
+
+    <!-- <span>jhon</span> -->
   </mat-grid-tile>
 
     <!-- Botones -->
@@ -75,7 +79,7 @@
             <input type="hidden" name="public-key" value="pub_test_LXYmYNddCsbdCOO4oUtcDEhZzCrl3VNa" />
             <input type="hidden" name="currency" value="COP" />
             <input type="hidden" name="amount-in-cents" [value]="precio" />
-            <input type="hidden" name="reference" value="4XMPGKWWPKWC" />
+            <input type="hidden" name="reference" value="4XMPGKWWPKWZ" />
             <!-- OPCIONALES -->
             <input type="hidden" name="redirect-url" value="https://transaction-redirect.wompi.co/check" />
             <input type="hidden" name="tax-in-cents:vat" [value]="iva" />
@@ -90,7 +94,8 @@
             <input type="hidden" name="shipping-address:phone-number" value="3991111111" />
             <input type="hidden" name="shipping-address:city" value="CIUDAD_DE_ENVIO" />
             <input type="hidden" name="shipping-address:region" value="REGION_DE_ENVIO" />
-            <button type="submit" (click)="onClick()" [disabled]="f.invalid" class = "button">Pagar con Wompi</button>
+            <button type="submit" (click)="onClick()" [disabled]="f.invalid" class = "button">
+              <strong> Pagar con Wompi </strong> </button>
 
           </form>
         </strong>
@@ -100,8 +105,8 @@
   </mat-grid-list>
 </div>
 
-<pre>{{cantidad.value}}</pre>
-<pre>{{cantidad.valid}}</pre>
+<!-- <pre>{{cantidad.value}}</pre>
+<pre>{{cantidad.valid}}</pre> -->
 
 <!-- REGISTRO DE USUARIOS  -->
 

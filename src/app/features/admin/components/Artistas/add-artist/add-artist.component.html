@@ -326,8 +326,8 @@
 <div class="center-horizontal" style="padding: 15px">
   <div class="formulario">
     <!-- Formulario -->
-    <form class="example-form" [formGroup]="form_artist">
-      
+    <form class="example-form" [formGroup]="form_artist" (ngSubmit)="onUpload()" #f="ngForm">
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre del artista</mat-label>
         <input
@@ -398,7 +398,7 @@
       <div class="buttons">
         <div class="form-group, center-horizontal">
           <button class="btn btn-danger" type="button"
-          (click)="registro()">Agregar artista</button>
+          (click)="registro()" [disabled]="f.invalid">Agregar artista</button>
         </div>
       </div>
     </form>

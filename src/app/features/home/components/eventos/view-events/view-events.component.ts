@@ -35,4 +35,8 @@ export class ViewEventsComponent implements OnInit {
   comprar(event:Events){
     this.router.navigate(['/tickets'], {queryParams:{_id:event._id}});
   }
+
+  verDetalles(event:Events){
+    this.router.navigate(['/DetailsEvents'], {queryParams:{_id:event._id}});
+  }
 }

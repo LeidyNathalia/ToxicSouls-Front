@@ -28,6 +28,7 @@ export class AddArtistComponent implements OnInit {
     private _uploadService: UploadService,
     private routes: Router) {
     this.form_artist = new FormGroup({
+      
       name_artist: new FormControl('', [
         Validators.required
       ]),

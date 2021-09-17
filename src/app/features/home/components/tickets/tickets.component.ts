@@ -20,13 +20,14 @@ export class TicketsComponent implements OnInit {
   consumption: number = 0;
   cantidad: FormControl = new FormControl(1,[Validators.required,Validators.min(1)]);
   can: number = this.cantidad.value;
+  precioUnit:number = 0;
 
   constructor(private actroutes: ActivatedRoute, private eventsService: EventService, private router:Router, private datePipe:DatePipe) {
     const fech = new Date();
     this.fecha = this.datePipe.transform(fech,'yyyy-MM-dd');
     this._id = this.actroutes.snapshot.queryParams._id;
     this.eventsService.getEventById2(this._id)
-    
+
     .subscribe((resp)=>{
       this.event = resp.event;
       this.compareDate(this.event.presales);
@@ -35,25 +36,34 @@ export class TicketsComponent implements OnInit {
       this.router.navigate(['/events']);
     });
     console.log("preventas con",this.event);
-   
+
   }
 
   ngOnInit(): void {
-    
+
   }
 
   compareDate(presales:Presale[]){
     if(presales.length == 1){
       this.precio = parseInt(presales[0].price_presale);
+      this.precioUnit = parseInt(presales[0].price_presale);
       this.precio = this.precio*100;
+      this.precioUnit = this.precioUnit*100;
       this.iva = this.precio * 0.19;
       this.consumption = this.precio * 0.08;
     }
   }
 
   onChange(event){
-    this.can = event;
-    this.precio = this.precio * this.can;
+    this.precio = this.precioUnit;
+    if(event > this.can){
+      this.can = event;
+      this.precio = this.precio * this.can;
+    }else{
+      console.log("Menor");
+      this.can = event;
+      this.precio = this.precio * this.can;
+    }
   }
 
   onClick(){

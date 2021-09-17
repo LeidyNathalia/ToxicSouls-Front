@@ -1,61 +1,70 @@
 <span class="events center-horizontal"> DETALLES DE EVENTOS </span>
 <div class = "contend" >
-  <mat-grid-list class="target center-horizontal" cols="5" rowHeight="100px">
+  <mat-grid-list class="target center-horizontal" cols="6" rowHeight="100px">
 
     <!-- Titulo  -->
-    <mat-grid-tile class = "title"
-    [colspan]="3"
+    <mat-grid-tile
+    [colspan]="4"
     [rowspan]="1">
     <span>
-      <strong>
-        TITULO
-        <br>
-        ARTISTAS
+      <strong class = "title">
+        {{event.description_event}}
       </strong>
+      <br>
+      <span><strong class ="artist">Artistas: </strong>
+        <button mat-stroked-button color="basic" *ngFor="let item of event.artists">
+          {{item.name_artist}}
+        </button>
+      </span>
     </span>
-    <!-- {{event.description_event}} -->
+
     </mat-grid-tile>
 
     <!-- Imagen -->
     <mat-grid-tile
       [colspan]="2"
-      [rowspan]="4">
-    <img class = "image" mat-card-image src="./assets/img/artista 1.jpg"/>
+      [rowspan]="2">
+    <img class = "image" mat-card-image [src]="event.flyer"/>
     </mat-grid-tile>
 
-    <!-- vacio  -->
+    <!-- Fecha y valor  -->
     <mat-grid-tile
-    [colspan]="3"
+    [colspan]="2"
     [rowspan]="2">
-    <strong>
-      Precios:
-    </strong>
-    <!-- {{event.artists}} -->
+    <span> Valores de preventa:
+      <span *ngFor="let item of event.presales">
+        <strong> <br> Fecha / Valor: </strong>
+        <br>
+        {{item.date_end_presale}}
+        {{precio | currency: "COP ":"symbol"}}
+        <br>
+      </span>
+    </span>
     </mat-grid-tile>
 
     <!-- Fecha -->
     <mat-grid-tile
-    [colspan]="1"
-    [rowspan]="2">
-    <strong>Fecha y hora: </strong>
-    <!-- <p> {{event.date_event}}</p> -->
+    [colspan]="2"
+    [rowspan]="1">
+    <strong>Fecha del evento: </strong>
+    <span>{{event.date_event}}</span>
     </mat-grid-tile>
 
     <!-- Ciudad -->
     <mat-grid-tile  class = "center-horizontal"
-    [colspan]="1"
-    [rowspan]="2">
-    <strong>
-      Direccion y ciudad:
-    </strong>
+    [colspan]="2"
+    [rowspan]="1">
+    <strong> Ciudad / Dirección: </strong>
+    <span> {{event.city_event}}</span>
+    <span> {{event.direction_event}}</span>
     </mat-grid-tile>
 
     <!-- Botones -->
-    <div class="buttons">
+    <div>
       <mat-grid-tile
-      [colspan]="1"
-      [rowspan]="2">
-      <button class = "btn-danger" mat-button color="primary" [routerLink]="'/tickets'">
+      [colspan]="2"
+      [rowspan]="1">
+      <button class = "btn-danger" mat-button color="primary" type="button" (click) = comprar(event)>
         <strong>
           Comprar
         </strong>
