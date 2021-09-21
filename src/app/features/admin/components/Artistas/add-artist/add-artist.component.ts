@@ -13,7 +13,7 @@ import { UploadService } from '../../events/upload.service';
 })
 export class AddArtistComponent implements OnInit {
   form_artist: FormGroup;
-  SERVER_URL = 'http://localhost:3000/eventss';
+  SERVER_URL = 'http://18.224.229.72:3000/eventss';
   url_cloudinary_img_current;
   redSocial: FormControl = this.fb.control('', []);
 

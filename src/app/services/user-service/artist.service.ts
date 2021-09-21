@@ -9,7 +9,7 @@ import { Artist, responseArtist } from 'src/app/features/admin/components/Artist
 export class ArtistService {
 
   constructor(private http: HttpClient) { }
-  path: string = 'http://localhost:3000/api/artists';
+  path: string = 'http://18.224.229.72:3000/api/artists';
 
   getArtist(): Promise<any> {
     return this.http.get<any>(this.path).toPromise();

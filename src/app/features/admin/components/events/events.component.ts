@@ -15,7 +15,7 @@ import { MatSelectChange } from '@angular/material/select';
 })
 export class EventsComponent implements OnInit {
   form: FormGroup;
-  SERVER_URL = 'http://localhost:3000/eventss';
+  SERVER_URL = 'http://18.224.229.72:3000/eventss';
   url_cloudinary_img_current;
 
   artistList: Artist[] = [];
@@ -152,7 +152,7 @@ export class EventsComponent implements OnInit {
     };
     console.log('bodyyy', body);
     this.http
-      .post<any>('http://localhost:3000/api/events/add-event', body, options)
+      .post<any>('http://18.224.229.72:3000/api/events/add-event', body, options)
       .subscribe(
         (response) => {
           console.log('response', response);

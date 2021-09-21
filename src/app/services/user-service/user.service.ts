@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  path: string = 'http://localhost:3000/api/user';
+  path: string = 'http://18.224.229.72:3000/api/user';
 
   constructor(private http: HttpClient) { }
 

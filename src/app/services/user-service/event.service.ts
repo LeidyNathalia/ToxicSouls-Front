@@ -8,7 +8,7 @@ import { ResponseEvents, responseEventById } from '../../features/home/component
 })
 export class EventService {
 
-  path: string = 'http://localhost:3000/api/events';
+  path: string = 'http://18.224.229.72:3000/api/events';
 
   constructor(private http: HttpClient) { }
 
