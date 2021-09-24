@@ -324,6 +324,22 @@
 </div>
 
 <div class="container">
+
+<ng-template #success>
+  <p matDialogContent>El evento fue creado con éxito</p>
+  <mat-dialog-actions align="center">
+    <button mat-raised-button matDialogClose color="primary"><mat-icon>close</mat-icon></button>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template #error>
+  <p matDialogContent>El evento no pudo ser registrado, intente nuevamente</p>
+  <mat-dialog-actions align="center">
+    <button mat-raised-button matDialogClose color="warn" matDialogClose><mat-icon>close</mat-icon></button>
+  </mat-dialog-actions>
+</ng-template>
+
+
   <form [formGroup]="form" (ngSubmit)="onUpload()" #f="ngForm">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Fecha del evento</mat-label>

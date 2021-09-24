@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ResponseEvents, responseEventById } from '../../features/home/components/eventos/interface/events.interface';
+import { ResponseEvents, responseEventById, ResponseCreateEvent, Events } from '../../features/home/components/eventos/interface/events.interface';
+import * as Config from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
 
-  path: string = 'http://18.224.229.72:3000/api/events';
+  path: string = `${Config.path}/events`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getEvents(): Promise<any> {
     return this.http.get<any>(this.path).toPromise();
@@ -34,5 +35,9 @@ export class EventService {
 
   editEvent(_id, body): Promise<any>{
     return this.http.put<any>(`${this.path}/${_id}`, body).toPromise();
+  }
+
+  addEvent(body: Events): Observable<ResponseCreateEvent> {
+    return this.http.post<ResponseCreateEvent>(`${this.path}/add-event`, body);
   }
 }

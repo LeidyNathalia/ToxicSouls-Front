@@ -1,12 +1,14 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, ViewChild, TemplateRef } from '@angular/core';
 import {FormArray,FormBuilder,FormControl,FormGroup,Validators,} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 import { UploadService } from './upload.service';
 import { Router } from '@angular/router';
 import { Artist } from '../Artistas/interfaces/artist.interface';
 import { ArtistService } from 'src/app/services/user-service/artist.service';
 import { MatSelectChange } from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
+import { EventService } from 'src/app/services/user-service/event.service';
+import { Events } from 'src/app/features/home/components/eventos/interface/events.interface';
+import { Presale } from '../../../home/components/eventos/interface/events.interface';
 
 @Component({
   selector: 'app-events',
@@ -17,17 +19,16 @@ export class EventsComponent implements OnInit {
   form: FormGroup;
   SERVER_URL = 'http://18.224.229.72:3000/eventss';
   url_cloudinary_img_current;
-
   artistList: Artist[] = [];
-
-  arrayItems: {
-    date_end_presale: string;
-    price_presale: string;
-  }[];
+  arrayItems: Presale [];
 
   nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
   nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
   artistSelected: FormControl = this.fb.control('', Validators.required);
+
+  @ViewChild('success') success: TemplateRef<any>;
+  @ViewChild('error') error: TemplateRef<any>;
+
 
   get presales() {
     return this.form.get('presales') as FormArray;
@@ -35,10 +36,11 @@ export class EventsComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    private http: HttpClient,
     private _uploadService: UploadService,
     private routes: Router,
-    private artistService: ArtistService
+    private artistService: ArtistService,
+    private eventsService: EventService,
+    private dialog: MatDialog
   ) {
     this.form = this.fb.group({
       demoArray: this.fb.array([]),
@@ -97,12 +99,10 @@ export class EventsComponent implements OnInit {
   }
 
   onRemove(event) {
-    //console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
   onUpload() {
-    console.log('aqui entra?');
     //Scape empty array
     if (!this.files[0]) {
       alert('Primero sube una imagen, por favor');
@@ -116,7 +116,6 @@ export class EventsComponent implements OnInit {
 
     this._uploadService.uploadImage(data).subscribe(async (response) => {
       if (response) {
-        //console.log(response);
         console.log('url de img', response.url);
         this.url_cloudinary_img_current = await response.url;
         this.postData();
@@ -134,13 +133,7 @@ export class EventsComponent implements OnInit {
   }
 
   postData() {
-    console.log('tiene que llegar despues de la url');
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    headers = headers.append('hola', 'mundo');
-    let options = { headers: headers };
-    console.log('se ejecuta?');
-    const body = {
+    const body: Events = {
       date_event: this.form.get('date_event').value,
       city_event: this.form.get('city_event').value,
       direction_event: this.form.get('direction_event').value,
@@ -150,16 +143,16 @@ export class EventsComponent implements OnInit {
       capacity: this.form.get('aforo').value,
       flyer: this.url_cloudinary_img_current,
     };
-    console.log('bodyyy', body);
-    this.http
-      .post<any>('http://18.224.229.72:3000/api/events/add-event', body, options)
-      .subscribe(
-        (response) => {
-          console.log('response', response);
-          this.routes.navigate(['/admin/list-event']);
-        },
-        (error) => console.log(error)
-      );
+    this.eventsService.addEvent(body)
+    .subscribe((resp) => {
+      this.form.reset();
+      this.dialog.open(this.success);
+      console.log('Evento registrado con éxito', resp);
+      this.routes.navigate(['/admin/list-event']);
+    }, (err)=>{
+      console.log(err);
+      this.dialog.open(this.error);
+    });
   }
 
   eliminarPreventa(i: number) {

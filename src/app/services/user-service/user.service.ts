@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import * as Config from '../../config/config';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  path: string = 'http://18.224.229.72:3000/api/user';
+  path: string = `${Config.path}/user`;
 
   constructor(private http: HttpClient) { }
 

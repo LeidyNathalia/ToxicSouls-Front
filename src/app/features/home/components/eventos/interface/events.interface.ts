@@ -5,7 +5,7 @@ export interface Events{
   city_event?: string,
   direction_event?: string,
   description_event?: string,
-  presales?: [Presale],
+  presales?: Presale[],
   artists?: [Artist],
   flyer?: string,
   capacity?: number
@@ -22,6 +22,10 @@ export interface ResponseEvents{
   events: Events[]
 }
 
+export interface ResponseCreateEvent{
+  status: string,
+  event: Events
+}
 
 export interface responseEventById{
 
