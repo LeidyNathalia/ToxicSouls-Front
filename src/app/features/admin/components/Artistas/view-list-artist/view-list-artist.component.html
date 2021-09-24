@@ -28,7 +28,7 @@
     <!-- Fruit Column -->
     <ng-container matColumnDef="social_networks">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Redes sociales </th>
-      <td mat-cell *matCellDef="let row"> {{row.social_networks}} </td>
+      <td mat-cell *matCellDef="let row"><a href="http://{{i}}" target="_blank" rel="noopener noreferrer" *ngFor="let i of row.social_networks">{{i}}<br></a></td>
     </ng-container>
 
         <!-- Fruit Column -->
