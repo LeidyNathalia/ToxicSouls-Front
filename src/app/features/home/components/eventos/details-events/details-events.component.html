@@ -35,8 +35,8 @@
       <span *ngFor="let item of event.presales">
         <strong> <br> Fecha / Valor: </strong>
         <br>
-        {{item.date_end_presale}}
-        {{precio | currency: "COP ":"symbol"}}
+        {{item.date_end_presale}} /
+        {{item.price_presale | currency: "COP ":"symbol"}}
         <br>
       </span>
     </span>
