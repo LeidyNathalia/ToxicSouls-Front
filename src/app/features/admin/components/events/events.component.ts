@@ -16,9 +16,10 @@ import { Presale } from '../../../home/components/eventos/interface/events.inter
   styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
+  current_date: Date = new Date();
   form: FormGroup;
   SERVER_URL = 'http://18.224.229.72:3000/eventss';
-  url_cloudinary_img_current;
+  url_cloudinary_img_current: string;
   artistList: Artist[] = [];
   arrayItems: Presale [];
 

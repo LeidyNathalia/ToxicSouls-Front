@@ -28,20 +28,17 @@ export class TicketsComponent implements OnInit {
     const fech = new Date();
     this.fecha = this.datePipe.transform(fech,'yyyy-MM-dd');
     this._id = this.actroutes.snapshot.queryParams._id;
-    this.eventsService.getEventById2(this._id)
-
-    .subscribe((resp)=>{
-      this.event = resp.event;
-      this.compareDate(this.event.presales);
-    },(error)=>{
-      console.log("Cualquier cosa");
-      this.router.navigate(['/events']);
-    });
-    console.log("preventas con",this.event);
-
   }
 
   ngOnInit(): void {
+    this.eventsService.getEventById2(this._id)
+    .subscribe((resp)=>{
+      this.event = resp.event;
+      console.log(this.event.presales)
+      this.compareDate(this.event.presales);
+    },(error)=>{
+      this.router.navigate(['/events']);
+    });
     this.refPago = this.generaNss();
   }
 
@@ -66,13 +63,12 @@ export class TicketsComponent implements OnInit {
     }
   }
 
-  onChange(event){
+  onChange(event: number){
     this.precio = this.precioUnit;
     if(event > this.can){
       this.can = event;
       this.precio = this.precio * this.can;
     }else{
-      console.log("Menor");
       this.can = event;
       this.precio = this.precio * this.can;
     }

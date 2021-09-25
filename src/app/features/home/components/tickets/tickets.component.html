@@ -41,15 +41,11 @@
     <mat-grid-tile
     [colspan]="2"
     [rowspan]="2">
-    <span> Valores de preventa:
-      <span *ngFor="let item of event.presales">
         <strong> <br> Valor: </strong>
         <br>
         <!-- {{item.date_end_presale}} -->
         {{(precio/100)| currency: "COP ":"symbol"}}
         <br>
-      </span>
-    </span>
     </mat-grid-tile>
 
     <!-- Cantidad  -->
