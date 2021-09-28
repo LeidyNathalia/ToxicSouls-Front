@@ -326,6 +326,59 @@
   </div>
 
   <div class="container">
+
+    <ng-template #success>
+      <h1 matDialogTitle align="center"><strong>Mensaje</strong></h1>
+      <hr>
+      <p matDialogContent class="fuente">El evento fue modificado con éxito</p>
+      <mat-dialog-actions align="center">
+        <button mat-raised-button matDialogClose color="primary"><mat-icon>close</mat-icon></button>
+      </mat-dialog-actions>
+    </ng-template>
+
+    <ng-template #error>
+      <h1 matDialogTitle align="center"><strong>Error</strong></h1>
+      <hr>
+      <p matDialogContent class="fuente">El evento no pudo ser actualizado, intente nuevamente</p>
+      <mat-dialog-actions align="center">
+        <button mat-raised-button matDialogClose color="warn" matDialogClose><mat-icon>close</mat-icon></button>
+      </mat-dialog-actions>
+    </ng-template>
+
+    <ng-template #fecha_error>
+      <h1 matDialogTitle align="center"><strong>Advertencia</strong></h1>
+      <hr>
+      <p matDialogContent class="fuente">La fecha de la preventa no puede ser posterior a la fecha
+        de realización del evento.
+      </p>
+      <mat-dialog-actions align="center">
+        <button mat-raised-button matDialogClose color="primary" matDialogClose><mat-icon>close</mat-icon></button>
+      </mat-dialog-actions>
+    </ng-template>
+
+    <ng-template #fecha_error_presale>
+      <h1 matDialogTitle align="center"><strong>Advertencia</strong></h1>
+      <hr>
+      <p matDialogContent class="fuente">La fecha de la preventa que desea agregar
+        debe ser posterior a la fecha de la preventa anterior. Además
+        también debe ser diferente de la fecha de una preventa agregada previamente.
+      </p>
+      <mat-dialog-actions align="center">
+        <button mat-raised-button matDialogClose color="primary" matDialogClose><mat-icon>close</mat-icon></button>
+      </mat-dialog-actions>
+    </ng-template>
+
+    <ng-template #falta_fecha_evento>
+      <h1 matDialogTitle align="center"><strong>Advertencia</strong></h1>
+      <hr>
+      <p matDialogContent class="fuente"> Para registrar preventas primero debe
+        agregar la fecha de realización del evento.
+      </p>
+      <mat-dialog-actions align="center">
+        <button mat-raised-button matDialogClose color="primary" matDialogClose><mat-icon>close</mat-icon></button>
+      </mat-dialog-actions>
+    </ng-template>
+
     <form class="example-form" [formGroup]="form" (ngSubmit)="onUpload()" #f="ngForm">
 
       <mat-form-field class="example-full-width" appearance="fill">
@@ -401,15 +454,12 @@
           <mat-label>Precio</mat-label>
           <input matInput type="number" [formControl]="nuevoPrecioPreventa">
         </mat-form-field>
-        <!-- <mat-error *ngIf="form.get('nuevoPrecioPreventa').hasError('required')">
-          El precio es necesario para crear un preventa
-        </mat-error> -->
       </td>
 
         <td>
         <button
         type="button"
-        (click)="agregarPreventan()"
+        (click)="agregarPreventa()"
         mat-mini-fab
         color="primary">
           <mat-icon>plus_one</mat-icon>

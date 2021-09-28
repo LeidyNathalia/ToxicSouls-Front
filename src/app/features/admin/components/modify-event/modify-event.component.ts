@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -6,13 +6,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { HttpClient, HttpParams, HttpClientModule } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UploadServiceModify } from './upload.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../../../services/user-service/event.service';
 import { Artist } from '../Artistas/interfaces/artist.interface';
 import { ArtistService } from 'src/app/services/user-service/artist.service';
+import { Events, Presale } from 'src/app/features/home/components/eventos/interface/events.interface';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface eventData {
   date_event: string;
@@ -31,8 +32,10 @@ export interface eventData {
 })
 export class ModifyEventComponent implements OnInit {
   eventsList: eventData[];
+  files: File[] = [];
   artistList: Artist[] = [];
   id_edit: string;
+  event!: Events;
   displayedColumns: string[] = [
     'date_event',
     'city_event',
@@ -44,14 +47,18 @@ export class ModifyEventComponent implements OnInit {
     'flyer',
   ];
 
+  @ViewChild('success') success: TemplateRef<any>;
+  @ViewChild('error') error: TemplateRef<any>;
+  @ViewChild('fecha_error') fecha_error: TemplateRef<any>;
+  @ViewChild('fecha_error_presale') fecha_error_presale: TemplateRef<any>;
+  @ViewChild('falta_fecha_evento') falta_fecha_evento: TemplateRef<any>;
+
+
   form: FormGroup;
   SERVER_URL = 'http://18.224.229.72:3000/eventss';
   url_cloudinary_img_current;
 
-  arrayItems: {
-    date_end_presale: string;
-    price_presale: string;
-  }[];
+  arrayItems: Presale[];
 
   nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
   nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
@@ -61,12 +68,12 @@ export class ModifyEventComponent implements OnInit {
   }
   constructor(
     public fb: FormBuilder,
-    private http: HttpClient,
     private _uploadService: UploadServiceModify,
     private routes: Router,
     private actroutes: ActivatedRoute,
     private eventService: EventService,
-    private artisService: ArtistService
+    private artisService: ArtistService,
+    private dialog: MatDialog
   ) {
     this.form = this.fb.group({
       demoArray: this.fb.array([]),
@@ -88,24 +95,40 @@ export class ModifyEventComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(/[A-Za-z0-9'\.\-\s\,]/)],
       ],
-      /* presale: ['',[
-        Validators.required,
-        Validators.pattern(/^[0-9]+$/)]], */
       presales: this.fb.array([], Validators.required),
       artists: ['', Validators.required],
       capacity: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       flyer: [''],
     });
-    this.id_edit = this.actroutes.snapshot.queryParams.id;
-    this.getEvent();
   }
 
   ngOnInit() {
+    this.id_edit = this.actroutes.snapshot.queryParams.id;
     this.arrayItems = [];
     var current_date = new Date().toISOString().split('T')[0];
     document
       .getElementsByName('appo_date')[0]
       .setAttribute('min', current_date);
+
+    this.artisService.getAllArtists()
+      .subscribe((resp) => {
+        this.artistList = resp.artists;
+      });
+    this.eventService.getEventById2(this.id_edit)
+      .subscribe((resp) => {
+        this.event = resp.event;
+
+        this.form.patchValue({ date_event: this.event.date_event });
+        this.form.patchValue({ city_event: this.event.city_event });
+        this.form.patchValue({ direction_event: this.event.direction_event });
+        this.form.patchValue({ description_event: this.event.description_event });
+        this.form.patchValue({ artists: this.event.artists });
+        this.form.patchValue({ artists: this.event.artists });
+        this.arrayItems = this.event.presales;
+        this.addPresale(this.event.presales)
+        this.form.patchValue({ capacity: this.event.capacity });
+        this.form.get('flyer').setValue(this.event.flyer);
+      });
   }
 
   async cargarInfo() {
@@ -120,49 +143,22 @@ export class ModifyEventComponent implements OnInit {
     }
   }
 
-  async edit(): Promise<any> {
-    try {
-      console.log('editMethod', this.form.value);
-      const editEvent = await this.eventService.editEvent(
-        this.id_edit,
-        this.form.value
-      );
-      const newList = await this.eventService.getEvents();
-      this.routes.navigate(['/admin/list-event']);
-    } catch (error) {
-      console.log(error);
-    }
+  edit(): void{
+    this.eventService.editEvent2(this.id_edit, this.form.value)
+      .subscribe((resp)=>{
+        this.dialog.open(this.success);
+        this.routes.navigate(['/admin/list-event']);
+      }, (err)=>{
+        this.dialog.open(this.error);
+      })
   }
 
-  async getEvent():Promise<any>{
-    this.artisService.getAllArtists()
-      .subscribe((resp) => {
-        this.artistList = resp.artists;
-      });
-    const event = await this.eventService.getEventById(this.id_edit);
-    this.form.patchValue({date_event:event.event.date_event});
-    this.form.patchValue({city_event:event.event.city_event});
-    this.form.patchValue({direction_event:event.event.direction_event});
-    this.form.patchValue({description_event:event.event.description_event});
-    this.form.patchValue({artists:event.event.artists});
-    console.log("Evento"+ event.event.artists);
-    this.form.patchValue({artists: event.event.artists});
-    console.log('press', event.event.presales)
-    this.arrayItems = event.event.presales;
-    this.addPresale(event.event.presales)
-    this.form.patchValue({capacity:event.event.capacity});
-    this.form.get('flyer').setValue(event.event.flyer);
-  }
-
-  files: File[] = [];
-
-  onSelect(event) {
+  onSelect(event: any) {
     console.log(event);
     this.files.push(...event.addedFiles);
   }
 
-  onRemove(event) {
-    console.log(event);
+  onRemove(event: any) {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
@@ -188,7 +184,7 @@ export class ModifyEventComponent implements OnInit {
     }
   }
 
-  uploadFile(event) {
+  uploadFile(event: any) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.get('flyer').setValue(file);
   }
@@ -197,10 +193,23 @@ export class ModifyEventComponent implements OnInit {
     this.routes.navigate(['/admin/list-event']);
   }
 
-  agregarPreventan() {
+  comparePresales(dateNewPresale: Date): boolean {
+    let flag = false;
+    let pos = this.arrayItems.length - 1;
+    if (dateNewPresale <= this.arrayItems[pos].date_end_presale) {
+      flag = true;
+    }
+    return flag;
+  };
+
+
+  agregarPreventa() {
     if (this.nuevaFechaPreventa.invalid && this.nuevoPrecioPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
       this.nuevaFechaPreventa.markAllAsTouched();
+      return;
+    } else if (this.form.get('date_event').value === '') {
+      this.dialog.open(this.falta_fecha_evento);
       return;
     } else if (this.nuevaFechaPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
@@ -208,8 +217,16 @@ export class ModifyEventComponent implements OnInit {
     } else if (this.nuevoPrecioPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
       return;
+    } else if (this.nuevaFechaPreventa.value > this.form.get('date_event').value) {
+      this.dialog.open(this.fecha_error);
+      return;
+    } else if (this.arrayItems.length > 0) {
+      let value = this.comparePresales(this.nuevaFechaPreventa.value);
+      if (value) {
+        this.dialog.open(this.fecha_error_presale);
+        return;
+      }
     }
-    console.log(this.nuevaFechaPreventa.value, this.nuevoPrecioPreventa.value);
     this.arrayItems.push({
       date_end_presale: this.nuevaFechaPreventa.value,
       price_presale: this.nuevoPrecioPreventa.value,
@@ -222,8 +239,6 @@ export class ModifyEventComponent implements OnInit {
     );
     this.nuevaFechaPreventa.reset();
     this.nuevoPrecioPreventa.reset();
-    console.log('preventan', this.presales.controls);
-    console.log('arrays', this.arrayItems);
   }
 
   eliminarPreventa(i: number) {

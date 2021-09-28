@@ -28,8 +28,13 @@ export interface ResponseCreateEvent{
 }
 
 export interface responseEventById{
-
   status: string,
   message: string,
   event: Events
+}
+
+export interface ResponseEditEvent{
+  status: string,
+  message: string,
+  eventEdit: Events
 }

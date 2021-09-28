@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ResponseEvents, responseEventById, ResponseCreateEvent, Events } from '../../features/home/components/eventos/interface/events.interface';
+import { ResponseEvents, responseEventById, ResponseCreateEvent, Events, ResponseEditEvent } from '../../features/home/components/eventos/interface/events.interface';
 import * as Config from '../../config/config';
 
 @Injectable({
@@ -35,6 +35,10 @@ export class EventService {
 
   editEvent(_id, body): Promise<any>{
     return this.http.put<any>(`${this.path}/${_id}`, body).toPromise();
+  }
+
+  editEvent2(_id: string, body: Events): Observable<ResponseEditEvent>{
+    return this.http.put<ResponseEditEvent>(`${this.path}/${_id}`, body);
   }
 
   addEvent(body: Events): Observable<ResponseCreateEvent> {
