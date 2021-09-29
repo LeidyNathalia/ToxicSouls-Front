@@ -125,22 +125,11 @@ export class ModifyEventComponent implements OnInit {
         this.form.patchValue({ artists: this.event.artists });
         this.form.patchValue({ artists: this.event.artists });
         this.arrayItems = this.event.presales;
+        console.log(this.arrayItems.length, ' Tamaño arrayItems')
         this.addPresale(this.event.presales)
         this.form.patchValue({ capacity: this.event.capacity });
         this.form.get('flyer').setValue(this.event.flyer);
       });
-  }
-
-  async cargarInfo() {
-    try {
-      const result = await this.eventService.getEvents();
-      console.log('result', result);
-      this.eventsList = await result.events;
-      console.log(result.events);
-      console.log(this.eventsList);
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   edit(): void{
@@ -202,7 +191,6 @@ export class ModifyEventComponent implements OnInit {
     return flag;
   };
 
-
   agregarPreventa() {
     if (this.nuevaFechaPreventa.invalid && this.nuevoPrecioPreventa.invalid) {
       this.nuevoPrecioPreventa.markAllAsTouched();
@@ -253,9 +241,6 @@ export class ModifyEventComponent implements OnInit {
 
   addPresale(presalesC) {
     presalesC.forEach((presale) => {
-      /*     console.log('presaleCurrent', presale);
-    console.log('presaleCurrent', presale.date_end_presale);
-    console.log('pricePresale', presale.price_presale); */
       this.presales.push(
         this.fb.control({
           date_end_presale: presale.date_end_presale,

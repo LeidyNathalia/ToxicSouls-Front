@@ -37,7 +37,11 @@ export class SignInComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if(localStorage.getItem('userData')){
+      this.router.navigate(['/admin/list-event']);
+    }
+  }
 
   signIn(): void {
     this.userService.signIn(this.userLogin.value)

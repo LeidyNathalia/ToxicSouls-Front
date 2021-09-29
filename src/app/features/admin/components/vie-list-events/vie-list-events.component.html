@@ -73,3 +73,22 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
+
+  <ng-template #success>
+    <h1 matDialogTitle align="center"><strong>Mensaje</strong></h1>
+    <hr>
+    <p matDialogContent class="fuente">El evento se eliminó correctamente del sistema</p>
+    <mat-dialog-actions align="center">
+      <button mat-raised-button matDialogClose color="primary"><mat-icon>close</mat-icon></button>
+    </mat-dialog-actions>
+  </ng-template>
+
+  <ng-template #error>
+    <h1 matDialogTitle align="center"><strong>Error</strong></h1>
+    <hr>
+    <p matDialogContent class="fuente">El evento no pudo ser eliminado, intente nuevamente</p>
+    <mat-dialog-actions align="center">
+      <button mat-raised-button matDialogClose color="warn" matDialogClose><mat-icon>close</mat-icon></button>
+    </mat-dialog-actions>
+  </ng-template>
+

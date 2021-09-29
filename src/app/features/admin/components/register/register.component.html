@@ -88,7 +88,7 @@
               !registerForm.controls.password.hasError('required')
             "
           >
-            Por favor ingrese una contraseña válido
+            Por favor ingrese una contraseña valida
           </mat-error>
           <mat-error
             *ngIf="registerForm.controls.password.hasError('required')"
@@ -108,7 +108,7 @@
             Registrar
           </button>
 
-          <button class="boton-registrar" mat-raised-button color="primary" type="submit">
+          <button class="boton-registrar" mat-raised-button color="primary" type="button" (click)="verLista()">
             Ver lista
           </button>
 
