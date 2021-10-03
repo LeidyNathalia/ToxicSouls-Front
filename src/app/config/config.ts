@@ -1,1 +1,1 @@
-export const path: string = 'http://localhost:3000/api';
+export const path: string = 'http://3.144.76.124:3000/api';
