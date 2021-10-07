@@ -475,13 +475,15 @@
         </mat-error>
       </mat-form-field>
 
-      <div class="form-group, center-horizontal" id="button">
-        <button class="btn btn-danger" >Modificar</button>
-      </div>
-      <div class="viewList" id="button">
-        <form (submit)="viewList()">
-        <button class="btn btn-danger">Ver eventos</button>
-        </form>
+      <div class="center-horizontal">
+        <div class="form-group, center-horizontal" id="button">
+          <button class="btn btn-danger" >Modificar</button>
+        </div>
+        <div class="viewList, center-horizontal" id="button">
+          <form (submit)="viewList()">
+          <button class="btn btn-danger">Ver eventos</button>
+          </form>
+        </div>
       </div>
     </form>
   </div>

@@ -1,0 +1,29 @@
+<span class="artist center-horizontal"> ARTISTAS </span>
+  <div class = "contend">
+    <div fxLayout="row"  fxLayoutGap="1px">
+      <mat-grid-list cols="2" rowHeight="1:1">
+      <div *ngFor = "let artist of artist">
+        <mat-grid-tile>
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{artist.name_artist}}</mat-card-title>
+            <mat-card-subtitle>{{artist.nationality_artist}}</mat-card-subtitle>
+          </mat-card-header>
+          <img class = "image" mat-card-image [src]="artist.photo_artist">
+          <mat-card-content>
+            <p>
+              {{artist.description_artist}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>{{artist.social_networks}}</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+      </div>
+    </mat-grid-list>
+  </div>
+
+
