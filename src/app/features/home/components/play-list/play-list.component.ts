@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CargarScriptsService } from './../../../../cargar-scripts.service';
 
 @Component({
   selector: 'app-play-list',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _CargarScripts:CargarScriptsService) {
+    _CargarScripts.Carga(["playlist"]);
+   }
 
   ngOnInit(): void {
+       
   }
-
 }

@@ -12,6 +12,7 @@ import { PlayListComponent } from './components/play-list/play-list.component';
 import { ViewEventsComponent } from './components/eventos/view-events/view-events.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { DetailsEventsComponent } from './components/eventos/details-events/details-events.component';
+import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DetailsEventsComponent } from './components/eventos/details-events/deta
     PlayListComponent,
     ViewEventsComponent,
     TicketsComponent,
-    DetailsEventsComponent
+    DetailsEventsComponent,
+    HelpComponent
   ],
   imports: [
     CommonModule,
