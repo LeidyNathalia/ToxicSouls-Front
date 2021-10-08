@@ -19,6 +19,7 @@ import { AddArtistComponent } from './components/Artistas/add-artist/add-artist.
 import { ModifyArtistComponent } from './components/Artistas/modify-artist/modify-artist.component';
 import { ViewListArtistComponent } from './components/Artistas/view-list-artist/view-list-artist.component';
 import { ReportComponent } from './components/report/report.component';
+import { HelpComponent } from './components/help/help.component';
 @NgModule({
   declarations: [
     PrincipalComponent,
@@ -32,7 +33,8 @@ import { ReportComponent } from './components/report/report.component';
     AddArtistComponent,
     ModifyArtistComponent,
     ViewListArtistComponent,
-    ReportComponent
+    ReportComponent,
+    HelpComponent
   ],
   imports: [
     CommonModule,

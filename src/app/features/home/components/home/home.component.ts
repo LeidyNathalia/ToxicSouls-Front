@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselController, CarouselImage } from 'ng-simple-carousel';
+import { ArtistService } from '../../../../services/user-service/artist.service';
+import { Router } from '@angular/router';
+import { Artist } from '../artists/interfaceArtist/artist.interface';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +11,17 @@ import { CarouselController, CarouselImage } from 'ng-simple-carousel';
 })
 export class HomeComponent implements OnInit {
 
+  artist: Artist[] = [];
 
   public controllerButton = new CarouselController();
 
-  constructor() { }
+  constructor(private artistService:ArtistService, private reuter:Router) { }
 
   ngOnInit(): void {
+    this.artistService.getAllArtists()
+    .subscribe((resp)=>{
+      this.artist = resp.artists;
+    });
   }
 
   images: CarouselImage[] = [
@@ -24,5 +32,10 @@ export class HomeComponent implements OnInit {
 
   onImgChange(id: string) {
     console.log(id);
+  }
+  
+  imprimirArtist(listArtists:Artist[]){
+    listArtists.forEach(element => {
+    });
   }
 }

@@ -1,13 +1,14 @@
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { NewsComponent } from './components/news/news.component';
+import { ViewArtist } from './components/artists/viewArtist/viewArtist.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { PlayListComponent } from './components/play-list/play-list.component';
 import { ViewEventsComponent } from './components/eventos/view-events/view-events.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { DetailsEventsComponent } from './components/eventos/details-events/details-events.component';
 import { HelpComponent } from './components/help/help.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 const routes: Routes = [
@@ -16,11 +17,12 @@ const routes: Routes = [
     children: [
       { path: "", component: HomeComponent },
       { path: "play-list", component: PlayListComponent},
-      { path: "news", component: NewsComponent },
       { path: "help", component: HelpComponent },
+      { path: "viewArtist", component: ViewArtist },
       { path: "events", component: ViewEventsComponent},
       { path: "tickets", component: TicketsComponent},
-      { path: "DetailsEvents", component: DetailsEventsComponent}
+      { path: "DetailsEvents", component: DetailsEventsComponent},
+      { path: "AboutComponent", component: AboutComponent}
     ]
   }
 ];

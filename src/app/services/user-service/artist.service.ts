@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Artist, responseArtist } from 'src/app/features/admin/components/Artistas/interfaces/artist.interface';
 import * as Config from '../../config/config';
+import { ResponseArtist } from '../../features/home/components/artists/interfaceArtist/artist.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class ArtistService {
 
   getArtist(): Promise<any> {
     return this.http.get<any>(this.path).toPromise();
+  }
+
+  getArtist2(): Observable<ResponseArtist> {
+    return this.http.get<ResponseArtist>(this.path);
   }
 
   getArtistById(_id: string): Promise<any>{

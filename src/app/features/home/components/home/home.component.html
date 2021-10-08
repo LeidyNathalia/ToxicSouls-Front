@@ -6,30 +6,12 @@
 </div>
 
 <div class="new-cards">
-  <div>
-    <img src="./assets/img/artista 1.jpg" alt="News 1" />
-    <h3>Artista 1</h3>
-    <p>Info</p>
-  </div>
-
-  <div>
-    <img src="./assets/img/artista 2.jpg" alt="News 2" />
-    <h3>Artista 2</h3>
-    <p>Info</p>
-  </div>
-
-  <div>
-    <img src="./assets/img/artista 3.jpg" alt="News 3" />
-    <h3>Artista 3</h3>
-    <p>Info</p>
-    <!-- <a href="">Learn more <i class="fas fa-angle-double-right"></i></a> -->
-  </div>
-
-  <div>
-    <img src="./assets/img/artista 4.png" alt="News 4" />
-    <h3>Artista 4</h3>
-    <p>Info</p>
-    <!-- <a href="">Learn more <i class="fas fa-angle-double-right"></i></a> -->
+  <div *ngFor = "let artist of artist | slice:0:4">
+    <div>
+      <img class = "image" mat-card-image [src]="artist.photo_artist">
+      <h3>{{artist.name_artist}}</h3>
+      <p>{{artist.nationality_artist}}</p>
+    </div>
   </div>
 </div>
 
