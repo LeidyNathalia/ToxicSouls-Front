@@ -9,12 +9,12 @@ import { ResponseGetTransactions } from 'src/app/features/home/components/evento
 })
 export class TransactionService {
 
-  path: string = `${Config.path}/user`;
+  path: string = `${Config.path}/transactions`;
 
   constructor(private http: HttpClient) { }
 
 
   getTransactions(): Observable<ResponseGetTransactions>{
-    return this.http.get<ResponseGetTransactions>(`${this.path}/transactions`);
+    return this.http.get<ResponseGetTransactions>(`${this.path}`);
   }
 }

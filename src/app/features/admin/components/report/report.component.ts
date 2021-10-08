@@ -37,11 +37,15 @@ export class ReportComponent implements OnInit {
   ngAfterViewInit(): void {
     this.transactionService.getTransactions()
       .subscribe((resp) => {
+        console.log(resp)
         this.transactionsList = resp.transactions;
         this.dataSource = new MatTableDataSource(this.transactionsList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-      }, (err) => this.transactionsList = []);
+      }, (err) => {
+        console.log(err)
+        this.transactionsList = []
+      });
   }
 
   applyFilter(event: Event) {
