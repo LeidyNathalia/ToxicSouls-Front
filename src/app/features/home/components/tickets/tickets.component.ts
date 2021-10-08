@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Events, Presale } from '../eventos/interface/events.interface';
 import { EventService } from '../../../../services/user-service/event.service';
@@ -55,12 +55,35 @@ export class TicketsComponent implements OnInit {
   compareDate(presales:Presale[]){
     if(presales.length == 1){
       this.precio = parseInt(presales[0].price_presale);
-      this.precioUnit = parseInt(presales[0].price_presale);
-      this.precio = this.precio*100;
-      this.precioUnit = this.precioUnit*100;
-      this.iva = this.precio * 0.19;
-      this.consumption = this.precio * 0.08;
+    }else{
+      const current_date = new Date();
+      // for(let i = 0; i < presales.length; i ++){
+      //   if(current_date <= this.convertPresaleDateToneFormat(presales[i])){
+      //     console.log('fecha actual menor o igual a la fecha de la preventa')
+      //   }
+      // }
+      if(current_date <= this.convertPresaleDateToneFormat(presales[0])){
+        console.log('fecha actual menor o igual a la fecha de la preventa')
+        this.precio = parseInt(presales[0].price_presale);
+      }
     }
+    this.precioUnit = parseInt(presales[0].price_presale);
+    this.precio = this.precio*100;
+    this.precioUnit = this.precioUnit*100;
+    this.iva = this.precio * 0.19;
+    this.consumption = this.precio * 0.08;
+  }
+
+  convertPresaleDateToneFormat(presale: Presale): Date{
+    let date_p =  presale.date_end_presale.toLocaleString();
+    let date = new Date(date_p);
+    let dateToParse = date.toLocaleDateString();
+    let data = dateToParse.split('/');
+    let day = parseInt(data[0]) + 2;
+    let newdate: string [] = [day.toString(), data[1], data[2]];
+    let result = `${newdate[2]}-${newdate[1]}-${newdate[0]}`;
+    let dateConvert = new Date(result);
+    return dateConvert;
   }
 
   onChange(event: number){

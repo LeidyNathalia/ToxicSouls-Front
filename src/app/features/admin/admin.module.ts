@@ -18,6 +18,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AddArtistComponent } from './components/Artistas/add-artist/add-artist.component';
 import { ModifyArtistComponent } from './components/Artistas/modify-artist/modify-artist.component';
 import { ViewListArtistComponent } from './components/Artistas/view-list-artist/view-list-artist.component';
+import { ReportComponent } from './components/report/report.component';
 @NgModule({
   declarations: [
     PrincipalComponent,
@@ -30,7 +31,8 @@ import { ViewListArtistComponent } from './components/Artistas/view-list-artist/
     EditUserComponent,
     AddArtistComponent,
     ModifyArtistComponent,
-    ViewListArtistComponent
+    ViewListArtistComponent,
+    ReportComponent
   ],
   imports: [
     CommonModule,

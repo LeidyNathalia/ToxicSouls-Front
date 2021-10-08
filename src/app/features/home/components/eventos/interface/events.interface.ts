@@ -1,6 +1,6 @@
 import { Artist } from '../../../../admin/components/Artistas/interfaces/artist.interface';
-export interface Events{
-  _id?:string,
+export interface Events {
+  _id?: string,
   date_event?: string,
   city_event?: string,
   direction_event?: string,
@@ -11,36 +11,52 @@ export interface Events{
   capacity?: number
 }
 
-export interface Presale{
+export interface Presale {
   price_presale: string,
   date_end_presale: Date
 }
 
 
-export interface ResponseEvents{
+export interface ResponseEvents {
   status: string,
   events: Events[]
 }
 
-export interface ResponseCreateEvent{
+export interface ResponseCreateEvent {
   status: string,
   event: Events
 }
 
-export interface responseEventById{
+export interface responseEventById {
   status: string,
   message: string,
   event: Events
 }
 
-export interface ResponseEditEvent{
+export interface ResponseEditEvent {
   status: string,
   message: string,
   eventEdit: Events
 }
 
-export interface ResponseDeleteEvent{
+export interface ResponseDeleteEvent {
   status: string,
   message: string,
   event: Events
+}
+
+export interface Transaction {
+  statusPayment: string,
+  nameClient: string,
+  emailClient: string,
+  docId: string,
+  phoneNumber: string,
+  totalPayment: string,
+  paymentMethod: string
+}
+
+
+export interface ResponseGetTransactions {
+  status: string,
+  transactions: Transaction []
 }

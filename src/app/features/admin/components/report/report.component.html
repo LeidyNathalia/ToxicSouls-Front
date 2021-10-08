@@ -1,0 +1,88 @@
+<span class="titleEvents center-horizontal"> REPORTE DE VENTAS </span>
+<mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+       <ng-container matColumnDef="statusPayment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado</th>
+        <td mat-cell *matCellDef="let row"> {{row.statusPayment}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nameClient">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente</th>
+        <td mat-cell *matCellDef="let row"> {{row.nameClient}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="emailClient">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo del cliente</th>
+        <td mat-cell *matCellDef="let row"> {{row.emailClient}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="docId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Documento del cliente</th>
+        <td mat-cell *matCellDef="let row"> {{row.docId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
+        <td mat-cell *matCellDef="let row"> {{row.phoneNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="TotalPayment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Pago</th>
+        <td mat-cell *matCellDef="let row"> {{row.TotalPayment}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="paymentMethod">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Método de pago</th>
+        <td mat-cell *matCellDef="let row"> {{row.paymentMethod}} </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> OPTIONS </th>
+        <td mat-cell *matCellDef="let row">
+          <button (click)="modify(row)"  mat-icon-button aria-label="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button (click)= "delete(row)" mat-icon-button aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container> -->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+  <ng-template #success>
+    <h1 matDialogTitle align="center"><strong>Mensaje</strong></h1>
+    <hr>
+    <p matDialogContent class="fuente">El evento se eliminó correctamente del sistema</p>
+    <mat-dialog-actions align="center">
+      <button mat-raised-button matDialogClose color="primary"><mat-icon>close</mat-icon></button>
+    </mat-dialog-actions>
+  </ng-template>
+
+  <ng-template #error>
+    <h1 matDialogTitle align="center"><strong>Error</strong></h1>
+    <hr>
+    <p matDialogContent class="fuente">El evento no pudo ser eliminado, intente nuevamente</p>
+    <mat-dialog-actions align="center">
+      <button mat-raised-button matDialogClose color="warn" matDialogClose><mat-icon>close</mat-icon></button>
+    </mat-dialog-actions>
+  </ng-template>
+
+
