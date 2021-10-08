@@ -20,7 +20,7 @@ export class ReportComponent implements OnInit {
     'emailClient',
     'docId',
     'phoneNumber',
-    'TotalPayment',
+    'totalPayment',
     'paymentMethod'
   ];
 
