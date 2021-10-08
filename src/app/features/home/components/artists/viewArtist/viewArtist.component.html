@@ -10,7 +10,9 @@
             <mat-card-title>{{artist.name_artist}}</mat-card-title>
             <mat-card-subtitle>{{artist.nationality_artist}}</mat-card-subtitle>
           </mat-card-header>
-          <img class = "image" mat-card-image [src]="artist.photo_artist">
+          <div class="center-horizontal">
+            <img class = "image" mat-card-image [src]="artist.photo_artist">
+          </div>
           <mat-card-content>
             <p>
               {{artist.description_artist}}

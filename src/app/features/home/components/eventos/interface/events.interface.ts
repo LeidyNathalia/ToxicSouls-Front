@@ -39,8 +39,7 @@ export interface ResponseEditEvent {
   eventEdit: Events
 }
 
-export interface ResponseDeleteEvent {}
-export interface responseEventById{
+export interface ResponseDeleteEvent {
   status: string,
   message: string,
   event: Events

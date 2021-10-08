@@ -10,12 +10,14 @@ $color-primary: #000000;
 html,
 body {
   height: 100%;
+  min-height: 100vh;
   margin: 0px !important;
   padding: 0px !important;
 }
 
 body {
   margin: 2px;
+  min-height: 100vh;
   font-family: Headliner;
 }
 
@@ -71,7 +73,7 @@ body {
   font-size: 25px;
 }
 
-// estilos seccion ayuda 
+// estilos seccion ayuda
 
 :root {
 	--primario: #79CBBD;

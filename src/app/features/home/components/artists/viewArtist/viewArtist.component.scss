@@ -9,6 +9,7 @@
 
 .contend{
   padding: 15px;
+  min-height: 100vh;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
 }
 
@@ -16,7 +17,7 @@
   // display: flex;
   flex-flow: column;
   color: #000000;
-  height: 90%;
+  height: 100%;
   width: 90%;
   margin-top: 10px;
   background-color: #ffffff;
@@ -25,12 +26,12 @@
 
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-
-// .image{
-//   height: 90%;
-//   width: 80%;
+// .example-header-image {
+//   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+//   background-size: cover;
 // }
+
+.image{
+  height: 70%;
+  width: 70%;
+}
