@@ -11,6 +11,12 @@ import { UploadServiceModify } from '../features/admin/components/modify-event/u
 import { DatePipe } from '@angular/common';
 
 
+// Inicio servicios 
+
+import { CargarScriptsService } from '../cargar-scripts.service';
+
+// Fin servicios 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +28,9 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [UploadService,UploadServiceModify,DatePipe],
+  providers: [
+    UploadService,UploadServiceModify,DatePipe,CargarScriptsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

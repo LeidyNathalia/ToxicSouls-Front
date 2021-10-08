@@ -7,6 +7,7 @@ import { PlayListComponent } from './components/play-list/play-list.component';
 import { ViewEventsComponent } from './components/eventos/view-events/view-events.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { DetailsEventsComponent } from './components/eventos/details-events/details-events.component';
+import { HelpComponent } from './components/help/help.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: "", component: HomeComponent },
       { path: "play-list", component: PlayListComponent},
       { path: "news", component: NewsComponent },
+      { path: "help", component: HelpComponent },
       { path: "events", component: ViewEventsComponent},
       { path: "tickets", component: TicketsComponent},
       { path: "DetailsEvents", component: DetailsEventsComponent}
