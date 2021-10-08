@@ -7,6 +7,7 @@ import { PlayListComponent } from './components/play-list/play-list.component';
 import { ViewEventsComponent } from './components/eventos/view-events/view-events.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { DetailsEventsComponent } from './components/eventos/details-events/details-events.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: "viewArtist", component: ViewArtist },
       { path: "events", component: ViewEventsComponent},
       { path: "tickets", component: TicketsComponent},
-      { path: "DetailsEvents", component: DetailsEventsComponent}
+      { path: "DetailsEvents", component: DetailsEventsComponent},
+      { path: "AboutComponent", component: AboutComponent}
     ]
   }
 ];

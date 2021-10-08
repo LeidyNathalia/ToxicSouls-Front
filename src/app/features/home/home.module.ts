@@ -13,6 +13,7 @@ import { ViewEventsComponent } from './components/eventos/view-events/view-event
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { DetailsEventsComponent } from './components/eventos/details-events/details-events.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ViewEventsComponent,
     TicketsComponent,
     DetailsEventsComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,

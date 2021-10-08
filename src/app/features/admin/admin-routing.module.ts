@@ -11,6 +11,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AddArtistComponent } from './components/Artistas/add-artist/add-artist.component';
 import { ViewListArtistComponent } from './components/Artistas/view-list-artist/view-list-artist.component';
 import { ModifyArtistComponent } from './components/Artistas/modify-artist/modify-artist.component';
+import { AboutComponent } from '../home/components/about/about.component';
+import { HelpComponent } from './components/help/help.component';
 
 
 const routes: Routes = [
@@ -26,7 +28,9 @@ const routes: Routes = [
       { path: "list-event", component: VieListEventsComponent },
       { path: "mod-event", component: ModifyEventComponent },
       { path: "register", component: RegisterComponent},
-      { path: "edit-user", component: EditUserComponent}
+      { path: "edit-user", component: EditUserComponent},
+      { path: "about", component: AboutComponent},
+      { path: "help", component: HelpComponent}
     ]
   }
 ];
