@@ -10,15 +10,16 @@ import { CargarScriptsService } from './../../../../cargar-scripts.service';
 export class HelpComponent implements AfterViewInit {
 
   constructor(private _CargarScripts:CargarScriptsService) {
-    _CargarScripts.Carga(["categorias"]);
-    _CargarScripts.Carga(["preguntasFrecuentes"]);
+    
    }
 
-  ngAfterViewInit(): void {
-    
+   async ngAfterViewInit(): Promise<any> {
+    this._CargarScripts.Carga(["categorias"]);
+    this._CargarScripts.Carga(["preguntasFrecuentes"]);
   }
 
   ngOnInit(): void {
+ 
   }
 
 }

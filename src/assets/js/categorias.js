@@ -1,6 +1,6 @@
-const categorias = document.querySelectorAll('#categorias .categoria');
-const contenedorPreguntas = document.querySelectorAll('.contenedor-preguntas');
-let categoriaActiva = null;
+var categorias = document.querySelectorAll('#categorias .categoria');
+var contenedorPreguntas = document.querySelectorAll('.contenedor-preguntas');
+var categoriaActiva = null;
 
 categorias.forEach((categoria) => {
 	categoria.addEventListener('click', (e) => {
