@@ -427,15 +427,23 @@
     <!--Registrar preventa-->
 
       <table class="example-full-width"><tr>
+
+
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>Inicio preventa</mat-label>
+          <input matInput type="date" [formControl]="nuevaFechaInicioPreventa" uib-datepicker-popup="dd/mm/yyyy">
+        </mat-form-field>
+      </td>
+
         <td><mat-form-field appearance="fill">
-          <mat-label>Fecha preventa</mat-label>
+          <mat-label>Final preventa</mat-label>
           <input matInput type="date" [formControl]="nuevaFechaPreventa"
           uib-datepicker-popup="dd/mm/yyyy">
            <!-- <mat-error *ngIf="form.get('nuevaFechaPreventa').hasError('required')">
              La fecha es necesaria para crear un preventa
            </mat-error> -->
         </mat-form-field>
-
       </td>
 
         <td><mat-form-field appearance="fill">
@@ -466,6 +474,11 @@
     <table class="example-full-width" formArrayName="demoArray"
     *ngFor="let arrayItem of arrayItems; let i=index">
     <tr>
+      <td>
+        <mat-form-field appearance="fill">
+          <input matInput [value]="arrayItem.date_start_presale">
+        </mat-form-field>
+      </td>
       <td>
         <mat-form-field appearance="fill">
           <input matInput [value]="arrayItem.date_end_presale">

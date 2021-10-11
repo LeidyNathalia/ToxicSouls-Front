@@ -31,7 +31,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Preventas </th>
         <!-- <td mat-cell *matCellDef="let row"> {{row.presales[0].date_end_presale}} </td> -->
         <td mat-cell *matCellDef="let row"><p *ngFor="let i of row.presales">
-          <strong>fecha:</strong> {{i.date_end_presale}} <strong>precio:</strong> {{ i.price_presale | number}}
+          <strong>Incio: </strong> {{i.date_end_presale}} <br> <strong>Fin: </strong> {{i.date_start_presale}} <strong>precio:</strong> {{ i.price_presale | number}}
           <span *ngIf="row.presales.length > 1"><hr class="line"></span>
         </p></td>
       </ng-container>

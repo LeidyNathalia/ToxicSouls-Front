@@ -61,6 +61,7 @@ export class ModifyEventComponent implements OnInit {
   arrayItems: Presale[];
 
   nuevaFechaPreventa: FormControl = this.fb.control('', Validators.required);
+  nuevaFechaInicioPreventa: FormControl = this.fb.control('', Validators.required);
   nuevoPrecioPreventa: FormControl = this.fb.control('', Validators.required);
 
   get presales() {
@@ -217,15 +218,18 @@ export class ModifyEventComponent implements OnInit {
     }
     this.arrayItems.push({
       date_end_presale: this.nuevaFechaPreventa.value,
+      date_start_presale: this.nuevaFechaInicioPreventa.value,
       price_presale: this.nuevoPrecioPreventa.value,
     });
     this.presales.push(
       this.fb.control({
         date_end_presale: this.nuevaFechaPreventa.value,
+        date_start_presale: this.nuevaFechaInicioPreventa.value,
         price_presale: this.nuevoPrecioPreventa.value,
       })
     );
     this.nuevaFechaPreventa.reset();
+    this.nuevaFechaInicioPreventa.reset();
     this.nuevoPrecioPreventa.reset();
   }
 

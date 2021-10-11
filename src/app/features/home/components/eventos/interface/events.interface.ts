@@ -13,6 +13,7 @@ export interface Events {
 
 export interface Presale {
   price_presale: string,
+  date_start_presale: Date,
   date_end_presale: Date
 }
 
